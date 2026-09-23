@@ -1,0 +1,8 @@
+# служебные файлы, не публикуются
+TODO.md
+_src/
+# локальные файлы инструментов
+node_modules/
+*.report.html
+*.report.json
+.DS_Store

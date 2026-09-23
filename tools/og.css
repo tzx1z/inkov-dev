@@ -1,0 +1,41 @@
+/* Макет OG-картинки 1200x630 для tools/og-ru.html и tools/og-en.html.
+   Подключается после /assets/css/style.css, вне слоев, поэтому переопределяет его правила.
+   Цвета только через токены style.css. Размеры в px: холст снимка фиксированный. */
+
+/* светлая тема при любом значении theme в localStorage */
+:root { color-scheme: light; }
+
+body { overflow: hidden; }
+
+.og {
+  display: grid;
+  grid-template: "text photo" / minmax(0, 1fr) 560px;
+  gap: 48px;
+  align-items: center;
+  inline-size: 1200px;
+  block-size: 630px;
+  padding: 35px 35px 35px 64px;
+  overflow: hidden;
+  background: radial-gradient(var(--dot) 1px, transparent 1px) 0 0 / 24px 24px, var(--bg);
+}
+
+/* текст слева: сверху имя и роль, снизу ETL-строка и адрес сайта */
+.og__text { grid-area: text; display: flex; flex-direction: column; block-size: 560px; padding-block: 8px 4px; }
+.og__eyebrow { font: 1.375rem / 1.4 var(--font-mono); color: var(--muted); }
+.og__name { margin-block-start: 20px; font-size: 6rem; line-height: 1; }
+.og__name > span { display: block; }
+.og__role { margin-block-start: 24px; font-size: 2.125rem; line-height: 1.25; }
+.og__tagline { margin-block-start: 16px; font-size: 1.625rem; line-height: 1.4; color: var(--muted); }
+
+/* ETL-строка в конечном состоянии: без анимации запуска, маркеры крупнее */
+.og .etl { margin-block-start: auto; font-size: 1.375rem; }
+.og .etl__node { gap: 10px; }
+.og .etl .marker { inline-size: 14px; block-size: 14px; border-width: 7px; }
+.og .etl > li + li::before { margin-inline: 14px; }
+.og .etl .marker::after, .og .etl > li + li::before { animation: none; }
+
+.og__site { min-block-size: 0; margin-block-start: 28px; gap: 12px; font-size: 1.625rem; line-height: 1.2; }
+.og__site .logo__ring { inline-size: 14px; block-size: 14px; border-width: 3px; }
+
+/* фото-нода 560x560 без шапки: рамка 1px, отступ 4px, фото 550x550; область photo задана в style.css */
+.og__photo { inline-size: 560px; }

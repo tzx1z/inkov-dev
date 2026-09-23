@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://inkov.dev/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/en/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/en/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/en/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/projects/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/projects/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/en/projects/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/en/projects/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/en/projects/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/projects/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/en/projects/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/en/projects/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/projects/termisations/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/projects/termisations/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/en/projects/termisations/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/en/projects/termisations/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/en/projects/termisations/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/projects/termisations/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/en/projects/termisations/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/en/projects/termisations/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/projects/xmpp-server-guides/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/projects/xmpp-server-guides/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/en/projects/xmpp-server-guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/en/projects/xmpp-server-guides/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/en/projects/xmpp-server-guides/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/projects/xmpp-server-guides/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/en/projects/xmpp-server-guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/en/projects/xmpp-server-guides/"/>
+  </url>
+</urlset>

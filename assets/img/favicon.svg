@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Две ноды DAG: success (залитый квадрат) -> running (квадрат с обводкой).
+       Все координаты четные: при 16x16 границы попадают на целые пиксели.
+       Цвета светлой темы заданы атрибутами, темная тема переопределяет их в CSS. -->
+  <style>
+    @media (prefers-color-scheme: dark) {
+      .edge { fill: #6a7482; }
+      .success { fill: #4cb870; }
+      .running { stroke: #40b8c8; }
+    }
+  </style>
+  <rect class="edge" x="12" y="14" width="8" height="2" fill="#7c8694"/>
+  <rect class="success" x="2" y="10" width="10" height="10" rx="2" fill="#177337"/>
+  <rect class="running" x="21" y="11" width="8" height="8" rx="1" fill="none" stroke="#08707f" stroke-width="2"/>
+</svg>
