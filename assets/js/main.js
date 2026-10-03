@@ -41,23 +41,27 @@ for (const link of document.querySelectorAll('.lang a')) {
   link.addEventListener('click', () => { link.hash = location.hash; });
 }
 
-// 3. Копирование email: кнопка видна, только если доступна запись в буфер
-const copyButton = document.getElementById('copy-email');
+// 3. Копирование адресов (email, XMPP): кнопки видны, только если доступна запись в буфер
 const copyStatus = document.getElementById('copy-status');
-const mailLink = document.querySelector('a[href^="mailto:"]');
-if (copyButton && copyStatus && mailLink && window.isSecureContext && navigator.clipboard?.writeText) {
+if (copyStatus && window.isSecureContext && navigator.clipboard?.writeText) {
   let timer;
-  copyButton.hidden = false;
-  copyButton.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(mailLink.href.slice('mailto:'.length));
-      copyStatus.textContent = copyButton.dataset.done;
-      clearTimeout(timer);
-      timer = setTimeout(() => { copyStatus.textContent = ''; }, 2000);
-    } catch {
-      // запись запрещена: адрес доступен по ссылке
-    }
-  });
+  for (const button of document.querySelectorAll('.copy-btn')) {
+    // адрес берется из ссылки в той же ячейке без схемы (mailto:, xmpp:)
+    const link = button.parentElement.querySelector('a.contact');
+    if (!link) continue;
+    const address = link.href.slice(link.protocol.length);
+    button.hidden = false;
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(address);
+        copyStatus.textContent = button.dataset.done;
+        clearTimeout(timer);
+        timer = setTimeout(() => { copyStatus.textContent = ''; }, 2000);
+      } catch {
+        // запись запрещена: адрес доступен по ссылке
+      }
+    });
+  }
 }
 
 // 4. Страница 404: показать запрошенный путь

@@ -84,7 +84,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 Скрипт переводит цвет в sRGB, кадрирует, удаляет метаданные и сохраняет AVIF, WebP и JPEG:
 
 ```bash
-python3 tools/images.py _src/img/avatar.jpg assets/img/photos/evgenii-inkov-portrait 256 400 600 --crop 250,30,850,630
+python3 tools/images.py _src/img/avatar.jpg assets/img/photos/evgeny-inkov-portrait 256 400 600 --crop 250,30,850,630
 ```
 
 OG-картинки снимаются с макетов при запущенном локальном сервере:

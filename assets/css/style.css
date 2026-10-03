@@ -216,6 +216,8 @@
 
   @media (width >= 40rem) {
     .groups, .contacts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    /* нечетный последний контакт занимает всю строку */
+    .contacts__cell:last-child:nth-child(odd) { grid-column: 1 / -1; }
   }
 
   @media (width >= 60rem) {
@@ -628,7 +630,6 @@
 
   /* контакт-нода */
   .contacts__cell { display: flex; flex-wrap: wrap; gap: 0.5rem; min-inline-size: 0; }
-  .contacts__cell:nth-child(2) { align-items: start; }
   .contact {
     flex: 1 1 100%;
     display: grid;

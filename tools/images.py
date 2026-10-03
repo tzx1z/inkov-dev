@@ -9,7 +9,7 @@
 Портрет в hero:
 
     python3 tools/images.py _src/img/avatar.jpg \\
-        assets/img/photos/evgenii-inkov-portrait 256 400 600 --crop 250,30,850,630
+        assets/img/photos/evgeny-inkov-portrait 256 400 600 --crop 250,30,850,630
 
 Скриншоты проекта:
 
