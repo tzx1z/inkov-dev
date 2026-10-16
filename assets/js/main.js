@@ -64,9 +64,12 @@ if (copyStatus && window.isSecureContext && navigator.clipboard?.writeText) {
   }
 }
 
-// 4. Страница 404: показать запрошенный путь
+// 4. Страница 404: показать запрошенный путь. Адреса /en/... остались от
+// английской версии в /en/, они ведут на ту же страницу в корне
 const requestedPath = document.getElementById('requested-path');
-if (requestedPath) {
+if (requestedPath && /^\/en(\/|$)/.test(location.pathname)) {
+  location.replace((location.pathname.slice(3) || '/') + location.hash);
+} else if (requestedPath) {
   let path = location.pathname;
   try {
     path = decodeURIComponent(path);

@@ -225,7 +225,7 @@ class Site:
             return None, f"адрес {url} содержит query"
         return self.resolve(unquote(u.path))
 
-    # П.1-3: пары RU/EN, совпадение разметки, lang
+    # П.1-3: пары EN (корень) и RU (ru/), совпадение разметки, lang
     def check_pairs(self):
         pages = set(self.pages)
         for rel in self.pages:
@@ -234,19 +234,19 @@ class Site:
             elif not (rel == "index.html" or rel.endswith("/index.html")):
                 self.err(rel, 1, "страница должна быть index.html в своем каталоге (7.2), пара не определяется")
             else:
-                pair = rel[3:] if rel.startswith("en/") else "en/" + rel
+                pair = rel[3:] if rel.startswith("ru/") else "ru/" + rel
                 if pair not in pages:
                     self.err(rel, 1, f"нет парной страницы {pair}")
-                elif not rel.startswith("en/"):
+                elif not rel.startswith("ru/"):
                     self.compare_markup(rel, pair)
-            want = "en" if rel.startswith("en/") else "ru"
+            want = "ru" if rel.startswith("ru/") else "en"
             html = next((a for t, a, _ in self.docs[rel].elements if t == "html"), None)
             if html is None or "lang" not in html:
                 self.err(rel, 3, f'у <html> нет lang, ожидается lang="{want}"')
             elif html["lang"] != want:
                 self.err(rel, 3, f'<html lang="{html["lang"]}">, ожидается lang="{want}"')
 
-    def compare_markup(self, ru, en):
+    def compare_markup(self, en, ru):
         def seq(rel):
             out = []
             for tag, a, line in self.docs[rel].elements:
@@ -255,14 +255,14 @@ class Site:
                 out.append(((tag, a.get("id"), " ".join(a.get("class", "").split())), line))
             return out
 
-        a, b = seq(ru), seq(en)
+        a, b = seq(en), seq(ru)
         for (ka, la), (kb, lb) in zip(a, b):
             if ka != kb:
-                self.err(en, 2, f"разметка расходится с {ru}: строка {lb} {fmt(kb)}, в {ru} строка {la} {fmt(ka)}")
+                self.err(ru, 2, f"разметка расходится с {en}: строка {lb} {fmt(kb)}, в {en} строка {la} {fmt(ka)}")
                 return
         if len(a) != len(b):
-            longer, (k, line) = (ru, a[len(b)]) if len(a) > len(b) else (en, b[len(a)])
-            self.err(en, 2, f"разметка расходится с {ru}: лишние элементы в {longer} со строки {line} {fmt(k)}")
+            longer, (k, line) = (en, a[len(b)]) if len(a) > len(b) else (ru, b[len(a)])
+            self.err(ru, 2, f"разметка расходится с {en}: лишние элементы в {longer} со строки {line} {fmt(k)}")
 
     # П.4: canonical, hreflang, Open Graph, JSON-LD, sitemap, robots, noindex
     def check_seo(self):
@@ -293,7 +293,7 @@ class Site:
 
             alts_by_page[rel] = alts
             url = page_url(rel)
-            lang = "en" if rel.startswith("en/") else "ru"
+            lang = "ru" if rel.startswith("ru/") else "en"
             if len(canon) != 1:
                 self.err(rel, 4, f"canonical должен быть один, найдено {len(canon)}")
             elif canon[0] != url:

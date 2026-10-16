@@ -3,24 +3,25 @@
 Сайт-визитка Евгения Инькова, Senior Data Engineer / Data Platform Engineer: https://inkov.dev
 
 Статический сайт без сборки: файл в репозитории = файл на сайте. Хостинг - GitHub Pages
-(ветка `main`, каталог `/`), домен задан в `CNAME`. Русская версия в корне, английская в `/en/`.
+(ветка `main`, каталог `/`), домен задан в `CNAME`. Английская версия в корне, русская в `/ru/`.
 
 ## Структура
 
 ```
-index.html, en/index.html            главная RU и EN
-projects/, en/projects/              список проектов
-projects/<slug>/, en/projects/<slug>/   страницы проектов
+index.html, ru/index.html            главная EN и RU
+projects/, ru/projects/              список проектов
+projects/<slug>/, ru/projects/<slug>/   страницы проектов
 404.html                             одна страница на оба языка
 assets/css/style.css                 единственная таблица стилей, токены на :root
 assets/js/main.js                    тема, язык с якорем, копирование email, путь на 404
 assets/fonts/                        JetBrains Mono 400 и 700 (woff2, OFL.txt)
 assets/img/photos/                   портрет в AVIF, WebP, JPEG
 assets/img/og/                       OG-картинки 1200x630
+assets/img/projects/<slug>/          иконки и скриншоты проектов
 tools/images.py                      подготовка фото
 tools/check_site.py                  статическая проверка сайта
-tools/project-ru.html, project-en.html   шаблоны страницы проекта
-tools/og-ru.html, og-en.html, og.css     макеты OG-картинок
+tools/project-en.html, project-ru.html   шаблоны страницы проекта
+tools/og-en.html, og-ru.html, og.css     макеты OG-картинок
 _src/                                исходные фото с EXIF, в .gitignore
 ```
 
@@ -28,13 +29,18 @@ _src/                                исходные фото с EXIF, в .giti
 
 - Все внутренние пути от корня (`/assets/...`), ссылки на каталоги со слешем (`/projects/`).
   Иначе ломается `404.html`, который GitHub Pages отдает на любом несуществующем пути.
-- Паритет RU/EN: страницы пары отличаются только текстом, `lang`, `alt`, `aria-label`,
+- Паритет EN/RU: страницы пары отличаются только текстом, `lang`, `alt`, `aria-label`,
   `data-label-*`, `data-done`, мета-тегами и JSON-LD. Теги, `id`, классы и порядок блоков
-  совпадают. Правка вносится сначала в RU, затем в EN копированием разметки.
+  совпадают. Правка вносится сначала в EN, затем в RU копированием разметки.
 - В текстах и коде нет длинного и среднего тире (только `-`) и буквы е с точками.
 - Нет атрибута `style`, тега `<style>` и inline-скриптов в HTML. Исключение - однострочный
   скрипт темы в `<head>`: он побайтно одинаков на всех страницах, его хэш указан в CSP.
 - Нет фреймворков, CDN, внешних шрифтов, счетчиков и трекеров. Цвета только через токены.
+- Язык выбирается только переключателем EN | RU. Перенаправлений по языку браузера нет:
+  Google не рекомендует их для многоязычных сайтов, нужную версию в поиске выбирает hreflang.
+  Основная версия - английская, на нее указывает `hreflang="x-default"`.
+- Адреса `/en/...` отдают 404, страница 404 ведет на тот же путь без `/en`: по этим адресам
+  английская версия была опубликована до переноса в корень.
 
 Если скрипт темы изменился, пересчитайте хэш и замените его во всех CSP:
 
@@ -58,23 +64,28 @@ python3 -m http.server 8000 --bind 127.0.0.1
    ```bash
    python3 tools/images.py _src/img/projects/<slug>/1.png assets/img/projects/<slug>/<slug>-1 640 1280 --q-avif 70 --q-webp 85
    ```
+   Иконку приложения, если она есть, скопировать как есть в
+   `assets/img/projects/<slug>/<slug>-logo.svg`.
 2. Скопировать шаблоны и заменить плейсхолдеры `{{...}}`, удалить пустые блоки и строку `noindex`.
    Если в slug есть дефисы, в Mono-id `project_<slug>` они заменяются на подчеркивания
    (`project_xmpp_server_guides`); в URL и атрибуте `id` остаются дефисы:
    ```bash
-   mkdir -p projects/<slug> en/projects/<slug>
-   cp tools/project-ru.html projects/<slug>/index.html
-   cp tools/project-en.html en/projects/<slug>/index.html
+   mkdir -p projects/<slug> ru/projects/<slug>
+   cp tools/project-en.html projects/<slug>/index.html
+   cp tools/project-ru.html ru/projects/<slug>/index.html
    ```
-3. Добавить карточку в начало списка в `projects/index.html` и `en/projects/index.html`.
+3. Добавить карточку в начало списка в `projects/index.html` и `ru/projects/index.html`.
    На главной плитки проектов стоят на первом экране под плиткой профиля (`.tiles` внутри
    `<section id="projects">`): не больше 3 элементов, реальные проекты (сначала `running`,
-   затем `success`), недостающие места - заглушки `queued`. Когда страница проекта
-   опубликована, название в заголовке карточки оборачивается в ссылку на `/projects/<slug>/`
-   (`/en/projects/<slug>/`).
-4. Ссылка "Все проекты" / "All projects" стоит в заголовке блока проектов на главной.
-5. Бейдж блока проектов (`data-state` у `<section id="projects">`) - `running`, пока хотя бы
-   один проект в работе, иначе `success`. Статус меняется в RU и EN.
+   затем `success`), недостающие места - заглушки `queued`. Если реальных проектов больше
+   трех, набор плиток выбирает владелец. Когда страница проекта опубликована, название в
+   заголовке карточки оборачивается в ссылку на `/projects/<slug>/` (`/ru/projects/<slug>/`).
+   Иконка `<img class="project-logo">` стоит в заголовке карточки перед ссылкой, как в `<h1>`
+   шаблона.
+4. Ссылка "All projects" / "Все проекты" стоит в заголовке блока проектов на главной.
+5. Бейдж блока проектов на главной (`data-state` у `<section id="projects">`) и ноды
+   `projects` на `/projects/` - `running`, пока хотя бы один проект в работе, иначе `success`.
+   Статус меняется в EN и RU.
 6. В `sitemap.xml` добавить два блока `<url>` и обновить `lastmod` измененных страниц.
 7. Запустить проверки из раздела ниже.
 

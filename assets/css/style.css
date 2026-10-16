@@ -24,6 +24,7 @@
   img, svg, picture { display: block; max-inline-size: 100%; }
   img { block-size: auto; }
   button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+  code { font: inherit; }
 }
 
 @layer base {
@@ -241,7 +242,7 @@
   .page-node + .attrs { margin-block-start: var(--s-5); }
   .section > :is(p, ul) { max-inline-size: 62ch; }
   .section > .tasks { max-inline-size: none; }
-  .section > p + :is(p, ul) { margin-block-start: var(--s-4); }
+  .section > :is(p, ul, .attrs, .log-panel) + :is(p, ul, .attrs, .log-panel) { margin-block-start: var(--s-4); }
   .error-page { display: grid; justify-items: center; gap: var(--s-5); padding-block-start: var(--section-pad); text-align: center; }
   .error-page > p { max-inline-size: 36rem; }
   .error-page__links { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-3); }
@@ -510,6 +511,9 @@
   .log__level--error { color: var(--failed); }
   .log__msg { min-inline-size: 0; overflow-wrap: anywhere; }
   .log--plain > li { grid-template-columns: 2.5ch 5ch minmax(0, 1fr); }
+  /* команда оболочки: вместо номера строки приглашение $, оно не копируется */
+  .log--cmd > li { grid-template-columns: 1ch minmax(0, 1fr); }
+  .log--cmd > li::before { content: "$" / ""; }
   .error-page .log-panel { inline-size: 100%; max-inline-size: 36rem; text-align: start; }
 
   @media (width < 30rem) {
@@ -574,6 +578,8 @@
   .project-card__title a { color: inherit; text-decoration: none; }
   .project-card__title a::after { content: ""; position: absolute; inset: 0; }
   .project-card__summary { font-size: var(--fs-sm); line-height: 1.5; }
+  /* иконка приложения перед названием: размер от шрифта заголовка, центр на высоте прописных */
+  .project-logo { display: inline-block; inline-size: 1.6em; block-size: 1.6em; margin-inline-end: 0.5em; vertical-align: -0.45em; }
   .project-card--queued { border-style: dashed; background: var(--bg); }
   .project-card--queued .project-card__summary { color: var(--muted); }
   .project-card:has(a):hover { border-block-color: var(--muted); border-inline-end-color: var(--muted); }

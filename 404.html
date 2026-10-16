@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-e2lQhFMMb6KoBMfkNDH6kVgeuY4+M384y1SCuROV8ko='; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>404 - страница не найдена - inkov.dev</title>
+  <title>404 - page not found - inkov.dev</title>
   <script>try{const t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}</script>
   <link rel="preload" href="/assets/fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -19,15 +19,15 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e1116">
 </head>
 <body>
-  <a class="skip-link" href="#main">Перейти к основному содержанию</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
   <header class="site-header" id="top">
     <div class="container site-header__inner">
-      <a class="logo" href="/" aria-label="inkov.dev, на главную"><span class="logo__ring" aria-hidden="true"></span>inkov.dev</a>
+      <a class="logo" href="/" aria-label="inkov.dev, home"><span class="logo__ring" aria-hidden="true"></span>inkov.dev</a>
       <div class="site-header__controls">
-        <button type="button" class="theme-toggle" id="theme-toggle" hidden data-label-auto="тема: авто" data-label-light="тема: светлая" data-label-dark="тема: темная">
+        <button type="button" class="theme-toggle" id="theme-toggle" hidden data-label-auto="theme: auto" data-label-light="theme: light" data-label-dark="theme: dark">
           <svg class="theme-toggle__icon" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 1.75a7.25 7.25 0 0 1 0 14.5Z" fill="currentColor"/></svg>
-          <span class="theme-toggle__text">тема: авто</span>
+          <span class="theme-toggle__text">theme: auto</span>
         </button>
       </div>
     </div>
@@ -37,41 +37,41 @@
     <ol class="chain" aria-hidden="true">
       <li>
         <div class="node" data-state="failed">
-          <span class="node__id" lang="en">resolve_path</span>
-          <span class="node__state"><span class="marker"></span><span lang="en">failed</span></span>
+          <span class="node__id">resolve_path</span>
+          <span class="node__state"><span class="marker"></span>failed</span>
         </div>
       </li>
       <li>
         <div class="node" data-state="upstream_failed">
-          <span class="node__id" lang="en">render_page</span>
-          <span class="node__state"><span class="marker"></span><span lang="en">upstream_failed</span></span>
+          <span class="node__id">render_page</span>
+          <span class="node__state"><span class="marker"></span>upstream_failed</span>
         </div>
       </li>
     </ol>
 
-    <h1>Страница не найдена <span lang="en">Page not found</span></h1>
-    <p>Такой страницы нет. Возможно, адрес изменился или в ссылке ошибка.</p>
-    <p lang="en">This page does not exist. The address may have changed or the link contains a typo.</p>
+    <h1>Page not found <span lang="ru">Страница не найдена</span></h1>
+    <p>This page does not exist. The address may have changed or the link contains a typo.</p>
+    <p lang="ru">Такой страницы нет. Возможно, адрес изменился или в ссылке ошибка.</p>
 
     <div class="log-panel">
-      <p class="log-panel__head" lang="en">log · resolve_path</p>
-      <ol class="log log--plain" role="list" lang="en">
+      <p class="log-panel__head">log · resolve_path</p>
+      <ol class="log log--plain" role="list">
         <li><span class="log__meta"><span class="log__level" aria-hidden="true">INFO</span></span><span class="log__msg">requested_path: <span id="requested-path">-</span></span></li>
         <li><span class="log__meta"><span class="log__level log__level--error" aria-hidden="true">ERROR</span></span><span class="log__msg">404: page not found</span></li>
-        <li><span class="log__meta"><span class="log__level" aria-hidden="true">INFO</span></span><span class="log__msg">retry: /&nbsp; /en/</span></li>
+        <li><span class="log__meta"><span class="log__level" aria-hidden="true">INFO</span></span><span class="log__msg">retry: /&nbsp; /ru/</span></li>
       </ol>
     </div>
 
     <p class="error-page__links">
-      <a class="btn btn--primary" href="/">Вернуться на главную</a>
-      <a class="btn btn--secondary" href="/en/" lang="en">Back to homepage</a>
+      <a class="btn btn--primary" href="/">Back to homepage</a>
+      <a class="btn btn--secondary" href="/ru/" lang="ru">Вернуться на главную</a>
     </p>
   </main>
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <p><span lang="en">dag_id=inkov_dev</span><span class="sep" aria-hidden="true">·</span><a href="https://github.com/tzx1z/inkov-dev">Исходный код сайта</a></p>
-      <p><span>© 2026 Евгений Иньков</span><span class="sep" aria-hidden="true">·</span><a href="#top">Наверх</a></p>
+      <p>dag_id=inkov_dev<span class="sep" aria-hidden="true">·</span><a href="https://github.com/tzx1z/inkov-dev">Site source code</a></p>
+      <p><span>© 2026 Evgeny Inkov</span><span class="sep" aria-hidden="true">·</span><a href="#top">Back to top</a></p>
     </div>
   </footer>
 </body>
