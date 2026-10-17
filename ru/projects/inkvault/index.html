@@ -151,7 +151,7 @@
       <section class="section" id="clients">
         <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">clients</span></p>
         <h2>Клиенты</h2>
-        <p>Три клиента используют один формат хранилища и один формат зашифрованного экспорта. Ядро, Android и терминальный клиенты открыты под AGPL-3.0, код web-клиента закрыт. Скриншоты сняты на тестовом сервере с выдуманными данными.</p>
+        <p>Три клиента используют один формат хранилища и один формат зашифрованного экспорта. Ядро, Android и терминальный клиенты открыты под AGPL-3.0, код web-клиента закрыт.</p>
         <h3>Web</h3>
         <div class="shots">
           <figure class="shot">
@@ -312,8 +312,25 @@
       <section class="section" id="install">
         <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">install</span></p>
         <h2>Установка</h2>
-        <p>Android: через F-Droid из репозитория inkov.dev или APK со страницы релизов на GitHub. Терминал: статические бинарники для Linux на странице релизов, на macOS и других платформах - из crates.io.</p>
+        <p>Android: через F-Droid из репозитория inkov.dev или APK со страницы релизов на GitHub.</p>
         <p><a class="btn btn--primary" href="https://fdroid.link/#https://fdroid.inkov.dev/repo?fingerprint=1B4D3D289AC970F53860490E7AAA8B40E8810DFA149E3CA66FB93FB18E5738CE">Добавить в F-Droid</a></p>
+        <p>Терминальный клиент на Fedora 43 и новее, x86_64 и aarch64: из COPR, обновления приходят с dnf upgrade.</p>
+        <div class="log-panel">
+          <p class="log-panel__head" lang="en" aria-hidden="true">shell · fedora</p>
+          <ol class="log log--cmd" role="list" lang="en">
+            <li><code class="log__msg">sudo dnf copr enable inkov/inkvault &amp;&amp; sudo dnf install inkvault-cli</code></li>
+          </ol>
+        </div>
+        <p>На других дистрибутивах Linux: статический бинарник для x86_64 или aarch64 со <a href="https://github.com/tzx1z/inkvault-cli/releases">страницы релизов</a>. Скачайте архив для своей архитектуры и SHA256SUMS, проверьте архив и положите inkvault в каталог из PATH:</p>
+        <div class="log-panel">
+          <p class="log-panel__head" lang="en" aria-hidden="true">shell · linux</p>
+          <ol class="log log--cmd" role="list" lang="en">
+            <li><code class="log__msg">sha256sum --ignore-missing -c SHA256SUMS</code></li>
+            <li><code class="log__msg">tar -xzf inkvault-cli-&lt;version&gt;-x86_64-unknown-linux-musl.tar.gz</code></li>
+            <li><code class="log__msg">install -m 755 inkvault-cli-&lt;version&gt;-x86_64-unknown-linux-musl/inkvault ~/.local/bin/</code></li>
+          </ol>
+        </div>
+        <p>На macOS и других платформах: из crates.io, нужен Rust 1.85 или новее.</p>
         <div class="log-panel">
           <p class="log-panel__head" lang="en" aria-hidden="true">shell · macOS</p>
           <ol class="log log--cmd" role="list" lang="en">
