@@ -10,7 +10,7 @@
   <link rel="preload" href="/assets/fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css">
   <script type="module" src="/assets/js/main.js"></script>
-  <meta name="description" content="Projects by Evgeny Inkov, Senior Data Engineer: problems, solutions and tech stack. The list grows as new projects are published.">
+  <meta name="description" content="Case studies from data engineering work and open-source projects by Evgeny Inkov, Senior Data Engineer: problems, solutions and tech stack.">
   <link rel="canonical" href="https://inkov.dev/projects/">
   <link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/">
   <link rel="alternate" hreflang="en" href="https://inkov.dev/projects/">
@@ -27,7 +27,7 @@
   <meta property="og:locale:alternate" content="ru_RU">
   <meta property="og:url" content="https://inkov.dev/projects/">
   <meta property="og:title" content="Projects - Evgeny Inkov">
-  <meta property="og:description" content="Projects by Evgeny Inkov, Senior Data Engineer: problems, solutions and tech stack. The list grows as new projects are published.">
+  <meta property="og:description" content="Case studies from data engineering work and open-source projects by Evgeny Inkov, Senior Data Engineer: problems, solutions and tech stack.">
   <meta property="og:image" content="https://inkov.dev/assets/img/og/og-en.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -64,18 +64,52 @@
     <div class="page-node" data-state="success">
       <span class="page-node__id" aria-hidden="true">projects</span>
       <h1>Projects</h1>
-      <span class="badge"><span class="marker" aria-hidden="true"></span><span aria-hidden="true">success</span><span class="visually-hidden">ready</span></span>
-      <p class="page-node__summary">Projects will appear here as they are published.</p>
+      <p class="page-node__summary">Case studies from my data engineering work and open-source projects I build outside of work.</p>
     </div>
     <div class="projects-wrap">
+      <h2 class="projects-wrap__title" id="case-studies">Case studies</h2>
+      <p class="projects-wrap__intro">Projects from my data engineering work. The code is private, so each page describes the problem, the solution and the outcome without company details.</p>
+      <ol class="fanout fanout--tree" role="list">
+        <li>
+          <article class="project-card" id="project-airflow-platform" data-state="success">
+            <div class="project-card__head">
+              <span class="project-card__id" aria-hidden="true">case_airflow_platform</span>
+            </div>
+            <h3 class="project-card__title"><a href="/projects/airflow-platform/">Airflow 3 platform</a></h3>
+            <p class="project-card__summary">A new Airflow 3.1 cluster: DAGs from Git without a deploy step, CI checks for every merge request, dbt runs through Cosmos.</p>
+            <ul class="chips" role="list"><li class="chip">Airflow 3</li><li class="chip">dbt</li><li class="chip">Cosmos</li><li class="chip">GitLab CI</li><li class="chip">ruff</li><li class="chip">Podman</li><li class="chip">Ansible</li></ul>
+          </article>
+        </li>
+        <li>
+          <article class="project-card" id="project-dwh-monitoring" data-state="success">
+            <div class="project-card__head">
+              <span class="project-card__id" aria-hidden="true">case_dwh_monitoring</span>
+            </div>
+            <h3 class="project-card__title"><a href="/projects/dwh-monitoring/">DWH on-call monitoring</a></h3>
+            <p class="project-card__summary">Dashboards and alerts for the engineer on duty: failed and stuck runs, slow DAGs, stale product metrics.</p>
+            <ul class="chips" role="list"><li class="chip">Airflow</li><li class="chip">Grafana</li><li class="chip">VictoriaMetrics</li><li class="chip">statsd</li><li class="chip">PostgreSQL</li><li class="chip">Python</li></ul>
+          </article>
+        </li>
+        <li>
+          <article class="project-card" id="project-lakehouse-pilot" data-state="success">
+            <div class="project-card__head">
+              <span class="project-card__id" aria-hidden="true">case_lakehouse_pilot</span>
+            </div>
+            <h3 class="project-card__title"><a href="/projects/lakehouse-pilot/">Lakehouse pilot</a></h3>
+            <p class="project-card__summary">Moving raw events from HDFS to Iceberg tables in the cloud, tested in two clouds on 14 TB of real data. The move was postponed.</p>
+            <ul class="chips" role="list"><li class="chip">Iceberg</li><li class="chip">Spark</li><li class="chip">Trino</li><li class="chip">Kafka</li><li class="chip">S3</li><li class="chip">PyArrow</li></ul>
+          </article>
+        </li>
+      </ol>
+      <h2 class="projects-wrap__title" id="open-source">Open-source projects</h2>
+      <p class="projects-wrap__intro">Projects I build outside of work, with public code.</p>
       <ol class="fanout fanout--tree" role="list">
         <li>
           <article class="project-card" id="project-cocosations" data-state="success">
             <div class="project-card__head">
               <span class="project-card__id" aria-hidden="true">project_cocosations</span>
-              <span class="badge"><span class="marker" aria-hidden="true"></span><span aria-hidden="true">success</span><span class="visually-hidden">ready</span></span>
             </div>
-            <h2 class="project-card__title"><img class="project-logo" src="/assets/img/projects/cocosations/cocosations-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt=""><a href="/projects/cocosations/">Cocosations</a></h2>
+            <h3 class="project-card__title"><img class="project-logo" src="/assets/img/projects/cocosations/cocosations-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt=""><a href="/projects/cocosations/">Cocosations</a></h3>
             <p class="project-card__summary">An XMPP client for Android based on Conversations, with call diagnostics: failed stage, reason and audio quality.</p>
             <ul class="chips" role="list"><li class="chip">Android</li><li class="chip">Java</li><li class="chip">XMPP</li><li class="chip">WebRTC</li><li class="chip">F-Droid</li></ul>
           </article>
@@ -84,9 +118,8 @@
           <article class="project-card" id="project-kadr" data-state="success">
             <div class="project-card__head">
               <span class="project-card__id" aria-hidden="true">project_kadr</span>
-              <span class="badge"><span class="marker" aria-hidden="true"></span><span aria-hidden="true">success</span><span class="visually-hidden">ready</span></span>
             </div>
-            <h2 class="project-card__title"><img class="project-logo" src="/assets/img/projects/kadr/kadr-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt=""><a href="/projects/kadr/">Kadr</a></h2>
+            <h3 class="project-card__title"><img class="project-logo" src="/assets/img/projects/kadr/kadr-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt=""><a href="/projects/kadr/">Kadr</a></h3>
             <p class="project-card__summary">A screenshot tool for GNOME on Wayland: capture modes, an annotation editor, OCR and uploads over SFTP and WebDAV.</p>
             <ul class="chips" role="list"><li class="chip">C++23</li><li class="chip">Qt 6</li><li class="chip">Wayland</li><li class="chip">xdg-desktop-portal</li><li class="chip">Flatpak</li></ul>
           </article>
@@ -94,10 +127,9 @@
         <li>
           <article class="project-card" id="project-xmpp-server-guides" data-state="success">
             <div class="project-card__head">
-              <span class="project-card__id" aria-hidden="true">project_xmpp_server_guides</span>
-              <span class="badge"><span class="marker" aria-hidden="true"></span><span aria-hidden="true">success</span><span class="visually-hidden">ready</span></span>
+              <span class="project-card__id" aria-hidden="true">project_<wbr>xmpp_<wbr>server_<wbr>guides</span>
             </div>
-            <h2 class="project-card__title"><a href="/projects/xmpp-server-guides/">XMPP Server Guides</a></h2>
+            <h3 class="project-card__title"><a href="/projects/xmpp-server-guides/">XMPP Server Guides</a></h3>
             <p class="project-card__summary">Step-by-step guides for running your own XMPP server on Prosody.</p>
             <ul class="chips" role="list"><li class="chip">XMPP</li><li class="chip">Prosody</li><li class="chip">HAProxy</li><li class="chip">Xray</li><li class="chip">coturn</li><li class="chip">Let's Encrypt</li><li class="chip">Cloudflare</li></ul>
           </article>
@@ -106,9 +138,8 @@
           <article class="project-card" id="project-termisations" data-state="success">
             <div class="project-card__head">
               <span class="project-card__id" aria-hidden="true">project_termisations</span>
-              <span class="badge"><span class="marker" aria-hidden="true"></span><span aria-hidden="true">success</span><span class="visually-hidden">ready</span></span>
             </div>
-            <h2 class="project-card__title"><a href="/projects/termisations/">termisations</a></h2>
+            <h3 class="project-card__title"><a href="/projects/termisations/">termisations</a></h3>
             <p class="project-card__summary">A terminal XMPP client built for protocol debugging: a raw stanza stream panel sits next to the conversation.</p>
             <ul class="chips" role="list"><li class="chip">Python</li><li class="chip">Textual</li><li class="chip">slixmpp</li><li class="chip">SQLite</li></ul>
           </article>

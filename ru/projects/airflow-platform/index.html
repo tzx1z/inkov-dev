@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-e2lQhFMMb6KoBMfkNDH6kVgeuY4+M384y1SCuROV8ko='; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Платформа на Airflow 3 - Проекты - Евгений Иньков</title>
+  <script>try{const t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}</script>
+  <link rel="preload" href="/assets/fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script type="module" src="/assets/js/main.js"></script>
+  <meta name="description" content="Кейс: перенос DAG хранилища данных с Airflow 1.10 на кластер Airflow 3.1 с Git DAG bundles, проверками в CI и запуском dbt через Cosmos. Роль: lead engineer.">
+  <link rel="canonical" href="https://inkov.dev/ru/projects/airflow-platform/">
+  <link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/airflow-platform/">
+  <link rel="alternate" hreflang="en" href="https://inkov.dev/projects/airflow-platform/">
+  <link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/airflow-platform/">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f6f8">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e1116">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="inkov.dev">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:url" content="https://inkov.dev/ru/projects/airflow-platform/">
+  <meta property="og:title" content="Платформа на Airflow 3 - Проекты - Евгений Иньков">
+  <meta property="og:description" content="Кейс: перенос DAG хранилища данных с Airflow 1.10 на кластер Airflow 3.1 с Git DAG bundles, проверками в CI и запуском dbt через Cosmos. Роль: lead engineer.">
+  <meta property="og:image" content="https://inkov.dev/assets/img/og/og-ru.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Евгений Иньков, Senior Data Engineer, inkov.dev">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Платформа на Airflow 3",
+    "description": "Кейс: перенос DAG хранилища данных с Airflow 1.10 на кластер Airflow 3.1 с Git DAG bundles, проверками в CI и запуском dbt через Cosmos. Роль: lead engineer.",
+    "url": "https://inkov.dev/ru/projects/airflow-platform/",
+    "inLanguage": "ru",
+    "dateModified": "2026-10-17",
+    "author": {"@id": "https://inkov.dev/#person"}
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к основному содержанию</a>
+
+  <header class="site-header" id="top">
+    <div class="container site-header__inner">
+      <a class="logo" href="/ru/" aria-label="inkov.dev, на главную"><span class="logo__ring" aria-hidden="true"></span>inkov.dev</a>
+      <div class="site-header__controls">
+        <nav class="lang" aria-label="Выбор языка">
+          <a href="/projects/airflow-platform/" hreflang="en" lang="en" aria-label="EN, English">EN</a>
+          <a href="/ru/projects/airflow-platform/" hreflang="ru" lang="ru" aria-label="RU, русский" aria-current="page">RU</a>
+        </nav>
+        <button type="button" class="theme-toggle" id="theme-toggle" hidden data-label-auto="тема: авто" data-label-light="тема: светлая" data-label-dark="тема: темная">
+          <svg class="theme-toggle__icon" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 1.75a7.25 7.25 0 0 1 0 14.5Z" fill="currentColor"/></svg>
+          <span class="theme-toggle__text">тема: авто</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container page">
+    <nav class="crumbs" aria-label="Путь по сайту">
+      <ol role="list" lang="en">
+        <li><a href="/ru/">inkov_dev</a></li>
+        <li><a href="/ru/projects/">projects</a></li>
+        <li aria-current="page">airflow-platform</li>
+      </ol>
+    </nav>
+
+    <div class="page-node" data-state="success">
+      <span class="page-node__id" lang="en" aria-hidden="true">case_airflow_platform</span>
+      <h1>Платформа на Airflow 3</h1>
+      <p class="page-node__summary">Новый кластер Airflow 3.1 для хранилища данных: DAG приходят из Git без деплоя, каждый merge request проверяется в CI, модели dbt запускаются в отдельных контейнерах через Cosmos.</p>
+    </div>
+
+    <div class="attrs">
+      <p class="attrs__head" lang="en">attributes</p>
+      <dl>
+        <div><dt lang="en">role</dt><dd lang="en">lead engineer</dd></div>
+        <div><dt lang="en">source</dt><dd>рабочий проект, код закрыт</dd></div>
+      </dl>
+    </div>
+
+    <div class="spine">
+      <section class="section" id="problem">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">problem</span></p>
+        <h2>Задача</h2>
+        <p>Хранилище работало на Airflow 1.10: около 190 DAG и больше 500 подключений. DAG раскатывал один job в CI, который выполнял git pull по SSH на пяти ВМ. До merge ничего не проверялось, поэтому ошибка импорта обнаруживалась уже на серверах. Поддержка Airflow 1.10 закончилась в 2021 году.</p>
+      </section>
+
+      <section class="section" id="solution">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">solution</span></p>
+        <h2>Решение</h2>
+        <p>Новый кластер на Airflow 3.1.5: два control-plane хоста со scheduler, DAG processor, API server, PostgreSQL и RabbitMQ и три Celery-воркера. Компоненты работают в контейнерах Podman как юниты systemd, кластер раскатывается через Ansible, образы собирает kaniko в GitLab CI.</p>
+        <ul>
+          <li>DAG bundles: два Git-репозитория подключены как GitDagBundle, Airflow отслеживает основную ветку и обновляется раз в 30 секунд. Версия git-провайдера зафиксирована: ранний релиз удалял .git из версии бандла, и каждая таска клонировала репозиторий заново</li>
+          <li>CI для репозиториев DAG: ruff с отчетом GitLab Code Quality, проверка форматирования и проверка импорта, которая загружает DagBag и сериализует каждый DAG в боевом образе Airflow. Ошибки импорта и повторяющиеся dag_id блокируют merge. pre-commit запускает ruff при коммите и не пропускает коммиты напрямую в основную ветку</li>
+          <li>dbt через astronomer-cosmos: команды dbt run, test и source выполняются в отдельных контейнерах на хостах воркеров, с аутентификацией Kerberos для Hive и Impala. Одна метрика - одна группа тасок: модели dbt, перенос из Hive в PostgreSQL и агрегаты. Перед расчетом gate-группы проверяют свежесть источников и наличие данных за дату</li>
+          <li>Безопасные релизы: образы из merge request получают свои теги, а тег, по которому обновляется кластер, публикует только основная ветка</li>
+          <li>Общий Python-пакет для кода DAG со своим CI: линтер, тесты, сборка wheel и версионированные релизы</li>
+        </ul>
+      </section>
+
+      <section class="section" id="stack">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">stack</span></p>
+        <h2>Стек</h2>
+        <p>Airflow 3.1.5 с CeleryExecutor, RabbitMQ, PostgreSQL 17 с WAL-G, Podman, Ansible, kaniko, GitLab CI, ruff, pre-commit, dbt-core 1.7 с адаптерами Hive, Impala и PostgreSQL, astronomer-cosmos 1.14.</p>
+      </section>
+
+      <section class="section" id="role">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">role</span></p>
+        <h2>Моя роль</h2>
+        <p>Lead engineer: спроектировал кластер, доставку DAG и проверки в CI, настроил запуск dbt через Cosmos, веду перенос DAG с Airflow 1.10.</p>
+      </section>
+
+      <section class="section" id="result">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">result</span></p>
+        <h2>Результат</h2>
+        <p>Airflow забирает изменения DAG из Git раз в 30 секунд после merge, без отдельного деплоя. Ошибки импорта и стиля находятся в merge request, а не на серверах. В проекте dbt около 200 моделей и 95 тестов. Перенос DAG с Airflow 1.10 продолжается.</p>
+      </section>
+      <span class="spine__end" aria-hidden="true"></span>
+    </div>
+
+    <p class="page__back"><a href="/ru/projects/">Все проекты</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p><span lang="en">dag_id=inkov_dev</span><span class="sep" aria-hidden="true">·</span><a href="https://github.com/tzx1z/inkov-dev">Исходный код сайта</a></p>
+      <p><span>© 2026 Евгений Иньков</span><span class="sep" aria-hidden="true">·</span><a href="#top">Наверх</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -2,86 +2,128 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://inkov.dev/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/"/>
   </url>
   <url>
     <loc>https://inkov.dev/ru/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/"/>
   </url>
   <url>
     <loc>https://inkov.dev/projects/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/"/>
   </url>
   <url>
     <loc>https://inkov.dev/ru/projects/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/"/>
   </url>
   <url>
     <loc>https://inkov.dev/projects/cocosations/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/cocosations/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/cocosations/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/cocosations/"/>
   </url>
   <url>
     <loc>https://inkov.dev/ru/projects/cocosations/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/cocosations/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/cocosations/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/cocosations/"/>
   </url>
   <url>
     <loc>https://inkov.dev/projects/kadr/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/kadr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/kadr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/kadr/"/>
   </url>
   <url>
     <loc>https://inkov.dev/ru/projects/kadr/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/kadr/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/kadr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/kadr/"/>
   </url>
   <url>
     <loc>https://inkov.dev/projects/termisations/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/termisations/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/termisations/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/termisations/"/>
   </url>
   <url>
     <loc>https://inkov.dev/ru/projects/termisations/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/termisations/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/termisations/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/termisations/"/>
   </url>
   <url>
     <loc>https://inkov.dev/projects/xmpp-server-guides/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/xmpp-server-guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/xmpp-server-guides/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/xmpp-server-guides/"/>
   </url>
   <url>
     <loc>https://inkov.dev/ru/projects/xmpp-server-guides/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/xmpp-server-guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/xmpp-server-guides/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/xmpp-server-guides/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/projects/airflow-platform/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/airflow-platform/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/airflow-platform/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/airflow-platform/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/ru/projects/airflow-platform/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/airflow-platform/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/airflow-platform/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/airflow-platform/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/projects/dwh-monitoring/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/dwh-monitoring/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/dwh-monitoring/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/dwh-monitoring/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/ru/projects/dwh-monitoring/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/dwh-monitoring/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/dwh-monitoring/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/dwh-monitoring/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/projects/lakehouse-pilot/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/lakehouse-pilot/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/lakehouse-pilot/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/lakehouse-pilot/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/ru/projects/lakehouse-pilot/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/lakehouse-pilot/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/lakehouse-pilot/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/lakehouse-pilot/"/>
   </url>
 </urlset>

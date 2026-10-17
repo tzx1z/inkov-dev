@@ -87,8 +87,8 @@
     </nav>
 
     <!--
-      Бейдж дан в варианте running. Для статуса success скрытый текст
-      "в работе" заменить на "готово". Если название проекта на латинице,
+      Бейдж ставится только проекту в работе (running), у готового проекта (success)
+      строку с бейджем удалить. Если название проекта на латинице,
       у <h1> поставить lang="en" (только на RU-странице).
       Иконка приложения необязательна: без файла <slug>-logo.svg тег <img> удалить.
       С иконкой тот же <img> стоит перед ссылкой в заголовке карточки проекта.
@@ -100,12 +100,15 @@
       <p class="page-node__summary">{{SUMMARY}}</p>
     </div>
 
-    <!-- Строку без данных удалить целиком, от <div> до </div>: обычно repo, demo или docs. -->
+    <!--
+      Строку без данных удалить целиком, от <div> до </div>: обычно repo, demo или docs.
+      source - только у кейсов с работы, у них нет repo, а page-node__id - case_<slug>.
+    -->
     <div class="attrs">
       <p class="attrs__head" lang="en">attributes</p>
       <dl>
-        <div><dt lang="en">state</dt><dd lang="en">{{STATE}}</dd></div>
         <div><dt lang="en">role</dt><dd>{{ROLE}}</dd></div>
+        <div><dt lang="en">source</dt><dd>рабочий проект, код закрыт</dd></div>
         <div><dt lang="en">repo</dt><dd><a href="{{REPO_URL}}">{{REPO_URL}}</a></dd></div>
         <div><dt lang="en">demo</dt><dd><a href="{{DEMO_URL}}">{{DEMO_URL}}</a></dd></div>
         <div><dt lang="en">docs</dt><dd><a href="{{DOCS_URL}}">{{DOCS_URL}}</a></dd></div>

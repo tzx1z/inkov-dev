@@ -101,16 +101,15 @@
 
         <section class="showcase" id="projects" data-state="success">
           <div class="showcase__head">
-            <h2 class="showcase__title">Проекты</h2>
-            <span class="badge"><span class="marker" aria-hidden="true"></span><span lang="en" aria-hidden="true">success</span><span class="visually-hidden">готово</span></span>
+            <h2 class="showcase__title">Проекты с открытым кодом</h2>
             <a class="showcase__all" href="/ru/projects/">Все проекты<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M1.5 6h8.5M6.75 2.75 10 6 6.75 9.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
+          <p class="showcase__intro">Работа с данными ведется в закрытых репозиториях компаний, ее я описываю в <a href="/ru/projects/#case-studies">кейсах</a>. Ниже открытые проекты, которые я делаю вне работы.</p>
           <ol class="tiles" role="list">
             <li>
               <article class="project-card" id="project-cocosations" data-state="success">
                 <div class="project-card__head">
                   <span class="project-card__id" lang="en" aria-hidden="true">project_cocosations</span>
-                  <span class="badge"><span class="marker" aria-hidden="true"></span><span lang="en" aria-hidden="true">success</span><span class="visually-hidden">готово</span></span>
                 </div>
                 <h3 class="project-card__title" lang="en"><img class="project-logo" src="/assets/img/projects/cocosations/cocosations-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt=""><a href="/ru/projects/cocosations/">Cocosations</a></h3>
                 <p class="project-card__summary">XMPP-клиент для Android на основе Conversations с диагностикой звонков: этап сбоя, причина и качество звука.</p>
@@ -121,7 +120,6 @@
               <article class="project-card" id="project-kadr" data-state="success">
                 <div class="project-card__head">
                   <span class="project-card__id" lang="en" aria-hidden="true">project_kadr</span>
-                  <span class="badge"><span class="marker" aria-hidden="true"></span><span lang="en" aria-hidden="true">success</span><span class="visually-hidden">готово</span></span>
                 </div>
                 <h3 class="project-card__title" lang="en"><img class="project-logo" src="/assets/img/projects/kadr/kadr-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt=""><a href="/ru/projects/kadr/">Kadr</a></h3>
                 <p class="project-card__summary">Скриншотер для GNOME на Wayland: режимы захвата, редактор пометок, распознавание текста, выгрузка по SFTP и WebDAV.</p>
@@ -132,7 +130,6 @@
               <article class="project-card" id="project-termisations" data-state="success">
                 <div class="project-card__head">
                   <span class="project-card__id" lang="en" aria-hidden="true">project_termisations</span>
-                  <span class="badge"><span class="marker" aria-hidden="true"></span><span lang="en" aria-hidden="true">success</span><span class="visually-hidden">готово</span></span>
                 </div>
                 <h3 class="project-card__title" lang="en"><a href="/ru/projects/termisations/">termisations</a></h3>
                 <p class="project-card__summary">Терминальный XMPP-клиент для отладки протокола: рядом с беседой идет панель сырого потока строф.</p>
@@ -140,9 +137,6 @@
               </article>
             </li>
           </ol>
-          <p class="legend">
-            <span class="legend__item" data-state="success"><span class="marker" aria-hidden="true"></span><span lang="en">success</span> - готово</span>
-          </p>
         </section>
       </div>
     </div>
@@ -150,13 +144,13 @@
     <div class="container">
       <div class="spine">
         <section class="section" id="about" data-state="success">
-          <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">about</span><span class="badge"><span class="marker"></span><span lang="en">success</span></span></p>
+          <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">about</span></p>
           <h2>Обо мне</h2>
           <div class="about">
             <div class="about__text">
-              <p>Начинал с прикладной разработки: писал приложения на Java, Python и C++, веб-интерфейсы и скрипты миграции баз PostgreSQL. Затем перешел к данным в продукте: разбирал логи, писал загрузчики и парсеры на Go и Python, строил агрегаты в ClickHouse. Сейчас разрабатываю и развиваю ETL/ELT-процессы, DAG в Airflow, DWH на Hadoop, Hive и Impala, витрины и агрегаты в ClickHouse и PostgreSQL.</p>
+              <p>Начинал с прикладной разработки: писал приложения на Java, Python и C++, веб-интерфейсы и скрипты миграции баз PostgreSQL. Затем перешел к данным в продукте: разбирал логи, писал загрузчики и парсеры на Go и Python, строил агрегаты в ClickHouse. Сейчас разрабатываю и развиваю ETL/ELT-процессы, DAG в Airflow, DWH на Hadoop, Hive и Impala, витрины и агрегаты в ClickHouse и PostgreSQL. Также спроектировал пилотный lakehouse на Iceberg, S3, Spark, Kafka и PyArrow.</p>
               <p>Отвечаю за полный цикл работы с данными: сбор из внутренних и внешних источников, парсинг и нормализацию, обогащение, хранение, агрегацию, отчетность, мониторинг, алертинг и автоматизацию. Проектирую отказоустойчивые пайплайны, оптимизирую производительность запросов и оркестрации, слежу за качеством данных и SLA.</p>
-              <p>Работал с продуктовыми, маркетинговыми и логовыми данными, интеграциями с Google, Facebook, AppAnnie, myTracker и другими внешними API. Довожу данные до бизнеса: дашборды, отчеты, self-service BI, ad-hoc анализ. В команде занимаюсь code review, менторством, архитектурными решениями и взаимодействием с аналитикой, продуктом и инфраструктурой.</p>
+              <p>Работал с продуктовыми, маркетинговыми и логовыми данными, интеграциями с Google Ads, Meta Ads, data.ai, myTracker и другими внешними API. Довожу данные до бизнеса: дашборды, отчеты, self-service BI, ad-hoc анализ. В команде занимаюсь code review, менторством, архитектурными решениями и взаимодействием с аналитикой, продуктом и инфраструктурой.</p>
             </div>
             <div class="attrs">
               <p class="attrs__head" lang="en">attributes</p>
@@ -173,13 +167,13 @@
         </section>
 
         <section class="section" id="tasks" data-state="success">
-          <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">tasks</span><span class="badge"><span class="marker"></span><span lang="en">success</span></span></p>
+          <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">tasks</span></p>
           <h2>Задачи</h2>
           <ul class="tasks" role="list">
             <li class="task" data-state="success">
               <p class="task__id" aria-hidden="true"><span class="marker"></span><span lang="en">extract</span></p>
               <h3 class="task__title">Сбор данных</h3>
-              <p class="task__text">Сбор данных из логов продуктов и внешних источников: Google, Facebook, AppAnnie, myTracker, внутренние API, БД, файлы, S3. Настройка CDC, выгрузок, парсеров и загрузчиков. Работа с Kafka и очередями.</p>
+              <p class="task__text">Сбор данных из логов продуктов и внешних источников: Google Ads, Meta Ads, data.ai, myTracker, внутренние API, БД, файлы, S3. Настройка CDC, выгрузок, парсеров и загрузчиков. Работа с Kafka и очередями.</p>
             </li>
             <li class="task" data-state="success">
               <p class="task__id" aria-hidden="true"><span class="marker"></span><span lang="en">transform</span></p>
@@ -240,7 +234,7 @@
         </section>
 
         <section class="section" id="stack" data-state="success">
-          <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">stack</span><span class="badge"><span class="marker"></span><span lang="en">success</span></span></p>
+          <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">stack</span></p>
           <h2>Стек</h2>
           <div class="groups">
             <div class="group">
@@ -253,7 +247,7 @@
             </div>
             <div class="group">
               <div class="group__head"><h3>Хранилища и обработка</h3><span class="group__id" lang="en" aria-hidden="true">storage</span></div>
-              <ul class="chips" role="list" lang="en"><li class="chip">ClickHouse</li><li class="chip">PostgreSQL</li><li class="chip">MySQL</li><li class="chip">Hadoop</li><li class="chip">HDFS</li><li class="chip">Hive</li><li class="chip">Impala</li><li class="chip">Spark/PySpark</li><li class="chip">Kafka</li><li class="chip">S3</li><li class="chip">Parquet</li><li class="chip">Iceberg</li></ul>
+              <ul class="chips" role="list" lang="en"><li class="chip">ClickHouse</li><li class="chip">PostgreSQL</li><li class="chip">Spark/PySpark</li><li class="chip">Kafka</li><li class="chip">Iceberg</li><li class="chip">S3</li><li class="chip">Parquet</li><li class="chip">Hadoop</li><li class="chip">HDFS</li><li class="chip">Hive</li><li class="chip">Impala</li><li class="chip">MySQL</li></ul>
             </div>
             <div class="group">
               <div class="group__head"><h3>Анализ данных</h3><span class="group__id" lang="en" aria-hidden="true">analytics</span></div>
@@ -265,8 +259,7 @@
             </div>
             <div class="group">
               <div class="group__head"><h3>Облака</h3><span class="group__id" lang="en" aria-hidden="true">cloud</span></div>
-              <ul class="chips" role="list" lang="en"><li class="chip">Yandex Cloud</li><li class="chip">VK Cloud</li></ul>
-              <p class="group__note">Проработка пилотной инфраструктуры: Iceberg, S3, Spark, Kafka, PyArrow.</p>
+              <ul class="chips" role="list" lang="en"><li class="chip">Yandex Cloud</li><li class="chip">VK Cloud</li><li class="chip">S3-compatible object storage</li></ul>
             </div>
             <div class="group group--archived">
               <div class="group__head"><h3>Работал раньше</h3><span class="group__id" lang="en" aria-hidden="true">archived</span></div>
@@ -293,17 +286,9 @@
                   <button type="button" class="btn btn--secondary copy-btn" id="copy-email" hidden data-done="Email скопирован">Скопировать email</button>
                 </li>
                 <li class="contacts__cell">
-                  <a class="contact" href="xmpp:tzx1z@inkov.dev">
-                    <span class="contact__id" lang="en" aria-hidden="true">xmpp</span>
-                    <span class="contact__value">tzx1z@inkov.dev</span>
-                    <svg class="contact__arrow" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </a>
-                  <button type="button" class="btn btn--secondary copy-btn" id="copy-xmpp" hidden data-done="Адрес XMPP скопирован">Скопировать XMPP</button>
-                </li>
-                <li class="contacts__cell">
-                  <a class="contact" href="https://t.me/tzx1z" rel="me">
-                    <span class="contact__id" lang="en" aria-hidden="true">telegram</span>
-                    <span class="contact__value">t.me/tzx1z</span>
+                  <a class="contact" href="https://www.linkedin.com/in/evgeny-inkov-953268120/" rel="me">
+                    <span class="contact__id" lang="en" aria-hidden="true">linkedin</span>
+                    <span class="contact__value">linkedin.com/in/evgeny-inkov-953268120</span>
                     <svg class="contact__arrow" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </a>
                 </li>
@@ -315,11 +300,19 @@
                   </a>
                 </li>
                 <li class="contacts__cell">
-                  <a class="contact" href="https://www.linkedin.com/in/evgeny-inkov-953268120/" rel="me">
-                    <span class="contact__id" lang="en" aria-hidden="true">linkedin</span>
-                    <span class="contact__value">linkedin.com/in/evgeny-inkov-953268120</span>
+                  <a class="contact" href="https://t.me/tzx1z" rel="me">
+                    <span class="contact__id" lang="en" aria-hidden="true">telegram</span>
+                    <span class="contact__value">t.me/tzx1z</span>
                     <svg class="contact__arrow" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </a>
+                </li>
+                <li class="contacts__cell">
+                  <a class="contact" href="xmpp:tzx1z@inkov.dev">
+                    <span class="contact__id" lang="en" aria-hidden="true">xmpp</span>
+                    <span class="contact__value">tzx1z@inkov.dev</span>
+                    <svg class="contact__arrow" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </a>
+                  <button type="button" class="btn btn--secondary copy-btn" id="copy-xmpp" hidden data-done="Адрес XMPP скопирован">Скопировать XMPP</button>
                 </li>
                 <li class="contacts__cell">
                   <a class="contact" href="https://fdroid.inkov.dev/">

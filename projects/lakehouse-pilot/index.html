@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-e2lQhFMMb6KoBMfkNDH6kVgeuY4+M384y1SCuROV8ko='; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lakehouse pilot - Projects - Evgeny Inkov</title>
+  <script>try{const t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}</script>
+  <link rel="preload" href="/assets/fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script type="module" src="/assets/js/main.js"></script>
+  <meta name="description" content="Case study: a pilot of moving raw events from HDFS on CDH to Iceberg tables in S3-compatible storage with Spark, Trino and Kafka, in VK Cloud and Yandex Cloud. Role: lead engineer.">
+  <link rel="canonical" href="https://inkov.dev/projects/lakehouse-pilot/">
+  <link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/lakehouse-pilot/">
+  <link rel="alternate" hreflang="en" href="https://inkov.dev/projects/lakehouse-pilot/">
+  <link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/lakehouse-pilot/">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f6f8">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e1116">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="inkov.dev">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:url" content="https://inkov.dev/projects/lakehouse-pilot/">
+  <meta property="og:title" content="Lakehouse pilot - Projects - Evgeny Inkov">
+  <meta property="og:description" content="Case study: a pilot of moving raw events from HDFS on CDH to Iceberg tables in S3-compatible storage with Spark, Trino and Kafka, in VK Cloud and Yandex Cloud. Role: lead engineer.">
+  <meta property="og:image" content="https://inkov.dev/assets/img/og/og-en.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Evgeny Inkov, Senior Data Engineer, inkov.dev">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Lakehouse pilot",
+    "description": "Case study: a pilot of moving raw events from HDFS on CDH to Iceberg tables in S3-compatible storage with Spark, Trino and Kafka, in VK Cloud and Yandex Cloud. Role: lead engineer.",
+    "url": "https://inkov.dev/projects/lakehouse-pilot/",
+    "inLanguage": "en",
+    "dateModified": "2026-10-17",
+    "author": {"@id": "https://inkov.dev/#person"}
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" id="top">
+    <div class="container site-header__inner">
+      <a class="logo" href="/" aria-label="inkov.dev, home"><span class="logo__ring" aria-hidden="true"></span>inkov.dev</a>
+      <div class="site-header__controls">
+        <nav class="lang" aria-label="Language">
+          <a href="/projects/lakehouse-pilot/" hreflang="en" lang="en" aria-label="EN, English" aria-current="page">EN</a>
+          <a href="/ru/projects/lakehouse-pilot/" hreflang="ru" lang="ru" aria-label="RU, русский">RU</a>
+        </nav>
+        <button type="button" class="theme-toggle" id="theme-toggle" hidden data-label-auto="theme: auto" data-label-light="theme: light" data-label-dark="theme: dark">
+          <svg class="theme-toggle__icon" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 1.75a7.25 7.25 0 0 1 0 14.5Z" fill="currentColor"/></svg>
+          <span class="theme-toggle__text">theme: auto</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol role="list">
+        <li><a href="/">inkov_dev</a></li>
+        <li><a href="/projects/">projects</a></li>
+        <li aria-current="page">lakehouse-pilot</li>
+      </ol>
+    </nav>
+
+    <div class="page-node" data-state="success">
+      <span class="page-node__id" aria-hidden="true">case_lakehouse_pilot</span>
+      <h1>Lakehouse pilot</h1>
+      <p class="page-node__summary">A pilot of moving the raw event layer from a Hadoop cluster to a cloud lakehouse on Iceberg, S3, Spark and Trino, tested in two clouds on real data.</p>
+    </div>
+
+    <div class="attrs">
+      <p class="attrs__head">attributes</p>
+      <dl>
+        <div><dt>role</dt><dd>lead engineer</dd></div>
+        <div><dt>source</dt><dd>work project, code is private</dd></div>
+      </dl>
+    </div>
+
+    <div class="spine">
+      <section class="section" id="problem">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>problem</p>
+        <h2>Problem</h2>
+        <p>A parser reads raw events from Kafka and stores them as Parquet on HDFS in a CDH 6.3 cluster with Hive 2.1, Impala and Kerberos. The pilot tested whether this layer could move to a cloud lakehouse: Iceberg tables in S3-compatible object storage, Spark for ingestion and Trino for queries.</p>
+      </section>
+
+      <section class="section" id="solution">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>solution</p>
+        <h2>Solution</h2>
+        <p>The first stage ran in VK Cloud with a managed Iceberg metastore (JDBC catalog), Trino and S3. The second stage repeated the setup in Yandex Cloud with Managed Metastore (Hive Metastore), Managed Trino, Object Storage and Data Proc.</p>
+        <ul>
+          <li>Streaming: Spark Structured Streaming reads Kafka in micro-batches of up to 1 million messages and writes a raw Iceberg table with the payload as map&lt;string,string&gt;, partitioned by application, event and date</li>
+          <li>Typed layer: the raw table is split into one table per application and event pair, with type inference and schema evolution. By the end of September 2025 this layer had 1486 tables for 25 applications</li>
+          <li>History: about 14 TB of 2025 Parquet files were copied from HDFS to S3 in 20 parallel streams with success markers, then registered in Iceberg with add_files, without rewriting the data</li>
+          <li>Table maintenance through Trino: expire_snapshots and remove_orphan_files</li>
+          <li>Prototypes for small loads: writing PyArrow batches through pyiceberg and reading with pyarrow.dataset</li>
+          <li>Data was copied between the clouds with rclone, and a daily export from HDFS kept the second stage up to date</li>
+        </ul>
+      </section>
+
+      <section class="section" id="stack">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>stack</p>
+        <h2>Stack</h2>
+        <p>Apache Iceberg 1.7 and 1.8, Spark 3.5, Trino 468 and 476, Kafka, PyArrow 20, pyiceberg 0.9, Hive Metastore, S3-compatible object storage, rclone, GNU parallel.</p>
+      </section>
+
+      <section class="section" id="role">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>role</p>
+        <h2>My role</h2>
+        <p>Lead engineer: designed the pilot architecture in both clouds, built the ingestion from Kafka and the migration of the history, and tracked the issues found during the pilot.</p>
+      </section>
+
+      <section class="section" id="result">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>result</p>
+        <h2>Outcome</h2>
+        <p>The pilot ran on real data: the event stream from Kafka and the 2025 history, about 14 TB. It also showed the limits of the setup: Trino write limits (1 GB of memory per node, 100 writers), metadata growth on bulk inserts and outages of managed services in the first stage. The move was postponed, and the raw layer stays on CDH.</p>
+      </section>
+      <span class="spine__end" aria-hidden="true"></span>
+    </div>
+
+    <p class="page__back"><a href="/projects/">All projects</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>dag_id=inkov_dev<span class="sep" aria-hidden="true">·</span><a href="https://github.com/tzx1z/inkov-dev">Site source code</a></p>
+      <p><span>© 2026 Evgeny Inkov</span><span class="sep" aria-hidden="true">·</span><a href="#top">Back to top</a></p>
+    </div>
+  </footer>
+</body>
+</html>

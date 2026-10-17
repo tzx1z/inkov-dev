@@ -68,13 +68,18 @@ python3 -m http.server 8000 --bind 127.0.0.1
    `assets/img/projects/<slug>/<slug>-logo.svg`.
 2. Скопировать шаблоны и заменить плейсхолдеры `{{...}}`, удалить пустые блоки и строку `noindex`.
    Если в slug есть дефисы, в Mono-id `project_<slug>` они заменяются на подчеркивания
-   (`project_xmpp_server_guides`); в URL и атрибуте `id` остаются дефисы:
+   (`project_xmpp_server_guides`); в URL и атрибуте `id` остаются дефисы. В карточке на
+   `/projects/` колонка id вмещает около 22 символов: в более длинный id после подчеркиваний
+   ставится `<wbr>` (`project_<wbr>xmpp_<wbr>server_<wbr>guides`):
    ```bash
    mkdir -p projects/<slug> ru/projects/<slug>
    cp tools/project-en.html projects/<slug>/index.html
    cp tools/project-ru.html ru/projects/<slug>/index.html
    ```
 3. Добавить карточку в начало списка в `projects/index.html` и `ru/projects/index.html`.
+   На `/projects/` две группы: кейсы с работы (`#case-studies`) и проекты с открытым кодом
+   (`#open-source`). У кейса нет `repo`, есть строка `source`, Mono-id - `case_<slug>`
+   вместо `project_<slug>`. На главной плитки только из второй группы.
    На главной плитки проектов стоят на первом экране под плиткой профиля (`.tiles` внутри
    `<section id="projects">`): не больше 3 элементов, реальные проекты (сначала `running`,
    затем `success`), недостающие места - заглушки `queued`. Если реальных проектов больше
@@ -83,8 +88,10 @@ python3 -m http.server 8000 --bind 127.0.0.1
    Иконка `<img class="project-logo">` стоит в заголовке карточки перед ссылкой, как в `<h1>`
    шаблона.
 4. Ссылка "All projects" / "Все проекты" стоит в заголовке блока проектов на главной.
-5. Бейдж блока проектов на главной (`data-state` у `<section id="projects">`) и ноды
+5. Статус блока проектов на главной (`data-state` у `<section id="projects">`) и ноды
    `projects` на `/projects/` - `running`, пока хотя бы один проект в работе, иначе `success`.
+   Бейдж выводится только для `running`: в шапке блока, на карточке и в заголовке страницы
+   проекта, разметка как в шаблоне. У `success` бейджа нет, статус показывает цвет рамки.
    Статус меняется в EN и RU.
 6. В `sitemap.xml` добавить два блока `<url>` и обновить `lastmod` измененных страниц.
 7. Запустить проверки из раздела ниже.

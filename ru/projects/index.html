@@ -10,7 +10,7 @@
   <link rel="preload" href="/assets/fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css">
   <script type="module" src="/assets/js/main.js"></script>
-  <meta name="description" content="Проекты Евгения Инькова, Senior Data Engineer: задачи, решения и стек. Список пополняется по мере публикации новых проектов.">
+  <meta name="description" content="Кейсы с работы с данными и проекты с открытым кодом Евгения Инькова, Senior Data Engineer: задачи, решения и стек.">
   <link rel="canonical" href="https://inkov.dev/ru/projects/">
   <link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/">
   <link rel="alternate" hreflang="en" href="https://inkov.dev/projects/">
@@ -27,7 +27,7 @@
   <meta property="og:locale:alternate" content="en_US">
   <meta property="og:url" content="https://inkov.dev/ru/projects/">
   <meta property="og:title" content="Проекты - Евгений Иньков">
-  <meta property="og:description" content="Проекты Евгения Инькова, Senior Data Engineer: задачи, решения и стек. Список пополняется по мере публикации новых проектов.">
+  <meta property="og:description" content="Кейсы с работы с данными и проекты с открытым кодом Евгения Инькова, Senior Data Engineer: задачи, решения и стек.">
   <meta property="og:image" content="https://inkov.dev/assets/img/og/og-ru.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -64,18 +64,52 @@
     <div class="page-node" data-state="success">
       <span class="page-node__id" lang="en" aria-hidden="true">projects</span>
       <h1>Проекты</h1>
-      <span class="badge"><span class="marker" aria-hidden="true"></span><span lang="en" aria-hidden="true">success</span><span class="visually-hidden">готово</span></span>
-      <p class="page-node__summary">Проекты появятся здесь по мере публикации.</p>
+      <p class="page-node__summary">Кейсы с основной работы с данными и проекты с открытым кодом, которые я делаю вне работы.</p>
     </div>
     <div class="projects-wrap">
+      <h2 class="projects-wrap__title" id="case-studies">Кейсы</h2>
+      <p class="projects-wrap__intro">Проекты с основной работы с данными. Код закрыт, поэтому на страницах описаны задача, решение и результат без деталей о компании.</p>
+      <ol class="fanout fanout--tree" role="list">
+        <li>
+          <article class="project-card" id="project-airflow-platform" data-state="success">
+            <div class="project-card__head">
+              <span class="project-card__id" lang="en" aria-hidden="true">case_airflow_platform</span>
+            </div>
+            <h3 class="project-card__title"><a href="/ru/projects/airflow-platform/">Платформа на Airflow 3</a></h3>
+            <p class="project-card__summary">Новый кластер Airflow 3.1: DAG из Git без деплоя, проверки в CI для каждого merge request, запуск dbt через Cosmos.</p>
+            <ul class="chips" role="list" lang="en"><li class="chip">Airflow 3</li><li class="chip">dbt</li><li class="chip">Cosmos</li><li class="chip">GitLab CI</li><li class="chip">ruff</li><li class="chip">Podman</li><li class="chip">Ansible</li></ul>
+          </article>
+        </li>
+        <li>
+          <article class="project-card" id="project-dwh-monitoring" data-state="success">
+            <div class="project-card__head">
+              <span class="project-card__id" lang="en" aria-hidden="true">case_dwh_monitoring</span>
+            </div>
+            <h3 class="project-card__title"><a href="/ru/projects/dwh-monitoring/">Мониторинг DWH для дежурных</a></h3>
+            <p class="project-card__summary">Дашборды и алерты для дежурного: упавшие и зависшие запуски, долгие DAG, устаревшие продуктовые метрики.</p>
+            <ul class="chips" role="list" lang="en"><li class="chip">Airflow</li><li class="chip">Grafana</li><li class="chip">VictoriaMetrics</li><li class="chip">statsd</li><li class="chip">PostgreSQL</li><li class="chip">Python</li></ul>
+          </article>
+        </li>
+        <li>
+          <article class="project-card" id="project-lakehouse-pilot" data-state="success">
+            <div class="project-card__head">
+              <span class="project-card__id" lang="en" aria-hidden="true">case_lakehouse_pilot</span>
+            </div>
+            <h3 class="project-card__title"><a href="/ru/projects/lakehouse-pilot/">Пилот lakehouse</a></h3>
+            <p class="project-card__summary">Перенос сырых событий из HDFS в таблицы Iceberg в облаке, проверенный в двух облаках на 14 ТБ реальных данных. Переход отложен.</p>
+            <ul class="chips" role="list" lang="en"><li class="chip">Iceberg</li><li class="chip">Spark</li><li class="chip">Trino</li><li class="chip">Kafka</li><li class="chip">S3</li><li class="chip">PyArrow</li></ul>
+          </article>
+        </li>
+      </ol>
+      <h2 class="projects-wrap__title" id="open-source">Проекты с открытым кодом</h2>
+      <p class="projects-wrap__intro">Проекты, которые я делаю вне работы, код открыт.</p>
       <ol class="fanout fanout--tree" role="list">
         <li>
           <article class="project-card" id="project-cocosations" data-state="success">
             <div class="project-card__head">
               <span class="project-card__id" lang="en" aria-hidden="true">project_cocosations</span>
-              <span class="badge"><span class="marker" aria-hidden="true"></span><span lang="en" aria-hidden="true">success</span><span class="visually-hidden">готово</span></span>
             </div>
-            <h2 class="project-card__title" lang="en"><img class="project-logo" src="/assets/img/projects/cocosations/cocosations-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt=""><a href="/ru/projects/cocosations/">Cocosations</a></h2>
+            <h3 class="project-card__title" lang="en"><img class="project-logo" src="/assets/img/projects/cocosations/cocosations-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt=""><a href="/ru/projects/cocosations/">Cocosations</a></h3>
             <p class="project-card__summary">XMPP-клиент для Android на основе Conversations с диагностикой звонков: этап сбоя, причина и качество звука.</p>
             <ul class="chips" role="list" lang="en"><li class="chip">Android</li><li class="chip">Java</li><li class="chip">XMPP</li><li class="chip">WebRTC</li><li class="chip">F-Droid</li></ul>
           </article>
@@ -84,9 +118,8 @@
           <article class="project-card" id="project-kadr" data-state="success">
             <div class="project-card__head">
               <span class="project-card__id" lang="en" aria-hidden="true">project_kadr</span>
-              <span class="badge"><span class="marker" aria-hidden="true"></span><span lang="en" aria-hidden="true">success</span><span class="visually-hidden">готово</span></span>
             </div>
-            <h2 class="project-card__title" lang="en"><img class="project-logo" src="/assets/img/projects/kadr/kadr-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt=""><a href="/ru/projects/kadr/">Kadr</a></h2>
+            <h3 class="project-card__title" lang="en"><img class="project-logo" src="/assets/img/projects/kadr/kadr-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt=""><a href="/ru/projects/kadr/">Kadr</a></h3>
             <p class="project-card__summary">Скриншотер для GNOME на Wayland: режимы захвата, редактор пометок, распознавание текста, выгрузка по SFTP и WebDAV.</p>
             <ul class="chips" role="list" lang="en"><li class="chip">C++23</li><li class="chip">Qt 6</li><li class="chip">Wayland</li><li class="chip">xdg-desktop-portal</li><li class="chip">Flatpak</li></ul>
           </article>
@@ -94,10 +127,9 @@
         <li>
           <article class="project-card" id="project-xmpp-server-guides" data-state="success">
             <div class="project-card__head">
-              <span class="project-card__id" lang="en" aria-hidden="true">project_xmpp_server_guides</span>
-              <span class="badge"><span class="marker" aria-hidden="true"></span><span lang="en" aria-hidden="true">success</span><span class="visually-hidden">готово</span></span>
+              <span class="project-card__id" lang="en" aria-hidden="true">project_<wbr>xmpp_<wbr>server_<wbr>guides</span>
             </div>
-            <h2 class="project-card__title" lang="en"><a href="/ru/projects/xmpp-server-guides/">XMPP Server Guides</a></h2>
+            <h3 class="project-card__title" lang="en"><a href="/ru/projects/xmpp-server-guides/">XMPP Server Guides</a></h3>
             <p class="project-card__summary">Пошаговые инструкции по развертыванию своего XMPP-сервера на Prosody.</p>
             <ul class="chips" role="list" lang="en"><li class="chip">XMPP</li><li class="chip">Prosody</li><li class="chip">HAProxy</li><li class="chip">Xray</li><li class="chip">coturn</li><li class="chip">Let's Encrypt</li><li class="chip">Cloudflare</li></ul>
           </article>
@@ -106,9 +138,8 @@
           <article class="project-card" id="project-termisations" data-state="success">
             <div class="project-card__head">
               <span class="project-card__id" lang="en" aria-hidden="true">project_termisations</span>
-              <span class="badge"><span class="marker" aria-hidden="true"></span><span lang="en" aria-hidden="true">success</span><span class="visually-hidden">готово</span></span>
             </div>
-            <h2 class="project-card__title" lang="en"><a href="/ru/projects/termisations/">termisations</a></h2>
+            <h3 class="project-card__title" lang="en"><a href="/ru/projects/termisations/">termisations</a></h3>
             <p class="project-card__summary">Терминальный XMPP-клиент для отладки протокола: рядом с беседой идет панель сырого потока строф.</p>
             <ul class="chips" role="list" lang="en"><li class="chip">Python</li><li class="chip">Textual</li><li class="chip">slixmpp</li><li class="chip">SQLite</li></ul>
           </article>

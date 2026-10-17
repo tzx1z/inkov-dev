@@ -85,7 +85,7 @@
               <h1 class="profile__name"><span>Evgeny</span> <span>Inkov</span></h1>
               <p class="profile__role">Senior&nbsp;Data&nbsp;Engineer / Data&nbsp;Platform&nbsp;Engineer</p>
               <p class="profile__meta">10+&nbsp;years in software development · 7+&nbsp;years working with data</p>
-              <p class="profile__lead">I design and evolve data platforms: ETL/ELT processes, Airflow DAGs, a DWH on Hadoop, data marts in ClickHouse and PostgreSQL. I own the full cycle, from data collection to reports and monitoring.</p>
+              <p class="profile__lead">I build and scale data platforms: ETL/ELT pipelines, Airflow DAGs, a Hadoop-based data warehouse (Hive, Impala), data marts in ClickHouse and PostgreSQL. I own pipelines end to end, from ingestion to reporting and monitoring.</p>
               <div class="profile__cta">
                 <a class="btn btn--primary" href="#contacts">Contact me</a>
                 <a class="btn btn--secondary" href="#about">About me</a>
@@ -101,16 +101,15 @@
 
         <section class="showcase" id="projects" data-state="success">
           <div class="showcase__head">
-            <h2 class="showcase__title">Projects</h2>
-            <span class="badge"><span class="marker" aria-hidden="true"></span><span aria-hidden="true">success</span><span class="visually-hidden">ready</span></span>
+            <h2 class="showcase__title">Open-source projects</h2>
             <a class="showcase__all" href="/projects/">All projects<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M1.5 6h8.5M6.75 2.75 10 6 6.75 9.25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
+          <p class="showcase__intro">My data engineering work lives in private company repositories: see the <a href="/projects/#case-studies">case studies</a>. These are open-source projects I build outside of work.</p>
           <ol class="tiles" role="list">
             <li>
               <article class="project-card" id="project-cocosations" data-state="success">
                 <div class="project-card__head">
                   <span class="project-card__id" aria-hidden="true">project_cocosations</span>
-                  <span class="badge"><span class="marker" aria-hidden="true"></span><span aria-hidden="true">success</span><span class="visually-hidden">ready</span></span>
                 </div>
                 <h3 class="project-card__title"><img class="project-logo" src="/assets/img/projects/cocosations/cocosations-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt=""><a href="/projects/cocosations/">Cocosations</a></h3>
                 <p class="project-card__summary">An XMPP client for Android based on Conversations, with call diagnostics: failed stage, reason and audio quality.</p>
@@ -121,7 +120,6 @@
               <article class="project-card" id="project-kadr" data-state="success">
                 <div class="project-card__head">
                   <span class="project-card__id" aria-hidden="true">project_kadr</span>
-                  <span class="badge"><span class="marker" aria-hidden="true"></span><span aria-hidden="true">success</span><span class="visually-hidden">ready</span></span>
                 </div>
                 <h3 class="project-card__title"><img class="project-logo" src="/assets/img/projects/kadr/kadr-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt=""><a href="/projects/kadr/">Kadr</a></h3>
                 <p class="project-card__summary">A screenshot tool for GNOME on Wayland: capture modes, an annotation editor, OCR and uploads over SFTP and WebDAV.</p>
@@ -132,7 +130,6 @@
               <article class="project-card" id="project-termisations" data-state="success">
                 <div class="project-card__head">
                   <span class="project-card__id" aria-hidden="true">project_termisations</span>
-                  <span class="badge"><span class="marker" aria-hidden="true"></span><span aria-hidden="true">success</span><span class="visually-hidden">ready</span></span>
                 </div>
                 <h3 class="project-card__title"><a href="/projects/termisations/">termisations</a></h3>
                 <p class="project-card__summary">A terminal XMPP client built for protocol debugging: a raw stanza stream panel sits next to the conversation.</p>
@@ -140,9 +137,6 @@
               </article>
             </li>
           </ol>
-          <p class="legend">
-            <span class="legend__item" data-state="success"><span class="marker" aria-hidden="true"></span>success - ready</span>
-          </p>
         </section>
       </div>
     </div>
@@ -150,13 +144,13 @@
     <div class="container">
       <div class="spine">
         <section class="section" id="about" data-state="success">
-          <p class="eyebrow" aria-hidden="true"><span class="port"></span>about<span class="badge"><span class="marker"></span>success</span></p>
+          <p class="eyebrow" aria-hidden="true"><span class="port"></span>about</p>
           <h2>About</h2>
           <div class="about">
             <div class="about__text">
-              <p>I started in application development: Java, Python and C++ applications, web interfaces and PostgreSQL migration scripts. Then I moved to product data: analyzing logs, writing loaders and parsers in Go and Python, building aggregates in ClickHouse. Today I develop and evolve ETL/ELT processes, Airflow DAGs, a DWH on Hadoop, Hive and Impala, and data marts and aggregates in ClickHouse and PostgreSQL.</p>
-              <p>I own the full data lifecycle: collection from internal and external sources, parsing and normalization, enrichment, storage, aggregation, reporting, monitoring, alerting and automation. I design fault-tolerant pipelines, tune query and orchestration performance, and keep track of data quality and SLAs.</p>
-              <p>I have worked with product, marketing and log data and with integrations with Google, Facebook, AppAnnie, myTracker and other external APIs. I deliver data to the business: dashboards, reports, self-service BI, ad-hoc analysis. In the team I do code review, mentoring and architecture decisions, and work with analytics, product and infrastructure teams.</p>
+              <p>I started in application development: Java, Python and C++ applications, web interfaces and PostgreSQL migration scripts. Then I moved to product data: analyzing logs, writing loaders and parsers in Go and Python, building aggregates in ClickHouse. Today I build ETL/ELT pipelines and Airflow DAGs, a Hadoop-based data warehouse (Hive, Impala), and data marts and aggregates in ClickHouse and PostgreSQL. I also designed a pilot lakehouse on Iceberg, S3, Spark, Kafka and PyArrow.</p>
+              <p>I own the full data lifecycle: collection from internal and external sources, parsing and normalization, enrichment, storage, aggregation, reporting, monitoring, alerting and automation. I design fault-tolerant pipelines, tune query and orchestration performance, and own data quality and SLAs.</p>
+              <p>I have worked with product, marketing and log data and built integrations with Google Ads, Meta Ads, data.ai, myTracker and other external APIs. I deliver data to the business: dashboards, reports, self-service BI, ad-hoc analysis. On the team, I review code, mentor engineers and drive architecture decisions. I work closely with analytics, product and infrastructure teams.</p>
             </div>
             <div class="attrs">
               <p class="attrs__head">attributes</p>
@@ -173,23 +167,23 @@
         </section>
 
         <section class="section" id="tasks" data-state="success">
-          <p class="eyebrow" aria-hidden="true"><span class="port"></span>tasks<span class="badge"><span class="marker"></span>success</span></p>
-          <h2>Tasks</h2>
+          <p class="eyebrow" aria-hidden="true"><span class="port"></span>tasks</p>
+          <h2>What I do</h2>
           <ul class="tasks" role="list">
             <li class="task" data-state="success">
               <p class="task__id" aria-hidden="true"><span class="marker"></span>extract</p>
               <h3 class="task__title">Data collection</h3>
-              <p class="task__text">Collecting data from product logs and external sources: Google, Facebook, AppAnnie, myTracker, internal APIs, databases, files, S3. Setting up CDC, exports, parsers and loaders. Working with Kafka and message queues.</p>
+              <p class="task__text">Collecting data from product logs and external sources: Google Ads, Meta Ads, data.ai, myTracker, internal APIs, databases, files, S3. Setting up CDC, exports, parsers and loaders. Working with Kafka and message queues.</p>
             </li>
             <li class="task" data-state="success">
               <p class="task__id" aria-hidden="true"><span class="marker"></span>transform</p>
               <h3 class="task__title">Processing and enrichment</h3>
-              <p class="task__text">ETL/ELT processes in Python and SQL. Text log parsers, cleansing, normalization, enrichment, deduplication. Data marts, aggregates, SCD2, DWH layers. PySpark, dbt, Spark SQL.</p>
+              <p class="task__text">ETL/ELT pipelines in Python and SQL. Text log parsers, cleansing, normalization, enrichment, deduplication. Data marts, aggregates, SCD2, DWH layers. PySpark, dbt, Spark SQL.</p>
             </li>
             <li class="task" data-state="success">
               <p class="task__id" aria-hidden="true"><span class="marker"></span>load</p>
               <h3 class="task__title">Loading and storage</h3>
-              <p class="task__text">Loading data into ClickHouse, aggregates in ClickHouse and MySQL. DWH on Hadoop, Hive and Impala. PostgreSQL, S3, HDFS, Parquet. Tuning partitioning, compression and storage schemas.</p>
+              <p class="task__text">Loading data into ClickHouse, aggregates in ClickHouse and MySQL. A Hadoop-based data warehouse (Hive, Impala). PostgreSQL, S3, HDFS, Parquet. Tuning partitioning, compression and storage schemas.</p>
             </li>
             <li class="task" data-state="success">
               <p class="task__id" aria-hidden="true"><span class="marker"></span>schedule</p>
@@ -209,7 +203,7 @@
             <li class="task" data-state="success">
               <p class="task__id" aria-hidden="true"><span class="marker"></span>monitor</p>
               <h3 class="task__title">Monitoring and alerting</h3>
-              <p class="task__text">Grafana, Graphite and Prometheus dashboards. ETL monitoring web module, Grafana alert webhooks. Telegram notifications, incident response, pipeline health checks.</p>
+              <p class="task__text">Grafana, Graphite and Prometheus dashboards. A web dashboard for ETL monitoring, Grafana alert webhooks. Telegram notifications, incident response, pipeline health checks.</p>
             </li>
             <li class="task" data-state="success">
               <p class="task__id" aria-hidden="true"><span class="marker"></span>performance</p>
@@ -224,12 +218,12 @@
             <li class="task" data-state="success">
               <p class="task__id" aria-hidden="true"><span class="marker"></span>mailing</p>
               <h3 class="task__title">Bulk messaging</h3>
-              <p class="task__text">Technical side of bulk messaging to users, up to 3 million recipients. Queues, rate limiting, templates, deliverability, monitoring.</p>
+              <p class="task__text">Built the delivery backend for campaigns of up to 3M recipients: queues, rate limiting, templates, deliverability, monitoring.</p>
             </li>
             <li class="task" data-state="success">
               <p class="task__id" aria-hidden="true"><span class="marker"></span>platform</p>
               <h3 class="task__title">Infrastructure</h3>
-              <p class="task__text">Docker, Podman, Kubernetes, GitLab CI, Ansible. CI/CD for data and services. Documentation, lineage, access management, handling PII under 152-FZ and GDPR.</p>
+              <p class="task__text">Docker, Podman, Kubernetes, GitLab CI, Ansible. CI/CD for data and services. Documentation, lineage, access management, PII handling under GDPR and Russian data protection law (152-FZ).</p>
             </li>
             <li class="task" data-state="success">
               <p class="task__id" aria-hidden="true"><span class="marker"></span>collaboration</p>
@@ -240,7 +234,7 @@
         </section>
 
         <section class="section" id="stack" data-state="success">
-          <p class="eyebrow" aria-hidden="true"><span class="port"></span>stack<span class="badge"><span class="marker"></span>success</span></p>
+          <p class="eyebrow" aria-hidden="true"><span class="port"></span>stack</p>
           <h2>Stack</h2>
           <div class="groups">
             <div class="group">
@@ -253,7 +247,7 @@
             </div>
             <div class="group">
               <div class="group__head"><h3>Storage and processing</h3><span class="group__id" aria-hidden="true">storage</span></div>
-              <ul class="chips" role="list"><li class="chip">ClickHouse</li><li class="chip">PostgreSQL</li><li class="chip">MySQL</li><li class="chip">Hadoop</li><li class="chip">HDFS</li><li class="chip">Hive</li><li class="chip">Impala</li><li class="chip">Spark/PySpark</li><li class="chip">Kafka</li><li class="chip">S3</li><li class="chip">Parquet</li><li class="chip">Iceberg</li></ul>
+              <ul class="chips" role="list"><li class="chip">ClickHouse</li><li class="chip">PostgreSQL</li><li class="chip">Spark/PySpark</li><li class="chip">Kafka</li><li class="chip">Iceberg</li><li class="chip">S3</li><li class="chip">Parquet</li><li class="chip">Hadoop</li><li class="chip">HDFS</li><li class="chip">Hive</li><li class="chip">Impala</li><li class="chip">MySQL</li></ul>
             </div>
             <div class="group">
               <div class="group__head"><h3>Data analysis</h3><span class="group__id" aria-hidden="true">analytics</span></div>
@@ -265,8 +259,7 @@
             </div>
             <div class="group">
               <div class="group__head"><h3>Cloud</h3><span class="group__id" aria-hidden="true">cloud</span></div>
-              <ul class="chips" role="list"><li class="chip">Yandex Cloud</li><li class="chip">VK Cloud</li></ul>
-              <p class="group__note">Pilot infrastructure design: Iceberg, S3, Spark, Kafka, PyArrow.</p>
+              <ul class="chips" role="list"><li class="chip">Yandex Cloud</li><li class="chip">VK Cloud</li><li class="chip">S3-compatible object storage</li></ul>
             </div>
             <div class="group group--archived">
               <div class="group__head"><h3>Previously used</h3><span class="group__id" aria-hidden="true">archived</span></div>
@@ -280,7 +273,7 @@
             <div class="contacts-layout__head">
               <p class="eyebrow" aria-hidden="true"><span class="port"></span>contacts</p>
               <h2>Contact</h2>
-              <p class="contacts-layout__intro">Reach me by email, XMPP or Telegram.</p>
+              <p class="contacts-layout__intro">Email is the fastest way to reach me.</p>
             </div>
             <div class="contacts-layout__main">
               <ul class="contacts" role="list">
@@ -293,17 +286,9 @@
                   <button type="button" class="btn btn--secondary copy-btn" id="copy-email" hidden data-done="Email copied">Copy email</button>
                 </li>
                 <li class="contacts__cell">
-                  <a class="contact" href="xmpp:tzx1z@inkov.dev">
-                    <span class="contact__id" aria-hidden="true">xmpp</span>
-                    <span class="contact__value">tzx1z@inkov.dev</span>
-                    <svg class="contact__arrow" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </a>
-                  <button type="button" class="btn btn--secondary copy-btn" id="copy-xmpp" hidden data-done="XMPP address copied">Copy XMPP</button>
-                </li>
-                <li class="contacts__cell">
-                  <a class="contact" href="https://t.me/tzx1z" rel="me">
-                    <span class="contact__id" aria-hidden="true">telegram</span>
-                    <span class="contact__value">t.me/tzx1z</span>
+                  <a class="contact" href="https://www.linkedin.com/in/evgeny-inkov-953268120/" rel="me">
+                    <span class="contact__id" aria-hidden="true">linkedin</span>
+                    <span class="contact__value">linkedin.com/in/evgeny-inkov-953268120</span>
                     <svg class="contact__arrow" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </a>
                 </li>
@@ -315,11 +300,19 @@
                   </a>
                 </li>
                 <li class="contacts__cell">
-                  <a class="contact" href="https://www.linkedin.com/in/evgeny-inkov-953268120/" rel="me">
-                    <span class="contact__id" aria-hidden="true">linkedin</span>
-                    <span class="contact__value">linkedin.com/in/evgeny-inkov-953268120</span>
+                  <a class="contact" href="https://t.me/tzx1z" rel="me">
+                    <span class="contact__id" aria-hidden="true">telegram</span>
+                    <span class="contact__value">t.me/tzx1z</span>
                     <svg class="contact__arrow" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </a>
+                </li>
+                <li class="contacts__cell">
+                  <a class="contact" href="xmpp:tzx1z@inkov.dev">
+                    <span class="contact__id" aria-hidden="true">xmpp</span>
+                    <span class="contact__value">tzx1z@inkov.dev</span>
+                    <svg class="contact__arrow" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </a>
+                  <button type="button" class="btn btn--secondary copy-btn" id="copy-xmpp" hidden data-done="XMPP address copied">Copy XMPP</button>
                 </li>
                 <li class="contacts__cell">
                   <a class="contact" href="https://fdroid.inkov.dev/">
