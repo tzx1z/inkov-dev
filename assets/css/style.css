@@ -243,7 +243,9 @@
   .page-node + .attrs { margin-block-start: var(--s-5); }
   .section > :is(p, ul) { max-inline-size: 62ch; }
   .section > .tasks { max-inline-size: none; }
-  .section > :is(p, ul, .attrs, .log-panel) + :is(p, ul, .attrs, .log-panel) { margin-block-start: var(--s-4); }
+  .section > :is(p, ul, .attrs, .log-panel, .diagram, .shots) + :is(p, ul, .attrs, .log-panel, .diagram, .shots) { margin-block-start: var(--s-4); }
+  .section > h3 { margin-block-start: var(--s-6); font-size: var(--fs-lg); }
+  .section > h3 + * { margin-block-start: var(--s-3); }
   .error-page { display: grid; justify-items: center; gap: var(--s-5); padding-block-start: var(--section-pad); text-align: center; }
   .error-page > p { max-inline-size: 36rem; }
   .error-page__links { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-3); }
@@ -697,6 +699,31 @@
   .shot__head { min-block-size: 32px; padding-inline: 12px; }
   .shot img { inline-size: 100%; }
   .shot figcaption { padding: 10px 16px; font-size: var(--fs-sm); color: var(--muted); }
+  /* скриншоты телефона: узкие колонки, на мобильном две в ряд */
+  .shots--phone { grid-template-columns: repeat(auto-fill, minmax(min(100% / 2 - var(--s-4), 13rem), 1fr)); gap: var(--s-4); }
+
+  /* схема: inline SVG, цвета из токенов, на узком экране прокрутка внутри рамки */
+  .diagram { max-inline-size: 46rem; overflow: hidden; border-radius: var(--r-node); background: var(--surface); border: 1px solid var(--border-strong); }
+  .diagram__canvas { overflow-x: auto; }
+  .diagram svg { display: block; inline-size: 100%; min-inline-size: 36rem; block-size: auto; }
+  .diagram figcaption { padding: 10px 16px; border-block-start: 1px solid var(--border); font-size: var(--fs-sm); color: var(--muted); }
+  .dg-box { fill: var(--surface); stroke: var(--border-strong); }
+  .dg-box--core { fill: var(--surface-2); stroke: var(--accent); stroke-width: 1.5; }
+  .dg-box--server { fill: var(--group-bg); stroke: var(--border-strong); }
+  .dg-zone { fill: none; stroke: var(--border-strong); stroke-dasharray: 5 4; }
+  .dg-life { stroke: var(--border-strong); stroke-dasharray: 4 4; }
+  .dg-title { fill: var(--text); font: 600 15px var(--font-sans); }
+  .dg-text { fill: var(--text); font: 13px var(--font-sans); }
+  .dg-note { fill: var(--muted); font: 12px var(--font-sans); }
+  .dg-mono { fill: var(--muted); font: 12px var(--font-mono); }
+  .dg-line { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+  .dg-line--dashed { stroke-dasharray: 5 4; }
+  .dg-head { fill: var(--muted); }
+
+  /* сессия терминала: команда и вывод как есть, длинные строки прокручиваются */
+  .term { overflow-x: auto; padding: var(--s-4) 16px; font: var(--fs-sm) / 1.6 var(--font-mono); white-space: pre; }
+  .term__cmd { color: var(--text); font-weight: 700; }
+  .term__out { color: var(--muted); }
 
   /* движение */
   @media (prefers-reduced-motion: no-preference) {

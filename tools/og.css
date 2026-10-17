@@ -39,3 +39,11 @@ body { overflow: hidden; }
 
 /* фото-нода 560x560 без шапки: рамка 1px, отступ 4px, фото 550x550; область photo задана в style.css */
 .og__photo { inline-size: 560px; }
+
+/* OG-картинка проекта (tools/og-<slug>-*.html): справа схема вместо фото */
+.og--project { grid-template: "text visual" / minmax(0, 1fr) 620px; gap: 40px; padding-inline: 64px 35px; }
+.og--project .og__name { display: flex; align-items: center; gap: 24px; font-size: 5.25rem; }
+.og--project .og__name .project-logo { inline-size: 84px; block-size: 84px; margin: 0; }
+.og--project .og__site { margin-block-start: auto; }
+.og__visual { grid-area: visual; max-inline-size: none; }
+.og__visual svg { min-inline-size: 0; }

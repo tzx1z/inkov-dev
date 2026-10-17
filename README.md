@@ -88,6 +88,12 @@ python3 -m http.server 8000 --bind 127.0.0.1
    Иконка `<img class="project-logo">` стоит в заголовке карточки перед ссылкой, как в `<h1>`
    шаблона.
 4. Ссылка "All projects" / "Все проекты" стоит в заголовке блока проектов на главной.
+   Страница проекта может содержать дополнительные секции со схемами и скриншотами (пример -
+   `projects/inkvault/`). Схема - `<figure class="diagram">` с inline SVG внутри
+   `.diagram__canvas`: цвета задают классы `dg-*` из `style.css`, поэтому схема работает в
+   обеих темах; подписи в SVG переводятся, разметка пары совпадает. Скриншоты телефона -
+   `<div class="shots shots--phone">`, ширины 320 и 640. Сессия терминала -
+   `<pre class="term">` внутри `.log-panel`, команды в `.term__cmd`, вывод в `.term__out`.
 5. Статус блока проектов на главной (`data-state` у `<section id="projects">`) и ноды
    `projects` на `/projects/` - `running`, пока хотя бы один проект в работе, иначе `success`.
    Бейдж выводится только для `running`: в шапке блока, на карточке и в заголовке страницы
@@ -114,7 +120,9 @@ firefox --headless --no-remote --profile /tmp/inkov-dev-work/ff-og --window-size
 magick /tmp/inkov-dev-work/og-ru.png -strip -quality 85 -sampling-factor 4:2:0 -interlace JPEG assets/img/og/og-ru.jpg
 ```
 
-Для английской версии то же самое с `og-en`.
+Для английской версии то же самое с `og-en`. У проекта может быть своя OG-картинка: макеты
+`tools/og-<slug>-en.html` и `tools/og-<slug>-ru.html` (класс `og--project` в `tools/og.css`),
+результат - `assets/img/og/og-<slug>-en.jpg` и `og-<slug>-ru.jpg`, ссылка в `og:image` страниц проекта.
 
 ## Проверки перед коммитом
 

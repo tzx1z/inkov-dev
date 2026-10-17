@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-e2lQhFMMb6KoBMfkNDH6kVgeuY4+M384y1SCuROV8ko='; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InkVault - Проекты - Евгений Иньков</title>
+  <script>try{const t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}</script>
+  <link rel="preload" href="/assets/fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script type="module" src="/assets/js/main.js"></script>
+  <meta name="description" content="InkVault: менеджер паролей для своего сервера со сквозным шифрованием и синхронизацией через XMPP. Ядро на Rust, web, Android и терминальный клиенты. Роль: автор.">
+  <link rel="canonical" href="https://inkov.dev/ru/projects/inkvault/">
+  <link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/inkvault/">
+  <link rel="alternate" hreflang="en" href="https://inkov.dev/projects/inkvault/">
+  <link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/inkvault/">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f6f8">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e1116">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="inkov.dev">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:url" content="https://inkov.dev/ru/projects/inkvault/">
+  <meta property="og:title" content="InkVault - Проекты - Евгений Иньков">
+  <meta property="og:description" content="InkVault: менеджер паролей для своего сервера со сквозным шифрованием и синхронизацией через XMPP. Ядро на Rust, web, Android и терминальный клиенты. Роль: автор.">
+  <meta property="og:image" content="https://inkov.dev/assets/img/og/og-inkvault-ru.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="InkVault, менеджер паролей с синхронизацией через XMPP">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "InkVault",
+    "description": "InkVault: менеджер паролей для своего сервера со сквозным шифрованием и синхронизацией через XMPP. Ядро на Rust, web, Android и терминальный клиенты. Роль: автор.",
+    "url": "https://inkov.dev/ru/projects/inkvault/",
+    "inLanguage": "ru",
+    "dateModified": "2026-10-17",
+    "author": {"@id": "https://inkov.dev/#person"}
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к основному содержанию</a>
+
+  <header class="site-header" id="top">
+    <div class="container site-header__inner">
+      <a class="logo" href="/ru/" aria-label="inkov.dev, на главную"><span class="logo__ring" aria-hidden="true"></span>inkov.dev</a>
+      <div class="site-header__controls">
+        <nav class="lang" aria-label="Выбор языка">
+          <a href="/projects/inkvault/" hreflang="en" lang="en" aria-label="EN, English">EN</a>
+          <a href="/ru/projects/inkvault/" hreflang="ru" lang="ru" aria-label="RU, русский" aria-current="page">RU</a>
+        </nav>
+        <button type="button" class="theme-toggle" id="theme-toggle" hidden data-label-auto="тема: авто" data-label-light="тема: светлая" data-label-dark="тема: темная">
+          <svg class="theme-toggle__icon" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 1.75a7.25 7.25 0 0 1 0 14.5Z" fill="currentColor"/></svg>
+          <span class="theme-toggle__text">тема: авто</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container page">
+    <nav class="crumbs" aria-label="Путь по сайту">
+      <ol role="list" lang="en">
+        <li><a href="/ru/">inkov_dev</a></li>
+        <li><a href="/ru/projects/">projects</a></li>
+        <li aria-current="page">inkvault</li>
+      </ol>
+    </nav>
+
+    <div class="page-node" data-state="success">
+      <span class="page-node__id" lang="en" aria-hidden="true">project_inkvault</span>
+      <h1 lang="en"><img class="project-logo" src="/assets/img/projects/inkvault/inkvault-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt="">InkVault</h1>
+      <p class="page-node__summary">Менеджер паролей для своего XMPP-сервера. Записи шифруются на устройстве одним ядром на Rust, общим для web, Android и терминального клиентов. Сервер хранит только шифротекст и доставляет изменения на другие устройства за 1-2 секунды.</p>
+    </div>
+
+    <div class="attrs">
+      <p class="attrs__head" lang="en">attributes</p>
+      <dl>
+        <div><dt lang="en">role</dt><dd>автор</dd></div>
+        <div><dt lang="en">core</dt><dd><a href="https://github.com/tzx1z/inkvault-core">https://github.com/tzx1z/inkvault-core</a></dd></div>
+        <div><dt lang="en">android</dt><dd><a href="https://github.com/tzx1z/inkvault-android">https://github.com/tzx1z/inkvault-android</a></dd></div>
+        <div><dt lang="en">cli</dt><dd><a href="https://github.com/tzx1z/inkvault-cli">https://github.com/tzx1z/inkvault-cli</a></dd></div>
+        <div><dt lang="en">web</dt><dd>закрытый репозиторий</dd></div>
+        <div><dt lang="en">license</dt><dd lang="en">AGPL-3.0</dd></div>
+      </dl>
+    </div>
+
+    <div class="spine">
+      <section class="section" id="problem">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">problem</span></p>
+        <h2>Задача</h2>
+        <p>Менеджеры паролей для своего сервера приносят собственную систему учетных записей, API-сервер и базу данных, и все это нужно развернуть, обновлять и резервировать. У многих людей и команд уже есть XMPP-сервер: в нем есть учетные записи, аутентификация, постоянное соединение с доставкой изменений и федерация между доменами.</p>
+        <p>InkVault использует этот сервер для хранения и передачи данных. Учетная запись хранилища - это JID, зашифрованные записи лежат в узлах PEP учетной записи, своего серверного кода нет. Сервер не должен видеть открытые данные.</p>
+      </section>
+
+      <section class="section" id="architecture">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">architecture</span></p>
+        <h2>Архитектура</h2>
+        <p>Криптография, модель данных, разрешение конфликтов и движок синхронизации собраны в одной библиотеке на Rust. Ядро не работает с сетью: клиент передает ему полученные от сервера данные и получает команды для отправки, поэтому XMPP-стек у каждой платформы свой.</p>
+        <figure class="diagram">
+          <div class="diagram__canvas"><svg viewBox="0 0 720 400" width="720" height="400" role="img" aria-labelledby="dg1-title"><title id="dg1-title">Как клиенты обращаются к данным</title><defs><marker id="dg1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="32" y="42">Web</text><text class="dg-mono" x="32" y="62">TypeScript, WASM</text><rect class="dg-box--core" x="28" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="40" y="101">ядро: шифр и слияние</text><line class="dg-line" x1="124" y1="132" x2="124" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="132" y="166">WebSocket, wss://</text><rect class="dg-box" x="252" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="268" y="42">Android</text><text class="dg-mono" x="268" y="62">Kotlin, UniFFI</text><rect class="dg-box--core" x="264" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="276" y="101">ядро: шифр и слияние</text><line class="dg-line" x1="360" y1="132" x2="360" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="368" y="166">XMPP, TLS</text><rect class="dg-box" x="488" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="504" y="42">Терминал</text><text class="dg-mono" x="504" y="62">Rust, агент</text><rect class="dg-box--core" x="500" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="512" y="101">ядро: шифр и слияние</text><line class="dg-line" x1="596" y1="132" x2="596" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="604" y="166">XMPP, STARTTLS</text><rect class="dg-box--server" x="16" y="196" width="688" height="188" rx="8"/><text class="dg-title" x="32" y="222">XMPP-сервер (Prosody 13)</text><text class="dg-mono" x="32" y="242">pep · websocket · smacks · SASL2/FAST</text><text class="dg-mono" x="688" y="222" text-anchor="end">access_model = whitelist</text><text class="dg-note" x="32" y="270">PEP учетной записи alice@example.org</text><rect class="dg-box" x="32" y="282" width="320" height="86" rx="6"/><text class="dg-mono" x="44" y="304">urn:inkvault:account:0</text><text class="dg-text" x="44" y="328">параметры KDF, соль</text><text class="dg-text" x="44" y="350">обернутые user key и vault keys</text><rect class="dg-box" x="368" y="282" width="320" height="86" rx="6"/><text class="dg-mono" x="380" y="304">urn:inkvault:vault:0</text><text class="dg-text" x="380" y="328">записи, только шифротекст</text><text class="dg-text" x="380" y="350">id элемента = UUIDv7, до 10 000</text></svg></div>
+          <figcaption>Каждый клиент подключается к XMPP-серверу своим транспортом. Шифрование и слияние выполняет ядро на устройстве, на сервере два узла PEP с шифротекстом.</figcaption>
+        </figure>
+        <ul>
+          <li>Web: TypeScript без фреймворка, ядро в WebAssembly, xmpp.js по WebSocket (wss://), после первого входа вход по токену FAST</li>
+          <li>Android: Kotlin и Jetpack Compose, ядро через биндинги UniFFI, Smack по TLS, разблокировка отпечатком через Android Keystore</li>
+          <li>Терминал: Rust, ядро подключено крейтом, tokio-xmpp по STARTTLS. Агент по схеме ssh-agent держит хранилище разблокированным за unix-сокетом</li>
+          <li>Сервер: Prosody 13 с модулями pep, websocket, smacks и SASL2/FAST. Узлы создаются с access_model = whitelist, поэтому контакты с подпиской на присутствие их не читают</li>
+        </ul>
+      </section>
+
+      <section class="section" id="encryption">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">encryption</span></p>
+        <h2>Шифрование</h2>
+        <p>Мастер-пароль не покидает устройство. Ключи образуют иерархию, на сервер попадают только обернутые ключи и шифротекст.</p>
+        <figure class="diagram">
+          <div class="diagram__canvas"><svg viewBox="0 0 720 492" width="720" height="492" role="img" aria-labelledby="dg2-title"><title id="dg2-title">Иерархия ключей</title><defs><marker id="dg2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-zone" x="16" y="16" width="384" height="460" rx="8"/><text class="dg-note" x="32" y="38">на устройстве, в памяти</text><rect class="dg-zone" x="420" y="16" width="284" height="460" rx="8"/><text class="dg-note" x="436" y="38">на сервере, в PEP</text><rect class="dg-box" x="32" y="52" width="352" height="50" rx="6"/><text class="dg-title" x="48" y="74">Мастер-пароль</text><text class="dg-mono" x="48" y="93">вводит пользователь</text><rect class="dg-box" x="32" y="124" width="352" height="50" rx="6"/><text class="dg-title" x="48" y="146">Argon2id → master key</text><text class="dg-mono" x="48" y="165">m = 64 МиБ, t = 3, p = 4</text><line class="dg-line" x1="208" y1="102" x2="208" y2="122" marker-end="url(#dg2-arrow)"/><rect class="dg-box" x="32" y="196" width="352" height="50" rx="6"/><text class="dg-title" x="48" y="218">HKDF-SHA256 → ключ обертки</text><text class="dg-mono" x="48" y="237">метка user-key</text><line class="dg-line" x1="208" y1="174" x2="208" y2="194" marker-end="url(#dg2-arrow)"/><rect class="dg-box--core" x="32" y="268" width="352" height="50" rx="6"/><text class="dg-title" x="48" y="290">User key</text><text class="dg-mono" x="48" y="309">случайный, 256 бит</text><line class="dg-line" x1="208" y1="246" x2="208" y2="266" marker-end="url(#dg2-arrow)"/><rect class="dg-box--core" x="32" y="340" width="352" height="50" rx="6"/><text class="dg-title" x="48" y="362">Vault key</text><text class="dg-mono" x="48" y="381">свой у каждого хранилища</text><line class="dg-line" x1="208" y1="318" x2="208" y2="338" marker-end="url(#dg2-arrow)"/><rect class="dg-box" x="32" y="412" width="352" height="50" rx="6"/><text class="dg-title" x="48" y="434">XChaCha20-Poly1305</text><text class="dg-mono" x="48" y="453">AAD: vault_id, item_id, key_version</text><line class="dg-line" x1="208" y1="390" x2="208" y2="410" marker-end="url(#dg2-arrow)"/><rect class="dg-box" x="436" y="228" width="252" height="158" rx="6"/><text class="dg-mono" x="448" y="250">urn:inkvault:account:0</text><text class="dg-text" x="448" y="272">соль, параметры KDF</text><text class="dg-text" x="448" y="297">user key, обернутый</text><text class="dg-text" x="448" y="369">vault keys, обернутые</text><rect class="dg-box" x="436" y="412" width="252" height="50" rx="6"/><text class="dg-mono" x="448" y="432">urn:inkvault:vault:0</text><text class="dg-text" x="448" y="452">записи, шифротекст</text><line class="dg-line" x1="384" y1="293" x2="432" y2="293" marker-end="url(#dg2-arrow)"/><line class="dg-line" x1="384" y1="365" x2="432" y2="365" marker-end="url(#dg2-arrow)"/><line class="dg-line" x1="384" y1="437" x2="432" y2="437" marker-end="url(#dg2-arrow)"/></svg></div>
+          <figcaption>Иерархия ключей. Левая колонка есть только в памяти устройства, правая - то, что хранит сервер.</figcaption>
+        </figure>
+        <ul>
+          <li>Argon2id: 64 МиБ памяти, t = 3, p = 4. Параметры с сервера проверяются по границам, поэтому сервер не может ни ослабить вывод ключа, ни заставить устройство выделить гигабайты памяти</li>
+          <li>Записи шифруются XChaCha20-Poly1305. AAD связывает шифротекст с vault_id, item_id и версией ключа: сервер не может подменить одну запись другой или перенести ее в другое хранилище</li>
+          <li>Смена мастер-пароля меняет только соль и обертку user key. Ключи хранилищ, записи и локальный кэш остаются прежними</li>
+          <li>Локальный кэш зашифрован ключом, выведенным из vault key, и открывается только после разблокировки</li>
+        </ul>
+      </section>
+
+      <section class="section" id="sync">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">sync</span></p>
+        <h2>Синхронизация</h2>
+        <p>У каждого поля, тега и признака удаления есть метка гибридных логических часов (HLC). Запись шифруется и публикуется целиком, сервер хранит последнюю публикацию и рассылает ее остальным устройствам учетной записи.</p>
+        <figure class="diagram">
+          <div class="diagram__canvas"><svg viewBox="0 0 720 452" width="720" height="452" role="img" aria-labelledby="dg3-title"><title id="dg3-title">Синхронизация двух устройств</title><defs><marker id="dg3-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="106" y="41" text-anchor="middle">Телефон (Android)</text><line class="dg-life" x1="106" y1="56" x2="106" y2="440"/><rect class="dg-box" x="270" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="360" y="41" text-anchor="middle">XMPP-сервер (PEP)</text><line class="dg-life" x1="360" y1="56" x2="360" y2="440"/><rect class="dg-box" x="524" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="614" y="41" text-anchor="middle">Ноутбук (web)</text><line class="dg-life" x1="614" y1="56" x2="614" y2="440"/><rect class="dg-box--core" x="26" y="76" width="160" height="48" rx="4"/><text class="dg-text" x="38" y="96">правка поля</text><text class="dg-mono" x="38" y="114">метка HLC, шифрование</text><line class="dg-line" x1="106" y1="156" x2="356" y2="156" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="233" y="148" text-anchor="middle">публикация, id = запись</text><rect class="dg-box--server" x="270" y="172" width="180" height="48" rx="4"/><text class="dg-text" x="282" y="192">хранит, заменяет по id</text><text class="dg-mono" x="282" y="210">видит только шифротекст</text><line class="dg-line" x1="360" y1="252" x2="610" y2="252" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="244" text-anchor="middle">уведомление +notify</text><rect class="dg-box--core" x="524" y="268" width="184" height="66" rx="4"/><text class="dg-text" x="536" y="288">расшифровка, слияние</text><text class="dg-mono" x="536" y="306">зашифрованный кэш</text><text class="dg-mono" x="536" y="324">интерфейс через 1-2 с</text><text class="dg-note" x="487" y="360" text-anchor="middle">после работы без сети</text><line class="dg-line dg-line--dashed" x1="614" y1="388" x2="364" y2="388" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="380" text-anchor="middle">новая сессия: загрузить все</text><line class="dg-line dg-line--dashed" x1="360" y1="420" x2="610" y2="420" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="412" text-anchor="middle">записи → слияние → публикация</text></svg></div>
+          <figcaption>Синхронизация двух устройств одной учетной записи. Устройство, которое было без сети, при подключении загружает весь узел, сливает его со своими данными и публикует то, чего нет на сервере.</figcaption>
+        </figure>
+        <ul>
+          <li>Слияние по полям: побеждает более поздняя метка HLC, а пароль, проигравший при одновременной правке, остается в истории паролей. Слияние коммутативно, ассоциативно и идемпотентно, поэтому устройства сходятся к одному состоянию</li>
+          <li>Новая сессия ничего не публикует, пока не загрузит весь узел. Сессия, восстановленная через XEP-0198, получает только уведомления</li>
+          <li>Удаление - это запись с признаком удаления, а не retract: иначе устройство, которое было без сети, вернуло бы удаленную запись. Очистка корзины заменяет записи заглушками, которые побеждают при любом слиянии</li>
+          <li>Если сервер потерял данные или восстановлен из старого бэкапа, устройство с кэшем публикует учетную запись и записи заново</li>
+        </ul>
+      </section>
+
+      <section class="section" id="clients">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">clients</span></p>
+        <h2>Клиенты</h2>
+        <p>Три клиента используют один формат хранилища и один формат зашифрованного экспорта. Ядро, Android и терминальный клиенты открыты под AGPL-3.0, код web-клиента закрыт. Скриншоты сняты на тестовом сервере с выдуманными данными.</p>
+        <h3>Web</h3>
+        <div class="shots">
+          <figure class="shot">
+            <p class="shot__head" lang="en" aria-hidden="true">web_vault</p>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/projects/inkvault/inkvault-web-1-640.avif 640w, /assets/img/projects/inkvault/inkvault-web-1-1280.avif 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)">
+              <source type="image/webp" srcset="/assets/img/projects/inkvault/inkvault-web-1-640.webp 640w, /assets/img/projects/inkvault/inkvault-web-1-1280.webp 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)">
+              <img src="/assets/img/projects/inkvault/inkvault-web-1-1280.jpg" srcset="/assets/img/projects/inkvault/inkvault-web-1-640.jpg 640w, /assets/img/projects/inkvault/inkvault-web-1-1280.jpg 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)" width="1280" height="800" loading="lazy" decoding="async" alt="Web-клиент: хранилище с деревом тегов и выбранной записью, пароль скрыт">
+            </picture>
+            <figcaption>Хранилище в web-клиенте: слева дерево тегов, затем список записей и выбранная запись. Пароль скрыт, пока его не показать.</figcaption>
+          </figure>
+          <figure class="shot">
+            <p class="shot__head" lang="en" aria-hidden="true">web_pin_code</p>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/projects/inkvault/inkvault-web-2-640.avif 640w, /assets/img/projects/inkvault/inkvault-web-2-1280.avif 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)">
+              <source type="image/webp" srcset="/assets/img/projects/inkvault/inkvault-web-2-640.webp 640w, /assets/img/projects/inkvault/inkvault-web-2-1280.webp 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)">
+              <img src="/assets/img/projects/inkvault/inkvault-web-2-1280.jpg" srcset="/assets/img/projects/inkvault/inkvault-web-2-640.jpg 640w, /assets/img/projects/inkvault/inkvault-web-2-1280.jpg 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)" width="1280" height="800" loading="lazy" decoding="async" alt="Web-клиент: пароль вида PIN и код с готовым паролем и отсчетом">
+            </picture>
+            <figcaption>Пароль вида PIN + код: готовый пароль складывается из PIN и текущего кода TOTP, под ним отсчет до смены кода.</figcaption>
+          </figure>
+          <figure class="shot">
+            <p class="shot__head" lang="en" aria-hidden="true">web_generator</p>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/projects/inkvault/inkvault-web-3-640.avif 640w, /assets/img/projects/inkvault/inkvault-web-3-1280.avif 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)">
+              <source type="image/webp" srcset="/assets/img/projects/inkvault/inkvault-web-3-640.webp 640w, /assets/img/projects/inkvault/inkvault-web-3-1280.webp 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)">
+              <img src="/assets/img/projects/inkvault/inkvault-web-3-1280.jpg" srcset="/assets/img/projects/inkvault/inkvault-web-3-640.jpg 640w, /assets/img/projects/inkvault/inkvault-web-3-1280.jpg 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)" width="1280" height="800" loading="lazy" decoding="async" alt="Web-клиент: окно генератора паролей">
+            </picture>
+            <figcaption>Генератор паролей работает в ядре: длина, классы символов, исключение похожих символов и оценка энтропии.</figcaption>
+          </figure>
+          <figure class="shot">
+            <p class="shot__head" lang="en" aria-hidden="true">web_offline</p>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/projects/inkvault/inkvault-web-4-640.avif 640w, /assets/img/projects/inkvault/inkvault-web-4-1280.avif 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)">
+              <source type="image/webp" srcset="/assets/img/projects/inkvault/inkvault-web-4-640.webp 640w, /assets/img/projects/inkvault/inkvault-web-4-1280.webp 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)">
+              <img src="/assets/img/projects/inkvault/inkvault-web-4-1280.jpg" srcset="/assets/img/projects/inkvault/inkvault-web-4-640.jpg 640w, /assets/img/projects/inkvault/inkvault-web-4-1280.jpg 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)" width="1280" height="800" loading="lazy" decoding="async" alt="Web-клиент: сервер недоступен, одно изменение еще не отправлено">
+            </picture>
+            <figcaption>Сервер недоступен: хранилище открыто из зашифрованного кэша, измененная запись ждет отправки.</figcaption>
+          </figure>
+          <figure class="shot">
+            <p class="shot__head" lang="en" aria-hidden="true">web_dark</p>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/projects/inkvault/inkvault-web-5-640.avif 640w, /assets/img/projects/inkvault/inkvault-web-5-1280.avif 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)">
+              <source type="image/webp" srcset="/assets/img/projects/inkvault/inkvault-web-5-640.webp 640w, /assets/img/projects/inkvault/inkvault-web-5-1280.webp 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)">
+              <img src="/assets/img/projects/inkvault/inkvault-web-5-1280.jpg" srcset="/assets/img/projects/inkvault/inkvault-web-5-640.jpg 640w, /assets/img/projects/inkvault/inkvault-web-5-1280.jpg 1280w" sizes="(min-width: 50rem) 46rem, calc(100vw - 2rem)" width="1280" height="800" loading="lazy" decoding="async" alt="Web-клиент в темной теме">
+            </picture>
+            <figcaption>Темная тема включается по настройке системы.</figcaption>
+          </figure>
+        </div>
+        <h3>Android</h3>
+        <div class="shots shots--phone">
+          <figure class="shot">
+            <p class="shot__head" lang="en" aria-hidden="true">android_unlock</p>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/projects/inkvault/inkvault-android-1-320.avif 320w, /assets/img/projects/inkvault/inkvault-android-1-640.avif 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)">
+              <source type="image/webp" srcset="/assets/img/projects/inkvault/inkvault-android-1-320.webp 320w, /assets/img/projects/inkvault/inkvault-android-1-640.webp 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)">
+              <img src="/assets/img/projects/inkvault/inkvault-android-1-640.jpg" srcset="/assets/img/projects/inkvault/inkvault-android-1-320.jpg 320w, /assets/img/projects/inkvault/inkvault-android-1-640.jpg 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)" width="640" height="1422" loading="lazy" decoding="async" alt="Android-клиент: разблокировка мастер-паролем">
+            </picture>
+            <figcaption>Разблокировка мастер-паролем, после настройки - отпечатком.</figcaption>
+          </figure>
+          <figure class="shot">
+            <p class="shot__head" lang="en" aria-hidden="true">android_list</p>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/projects/inkvault/inkvault-android-2-320.avif 320w, /assets/img/projects/inkvault/inkvault-android-2-640.avif 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)">
+              <source type="image/webp" srcset="/assets/img/projects/inkvault/inkvault-android-2-320.webp 320w, /assets/img/projects/inkvault/inkvault-android-2-640.webp 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)">
+              <img src="/assets/img/projects/inkvault/inkvault-android-2-640.jpg" srcset="/assets/img/projects/inkvault/inkvault-android-2-320.jpg 320w, /assets/img/projects/inkvault/inkvault-android-2-640.jpg 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)" width="640" height="1422" loading="lazy" decoding="async" alt="Android-клиент: список записей с поиском и фильтрами по тегам">
+            </picture>
+            <figcaption>Список записей с поиском и фильтрами по тегам.</figcaption>
+          </figure>
+          <figure class="shot">
+            <p class="shot__head" lang="en" aria-hidden="true">android_record</p>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/projects/inkvault/inkvault-android-3-320.avif 320w, /assets/img/projects/inkvault/inkvault-android-3-640.avif 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)">
+              <source type="image/webp" srcset="/assets/img/projects/inkvault/inkvault-android-3-320.webp 320w, /assets/img/projects/inkvault/inkvault-android-3-640.webp 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)">
+              <img src="/assets/img/projects/inkvault/inkvault-android-3-640.jpg" srcset="/assets/img/projects/inkvault/inkvault-android-3-320.jpg 320w, /assets/img/projects/inkvault/inkvault-android-3-640.jpg 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)" width="640" height="1422" loading="lazy" decoding="async" alt="Android-клиент: запись GitHub, пароль скрыт">
+            </picture>
+            <figcaption>Запись: показ, копирование и генерация - кнопки внутри полей.</figcaption>
+          </figure>
+          <figure class="shot">
+            <p class="shot__head" lang="en" aria-hidden="true">android_pin_code</p>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/projects/inkvault/inkvault-android-4-320.avif 320w, /assets/img/projects/inkvault/inkvault-android-4-640.avif 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)">
+              <source type="image/webp" srcset="/assets/img/projects/inkvault/inkvault-android-4-320.webp 320w, /assets/img/projects/inkvault/inkvault-android-4-640.webp 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)">
+              <img src="/assets/img/projects/inkvault/inkvault-android-4-640.jpg" srcset="/assets/img/projects/inkvault/inkvault-android-4-320.jpg 320w, /assets/img/projects/inkvault/inkvault-android-4-640.jpg 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)" width="640" height="1422" loading="lazy" decoding="async" alt="Android-клиент: пароль вида PIN и код с кольцом отсчета">
+            </picture>
+            <figcaption>PIN + код: готовый пароль и кольцо отсчета до смены кода.</figcaption>
+          </figure>
+          <figure class="shot">
+            <p class="shot__head" lang="en" aria-hidden="true">android_generator</p>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/projects/inkvault/inkvault-android-5-320.avif 320w, /assets/img/projects/inkvault/inkvault-android-5-640.avif 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)">
+              <source type="image/webp" srcset="/assets/img/projects/inkvault/inkvault-android-5-320.webp 320w, /assets/img/projects/inkvault/inkvault-android-5-640.webp 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)">
+              <img src="/assets/img/projects/inkvault/inkvault-android-5-640.jpg" srcset="/assets/img/projects/inkvault/inkvault-android-5-320.jpg 320w, /assets/img/projects/inkvault/inkvault-android-5-640.jpg 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)" width="640" height="1422" loading="lazy" decoding="async" alt="Android-клиент: окно генератора паролей">
+            </picture>
+            <figcaption>Генератор паролей, как в web-клиенте.</figcaption>
+          </figure>
+          <figure class="shot">
+            <p class="shot__head" lang="en" aria-hidden="true">android_dark</p>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/projects/inkvault/inkvault-android-6-320.avif 320w, /assets/img/projects/inkvault/inkvault-android-6-640.avif 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)">
+              <source type="image/webp" srcset="/assets/img/projects/inkvault/inkvault-android-6-320.webp 320w, /assets/img/projects/inkvault/inkvault-android-6-640.webp 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)">
+              <img src="/assets/img/projects/inkvault/inkvault-android-6-640.jpg" srcset="/assets/img/projects/inkvault/inkvault-android-6-320.jpg 320w, /assets/img/projects/inkvault/inkvault-android-6-640.jpg 640w" sizes="(min-width: 50rem) 14rem, calc(50vw - 2rem)" width="640" height="1422" loading="lazy" decoding="async" alt="Android-клиент в темной теме">
+            </picture>
+            <figcaption>Темная тема по настройке системы.</figcaption>
+          </figure>
+        </div>
+        <p>Окно Android-клиента защищено FLAG_SECURE, поэтому скриншоты сняты с отладочной сборки той же версии без этого флага.</p>
+        <h3>Терминал</h3>
+        <p>Терминальный клиент держит хранилище разблокированным в агенте, выводит пароли в stdout для скриптов и не принимает секреты аргументами.</p>
+        <div class="log-panel">
+          <p class="log-panel__head" lang="en" aria-hidden="true">shell · inkvault</p>
+          <pre class="term" lang="en"><code><span class="term__cmd">$ printf &#x27;%s\n&#x27; &quot;$MASTER&quot; | inkvault unlock --password-stdin</span>
+<span class="term__cmd">$ inkvault ls</span>
+<span class="term__out">Bank         alice.smith      bank.example.com</span>
+<span class="term__out">GitHub       alice-dev        github.com</span>
+<span class="term__out">GitLab       alice.dev        gitlab.com</span>
+<span class="term__out">Grafana      alice            grafana.example.org</span>
+<span class="term__out">Home router  admin            http://192.168.1.1</span>
+<span class="term__out">Proton Mail  alice@proton.me  mail.proton.me</span>
+<span class="term__out">VPS          root             ssh://203.0.113.10</span>
+<span class="term__cmd">$ inkvault get GitHub -f username</span>
+<span class="term__out">alice-dev</span>
+<span class="term__cmd">$ inkvault get GitHub</span>
+<span class="term__out">1^yb,+{tiG,uC7X%[^zfJ|[5</span>
+<span class="term__cmd">$ inkvault otp GitHub</span>
+<span class="term__out">566836</span>
+<span class="term__cmd">$ inkvault gen -l 32 --no-symbols --avoid-ambiguous</span>
+<span class="term__out">RNHE5mSrzmnwKnSmc7hA4P6B3uvKV3G5</span>
+<span class="term__cmd">$ inkvault lock</span></code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="stack">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">stack</span></p>
+        <h2>Стек</h2>
+        <p>Ядро: Rust, RustCrypto (chacha20poly1305, argon2, hkdf), zeroize, serde, wasm-bindgen, UniFFI. Web: TypeScript, Vite, xmpp.js. Android: Kotlin, Jetpack Compose, Smack 4.5, BiometricPrompt, Android Keystore. Терминал: Rust, tokio-xmpp, rustls, clap. Сервер: Prosody 13.</p>
+      </section>
+
+      <section class="section" id="role">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">role</span></p>
+        <h2>Моя роль</h2>
+        <p>Автор: спроектировал протокол хранения поверх PEP, иерархию ключей и движок синхронизации, написал ядро, три клиента и их тесты.</p>
+      </section>
+
+      <section class="section" id="result">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">result</span></p>
+        <h2>Результат</h2>
+        <p>Опубликована версия 0.2 ядра, Android и терминального клиентов: APK, подписанные автором, статические бинарники для Linux на x86_64 и aarch64, крейт на crates.io.</p>
+        <ul>
+          <li>Property-based тест слияния: три устройства с расхождением часов до 4 секунд, 20 000 случайных сценариев правок, удалений, восстановлений и синхронизаций</li>
+          <li>Симуляция синхронизации: сервер PEP в памяти и три устройства с офлайн-правками, обрывами сессий и задержанными уведомлениями, 5000 сценариев</li>
+          <li>Сквозные тесты на тестовом Prosody: web-клиент проходит 58 из 58 проверок в Firefox, терминальный клиент - 80 из 80, Android-клиент - 25 из 25 на Samsung Galaxy S23+</li>
+          <li>Поиск тестовых паролей и названий записей по базе Prosody ничего не находит: сервер хранит только шифротекст</li>
+          <li>Тестовые векторы дают одинаковые байты в Rust, WebAssembly и Kotlin</li>
+        </ul>
+        <p>Дальше: автозаполнение на Android, OMEMO 2 для подтверждения нового устройства с уже подключенного и компонент хранилища для совместного доступа к хранилищам, в том числе для пользователей других доменов через федерацию.</p>
+      </section>
+
+      <section class="section" id="install">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">install</span></p>
+        <h2>Установка</h2>
+        <p>Android: через F-Droid из репозитория inkov.dev или APK со страницы релизов на GitHub. Терминал: статические бинарники для Linux на странице релизов, на macOS и других платформах - из crates.io.</p>
+        <p><a class="btn btn--primary" href="https://fdroid.link/#https://fdroid.inkov.dev/repo?fingerprint=1B4D3D289AC970F53860490E7AAA8B40E8810DFA149E3CA66FB93FB18E5738CE">Добавить в F-Droid</a></p>
+        <div class="log-panel">
+          <p class="log-panel__head" lang="en" aria-hidden="true">shell · macOS</p>
+          <ol class="log log--cmd" role="list" lang="en">
+            <li><code class="log__msg">cargo install --locked inkvault-cli</code></li>
+          </ol>
+        </div>
+        <p>Серверу нужен Prosody 13 с pep_max_items = 10000, для web-клиента - WebSocket через TLS.</p>
+      </section>
+      <span class="spine__end" aria-hidden="true"></span>
+    </div>
+
+    <p class="page__back"><a href="/ru/projects/">Все проекты</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p><span lang="en">dag_id=inkov_dev</span><span class="sep" aria-hidden="true">·</span><a href="https://github.com/tzx1z/inkov-dev">Исходный код сайта</a></p>
+      <p><span>© 2026 Евгений Иньков</span><span class="sep" aria-hidden="true">·</span><a href="#top">Наверх</a></p>
+    </div>
+  </footer>
+</body>
+</html>
