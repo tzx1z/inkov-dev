@@ -10,7 +10,7 @@
   <link rel="preload" href="/assets/fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css">
   <script type="module" src="/assets/js/main.js"></script>
-  <meta name="description" content="InkVault: a self-hosted password manager with end-to-end encryption and sync over XMPP. Rust core, web, Android and terminal clients. Role: author.">
+  <meta name="description" content="InkVault: a password manager that needs only a client and an XMPP account on any server with PEP. End-to-end encryption, a Rust core, web, Android and terminal clients. Role: author.">
   <link rel="canonical" href="https://inkov.dev/projects/inkvault/">
   <link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/inkvault/">
   <link rel="alternate" hreflang="en" href="https://inkov.dev/projects/inkvault/">
@@ -27,21 +27,21 @@
   <meta property="og:locale:alternate" content="ru_RU">
   <meta property="og:url" content="https://inkov.dev/projects/inkvault/">
   <meta property="og:title" content="InkVault - Projects - Evgeny Inkov">
-  <meta property="og:description" content="InkVault: a self-hosted password manager with end-to-end encryption and sync over XMPP. Rust core, web, Android and terminal clients. Role: author.">
+  <meta property="og:description" content="InkVault: a password manager that needs only a client and an XMPP account on any server with PEP. End-to-end encryption, a Rust core, web, Android and terminal clients. Role: author.">
   <meta property="og:image" content="https://inkov.dev/assets/img/og/og-inkvault-en.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="InkVault, a self-hosted password manager with sync over XMPP">
+  <meta property="og:image:alt" content="InkVault, a password manager for any XMPP account">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     "name": "InkVault",
-    "description": "InkVault: a self-hosted password manager with end-to-end encryption and sync over XMPP. Rust core, web, Android and terminal clients. Role: author.",
+    "description": "InkVault: a password manager that needs only a client and an XMPP account on any server with PEP. End-to-end encryption, a Rust core, web, Android and terminal clients. Role: author.",
     "url": "https://inkov.dev/projects/inkvault/",
     "inLanguage": "en",
-    "dateModified": "2026-10-17",
+    "dateModified": "2026-10-18",
     "author": {"@id": "https://inkov.dev/#person"}
   }
   </script>
@@ -77,7 +77,7 @@
     <div class="page-node" data-state="success">
       <span class="page-node__id" aria-hidden="true">project_inkvault</span>
       <h1><img class="project-logo" src="/assets/img/projects/inkvault/inkvault-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt="">InkVault</h1>
-      <p class="page-node__summary">A password manager for your own XMPP server. Records are encrypted on the device by one Rust core shared by the web, Android and terminal clients. The server stores only ciphertext and delivers changes to the other devices within 1-2 seconds.</p>
+      <p class="page-node__summary">A password manager that needs only a client and an XMPP account. The account can be on any server with PEP, including a public server you do not own. Records are encrypted on the device by one Rust core shared by the web, Android and terminal clients, and the server stores only ciphertext.</p>
     </div>
 
     <div class="attrs">
@@ -96,8 +96,11 @@
       <section class="section" id="problem">
         <p class="eyebrow" aria-hidden="true"><span class="port"></span>problem</p>
         <h2>Problem</h2>
-        <p>Self-hosted password managers bring their own account system, API server and database, and each of them has to be deployed, updated and backed up. Many people and teams already run an XMPP server: it has accounts, authentication, a persistent connection that delivers changes, and federation between domains.</p>
-        <p>InkVault uses that server for storage and transport. The vault account is a JID, encrypted records live in the PEP nodes of the account, and no server code of its own is needed. The server must never see plaintext.</p>
+        <p>On-premises password managers, or ones that need a dedicated server of their own, bring their own account system, API server and database, and all of it has to be deployed, updated and backed up.</p>
+        <p>InkVault needs no server of its own. A client and an account on any XMPP server are enough: your own server, a company server or a public one where you are an ordinary user and do not administer anything. The account already provides authentication, a persistent connection that delivers changes, and storage in PEP.</p>
+        <p>InkVault works with a standard XMPP server without any modifications and needs nothing from its administrator. Records are stored through PEP, which many popular servers support, among them Prosody, ejabberd and Openfire.</p>
+        <p>PEP (XEP-0163, Personal Eventing Protocol) is a personal PubSub service: the publishing service is the user's account itself, its JID, for example user@example.com. Nodes are created automatically within the account to broadcast personal information such as mood, geolocation or the music being played. InkVault adds its own nodes to the account: the vault account is a JID, and no server code of its own is needed. The server never sees plaintext.</p>
+        <p>On a server you do not own, the operator sees only ciphertext and metadata: the number of records, their sizes and the time of changes. The vault nodes are closed to other users of the server. The default node limit of 256 records is enough for a personal vault, a larger limit is set by the server administrator. Each device keeps an encrypted cache, and an encrypted export can be stored separately: if the server loses the data, a device publishes the vault back.</p>
       </section>
 
       <section class="section" id="architecture">
@@ -105,14 +108,14 @@
         <h2>Architecture</h2>
         <p>All cryptography, the data model, conflict resolution and the sync engine live in one Rust library. The core does no networking: a client passes it the payloads received from the server and gets back the commands to send, so each platform keeps its own XMPP stack.</p>
         <figure class="diagram">
-          <div class="diagram__canvas"><svg viewBox="0 0 720 400" width="720" height="400" role="img" aria-labelledby="dg1-title"><title id="dg1-title">How clients reach the data</title><defs><marker id="dg1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="32" y="42">Web</text><text class="dg-mono" x="32" y="62">TypeScript, WASM</text><rect class="dg-box--core" x="28" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="40" y="101">core: encrypt, merge</text><line class="dg-line" x1="124" y1="132" x2="124" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="132" y="166">WebSocket, wss://</text><rect class="dg-box" x="252" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="268" y="42">Android</text><text class="dg-mono" x="268" y="62">Kotlin, UniFFI</text><rect class="dg-box--core" x="264" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="276" y="101">core: encrypt, merge</text><line class="dg-line" x1="360" y1="132" x2="360" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="368" y="166">XMPP, TLS</text><rect class="dg-box" x="488" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="504" y="42">Terminal</text><text class="dg-mono" x="504" y="62">Rust, agent</text><rect class="dg-box--core" x="500" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="512" y="101">core: encrypt, merge</text><line class="dg-line" x1="596" y1="132" x2="596" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="604" y="166">XMPP, STARTTLS</text><rect class="dg-box--server" x="16" y="196" width="688" height="188" rx="8"/><text class="dg-title" x="32" y="222">XMPP server (Prosody 13)</text><text class="dg-mono" x="32" y="242">pep · websocket · smacks · SASL2/FAST</text><text class="dg-mono" x="688" y="222" text-anchor="end">access_model = whitelist</text><text class="dg-note" x="32" y="270">PEP of the account alice@example.org</text><rect class="dg-box" x="32" y="282" width="320" height="86" rx="6"/><text class="dg-mono" x="44" y="304">urn:inkvault:account:0</text><text class="dg-text" x="44" y="328">KDF parameters, salt</text><text class="dg-text" x="44" y="350">wrapped user key and vault keys</text><rect class="dg-box" x="368" y="282" width="320" height="86" rx="6"/><text class="dg-mono" x="380" y="304">urn:inkvault:vault:0</text><text class="dg-text" x="380" y="328">records, ciphertext only</text><text class="dg-text" x="380" y="350">item id = UUIDv7, up to 10 000</text></svg></div>
+          <div class="diagram__canvas"><svg viewBox="0 0 720 400" width="720" height="400" role="img" aria-labelledby="dg1-title"><title id="dg1-title">How clients reach the data</title><defs><marker id="dg1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="32" y="42">Web</text><text class="dg-mono" x="32" y="62">TypeScript, WASM</text><rect class="dg-box--core" x="28" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="40" y="101">core: encrypt, merge</text><line class="dg-line" x1="124" y1="132" x2="124" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="132" y="166">WebSocket, wss://</text><rect class="dg-box" x="252" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="268" y="42">Android</text><text class="dg-mono" x="268" y="62">Kotlin, UniFFI</text><rect class="dg-box--core" x="264" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="276" y="101">core: encrypt, merge</text><line class="dg-line" x1="360" y1="132" x2="360" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="368" y="166">XMPP, TLS</text><rect class="dg-box" x="488" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="504" y="42">Terminal</text><text class="dg-mono" x="504" y="62">Rust, agent</text><rect class="dg-box--core" x="500" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="512" y="101">core: encrypt, merge</text><line class="dg-line" x1="596" y1="132" x2="596" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="604" y="166">XMPP, STARTTLS</text><rect class="dg-box--server" x="16" y="196" width="688" height="188" rx="8"/><text class="dg-title" x="32" y="222">Any XMPP server with PEP</text><text class="dg-mono" x="32" y="242">PEP (XEP-0163), tested on Prosody 13</text><text class="dg-mono" x="688" y="222" text-anchor="end">access_model = whitelist</text><text class="dg-note" x="32" y="270">PEP of the account alice@example.org</text><rect class="dg-box" x="32" y="282" width="320" height="86" rx="6"/><text class="dg-mono" x="44" y="304">urn:inkvault:account:0</text><text class="dg-text" x="44" y="328">KDF parameters, salt</text><text class="dg-text" x="44" y="350">wrapped user key and vault keys</text><rect class="dg-box" x="368" y="282" width="320" height="86" rx="6"/><text class="dg-mono" x="380" y="304">urn:inkvault:vault:0</text><text class="dg-text" x="380" y="328">records, ciphertext only</text><text class="dg-text" x="380" y="350">limit: pep_max_items, 256 by default</text></svg></div>
           <figcaption>Each client talks to the XMPP server over its own transport. Encryption and merge happen in the core on the device, the server keeps two PEP nodes with ciphertext.</figcaption>
         </figure>
         <ul>
           <li>Web: TypeScript without a framework, the core compiled to WebAssembly, xmpp.js over WebSocket (wss://), sign-in by a FAST token after the first login</li>
           <li>Android: Kotlin and Jetpack Compose, the core through UniFFI bindings, Smack over TLS, unlock by fingerprint through Android Keystore</li>
           <li>Terminal: Rust with the core as a crate, tokio-xmpp over STARTTLS. An agent in the style of ssh-agent keeps the vault unlocked behind a unix socket</li>
-          <li>Server: Prosody 13 with pep, websocket, smacks and SASL2/FAST. Nodes are created with access_model = whitelist, so contacts with a presence subscription cannot read them</li>
+          <li>Server: any XMPP server with PEP, your own or someone else's, tested on Prosody 13. Nodes are created with access_model = whitelist, so contacts with a presence subscription cannot read them</li>
         </ul>
       </section>
 
@@ -137,7 +140,7 @@
         <h2>Sync</h2>
         <p>Every field, every tag and the deletion flag carry a hybrid logical clock (HLC) timestamp. A record is encrypted and published as a whole, the server keeps the last publication and sends it to the other devices of the account.</p>
         <figure class="diagram">
-          <div class="diagram__canvas"><svg viewBox="0 0 720 452" width="720" height="452" role="img" aria-labelledby="dg3-title"><title id="dg3-title">Sync between two devices</title><defs><marker id="dg3-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="106" y="41" text-anchor="middle">Phone (Android)</text><line class="dg-life" x1="106" y1="56" x2="106" y2="440"/><rect class="dg-box" x="270" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="360" y="41" text-anchor="middle">XMPP server (PEP)</text><line class="dg-life" x1="360" y1="56" x2="360" y2="440"/><rect class="dg-box" x="524" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="614" y="41" text-anchor="middle">Laptop (web)</text><line class="dg-life" x1="614" y1="56" x2="614" y2="440"/><rect class="dg-box--core" x="26" y="76" width="160" height="48" rx="4"/><text class="dg-text" x="38" y="96">change a field</text><text class="dg-mono" x="38" y="114">HLC stamp, encrypt</text><line class="dg-line" x1="106" y1="156" x2="356" y2="156" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="233" y="148" text-anchor="middle">publish item, id = record</text><rect class="dg-box--server" x="270" y="172" width="180" height="48" rx="4"/><text class="dg-text" x="282" y="192">store, replace by id</text><text class="dg-mono" x="282" y="210">sees only ciphertext</text><line class="dg-line" x1="360" y1="252" x2="610" y2="252" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="244" text-anchor="middle">+notify event</text><rect class="dg-box--core" x="524" y="268" width="184" height="66" rx="4"/><text class="dg-text" x="536" y="288">decrypt, merge by HLC</text><text class="dg-mono" x="536" y="306">save encrypted cache</text><text class="dg-mono" x="536" y="324">UI updates in 1-2 s</text><text class="dg-note" x="487" y="360" text-anchor="middle">after being offline</text><line class="dg-line dg-line--dashed" x1="614" y1="388" x2="364" y2="388" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="380" text-anchor="middle">new session: fetch all items</text><line class="dg-line dg-line--dashed" x1="360" y1="420" x2="610" y2="420" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="412" text-anchor="middle">items → merge → publish</text></svg></div>
+          <div class="diagram__canvas"><svg viewBox="0 0 720 452" width="720" height="452" role="img" aria-labelledby="dg3-title"><title id="dg3-title">Sync between two devices</title><defs><marker id="dg3-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="106" y="41" text-anchor="middle">Phone (Android)</text><line class="dg-life" x1="106" y1="56" x2="106" y2="440"/><rect class="dg-box" x="270" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="360" y="41" text-anchor="middle">XMPP server (PEP)</text><line class="dg-life" x1="360" y1="56" x2="360" y2="440"/><rect class="dg-box" x="524" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="614" y="41" text-anchor="middle">Laptop (web)</text><line class="dg-life" x1="614" y1="56" x2="614" y2="440"/><rect class="dg-box--core" x="26" y="76" width="160" height="48" rx="4"/><text class="dg-text" x="38" y="96">change a field</text><text class="dg-mono" x="38" y="114">HLC stamp, encrypt</text><line class="dg-line" x1="106" y1="156" x2="356" y2="156" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="233" y="148" text-anchor="middle">publish item, id = record</text><rect class="dg-box--server" x="270" y="172" width="180" height="48" rx="4"/><text class="dg-text" x="282" y="192">store, replace by id</text><text class="dg-mono" x="282" y="210">sees only ciphertext</text><line class="dg-line" x1="360" y1="252" x2="610" y2="252" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="244" text-anchor="middle">+notify event</text><rect class="dg-box--core" x="524" y="268" width="184" height="66" rx="4"/><text class="dg-text" x="536" y="288">decrypt, merge by HLC</text><text class="dg-mono" x="536" y="306">save encrypted cache</text><text class="dg-mono" x="536" y="324">refresh the list</text><text class="dg-note" x="487" y="360" text-anchor="middle">after being offline</text><line class="dg-line dg-line--dashed" x1="614" y1="388" x2="364" y2="388" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="380" text-anchor="middle">new session: fetch all items</text><line class="dg-line dg-line--dashed" x1="360" y1="420" x2="610" y2="420" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="412" text-anchor="middle">items → merge → publish</text></svg></div>
           <figcaption>Sync between two devices of one account. A device that was offline downloads the whole node on reconnect, merges it and publishes what the server is missing.</figcaption>
         </figure>
         <ul>
@@ -298,13 +301,12 @@
       <section class="section" id="result">
         <p class="eyebrow" aria-hidden="true"><span class="port"></span>result</p>
         <h2>Outcome</h2>
-        <p>Version 0.2 of the core, the Android and the terminal clients is published: APKs signed by the author, static Linux binaries for x86_64 and aarch64, a crate on crates.io.</p>
+        <p>Version 0.2 of the core, the Android and the terminal clients is published: APKs signed by the author, static Linux binaries for x86_64 and aarch64, a package in Fedora COPR and a crate on crates.io.</p>
         <ul>
           <li>Property-based test of the merge: three devices with clocks up to 4 seconds apart, 20 000 random scenarios of edits, deletions, restores and syncs</li>
           <li>Sync simulation: an in-memory PEP server and three devices with offline edits, broken sessions and delayed notifications, 5000 scenarios</li>
-          <li>End-to-end tests on a test Prosody: the web client passes 58 of 58 checks in Firefox, the terminal client 80 of 80, the Android client 25 of 25 on a Samsung Galaxy S23+</li>
-          <li>A search for test passwords and record names in the Prosody database finds nothing: the server stores only ciphertext</li>
-          <li>Test vectors give the same bytes in Rust, WebAssembly and Kotlin</li>
+          <li>Plaintext check: after the end-to-end test, the Prosody database (prosody.sqlite) is searched for the test passwords and record names. Nothing is found: only ciphertext reaches the server</li>
+          <li>One set of test vectors checks that encryption and merge give byte-identical results in all three builds of the core: native Rust, WebAssembly in the browser and the Kotlin bindings on Android. A record saved by one client is read by the others without differences</li>
         </ul>
         <p>Next: autofill on Android, OMEMO 2 to approve a new device from an existing one, and a storage component for sharing vaults between users, including users on other federated domains.</p>
       </section>
@@ -337,7 +339,18 @@
             <li><code class="log__msg">cargo install --locked inkvault-cli</code></li>
           </ol>
         </div>
-        <p>The server needs Prosody 13 with pep_max_items = 10000, and WebSocket over TLS for the web client.</p>
+        <p>Server of the account: Prosody 13 or another XMPP server with PEP (XEP-0163) and publish-options, the Android client also uses Stream Management (XEP-0198). The web client needs WebSocket over TLS; with the SASL2 and FAST modules from prosody-modules it signs in by a token instead of asking for the XMPP password each time.</p>
+        <p>All clients work with the default node limit of 256 records, records in the trash included. For larger vaults, the server administrator raises pep_max_items, for example to 10 000, then the vault node limit is raised once in the Android client or with inkvault max-items.</p>
+      </section>
+
+      <section class="section" id="links">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>links</p>
+        <h2>Links</h2>
+        <ul>
+          <li><a href="https://prosody.im/">Prosody</a>: the XMPP server the clients are tested on</li>
+          <li><a href="https://prosody.im/doc/modules/mod_pep">mod_pep</a>: PEP in Prosody, its settings and pep_max_items</li>
+          <li><a href="https://xmpp.org/extensions/attic/xep-0163-1.0.html">XEP-0163: Personal Eventing Protocol</a>, version 1.0</li>
+        </ul>
       </section>
       <span class="spine__end" aria-hidden="true"></span>
     </div>

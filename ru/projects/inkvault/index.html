@@ -10,7 +10,7 @@
   <link rel="preload" href="/assets/fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css">
   <script type="module" src="/assets/js/main.js"></script>
-  <meta name="description" content="InkVault: менеджер паролей для своего сервера со сквозным шифрованием и синхронизацией через XMPP. Ядро на Rust, web, Android и терминальный клиенты. Роль: автор.">
+  <meta name="description" content="InkVault: менеджер паролей, которому нужны только клиент и учетная запись XMPP на любом сервере с PEP. Сквозное шифрование, ядро на Rust, web, Android и терминальный клиенты. Роль: автор.">
   <link rel="canonical" href="https://inkov.dev/ru/projects/inkvault/">
   <link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/inkvault/">
   <link rel="alternate" hreflang="en" href="https://inkov.dev/projects/inkvault/">
@@ -27,21 +27,21 @@
   <meta property="og:locale:alternate" content="en_US">
   <meta property="og:url" content="https://inkov.dev/ru/projects/inkvault/">
   <meta property="og:title" content="InkVault - Проекты - Евгений Иньков">
-  <meta property="og:description" content="InkVault: менеджер паролей для своего сервера со сквозным шифрованием и синхронизацией через XMPP. Ядро на Rust, web, Android и терминальный клиенты. Роль: автор.">
+  <meta property="og:description" content="InkVault: менеджер паролей, которому нужны только клиент и учетная запись XMPP на любом сервере с PEP. Сквозное шифрование, ядро на Rust, web, Android и терминальный клиенты. Роль: автор.">
   <meta property="og:image" content="https://inkov.dev/assets/img/og/og-inkvault-ru.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="InkVault, менеджер паролей с синхронизацией через XMPP">
+  <meta property="og:image:alt" content="InkVault, менеджер паролей для любой учетной записи XMPP">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     "name": "InkVault",
-    "description": "InkVault: менеджер паролей для своего сервера со сквозным шифрованием и синхронизацией через XMPP. Ядро на Rust, web, Android и терминальный клиенты. Роль: автор.",
+    "description": "InkVault: менеджер паролей, которому нужны только клиент и учетная запись XMPP на любом сервере с PEP. Сквозное шифрование, ядро на Rust, web, Android и терминальный клиенты. Роль: автор.",
     "url": "https://inkov.dev/ru/projects/inkvault/",
     "inLanguage": "ru",
-    "dateModified": "2026-10-17",
+    "dateModified": "2026-10-18",
     "author": {"@id": "https://inkov.dev/#person"}
   }
   </script>
@@ -77,7 +77,7 @@
     <div class="page-node" data-state="success">
       <span class="page-node__id" lang="en" aria-hidden="true">project_inkvault</span>
       <h1 lang="en"><img class="project-logo" src="/assets/img/projects/inkvault/inkvault-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt="">InkVault</h1>
-      <p class="page-node__summary">Менеджер паролей для своего XMPP-сервера. Записи шифруются на устройстве одним ядром на Rust, общим для web, Android и терминального клиентов. Сервер хранит только шифротекст и доставляет изменения на другие устройства за 1-2 секунды.</p>
+      <p class="page-node__summary">Менеджер паролей, которому нужны только клиент и учетная запись XMPP. Учетная запись может быть на любом сервере с PEP, в том числе на публичном, которым вы не владеете. Записи шифруются на устройстве одним ядром на Rust, общим для web, Android и терминального клиентов, а сервер хранит только шифротекст.</p>
     </div>
 
     <div class="attrs">
@@ -96,8 +96,11 @@
       <section class="section" id="problem">
         <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">problem</span></p>
         <h2>Задача</h2>
-        <p>Менеджеры паролей для своего сервера приносят собственную систему учетных записей, API-сервер и базу данных, и все это нужно развернуть, обновлять и резервировать. У многих людей и команд уже есть XMPP-сервер: в нем есть учетные записи, аутентификация, постоянное соединение с доставкой изменений и федерация между доменами.</p>
-        <p>InkVault использует этот сервер для хранения и передачи данных. Учетная запись хранилища - это JID, зашифрованные записи лежат в узлах PEP учетной записи, своего серверного кода нет. Сервер не должен видеть открытые данные.</p>
+        <p>Менеджеры паролей, которые разворачиваются на своей инфраструктуре (on-premises) или требуют отдельного сервера под продукт, приносят собственную систему учетных записей, API-сервер и базу данных, и все это нужно развернуть, обновлять и резервировать.</p>
+        <p>InkVault не нужен свой сервер. Достаточно клиента и учетной записи на любом XMPP-сервере: на своем, на сервере компании или на публичном, где вы обычный пользователь и ничего не администрируете. Учетная запись уже дает аутентификацию, постоянное соединение с доставкой изменений и хранилище в PEP.</p>
+        <p>InkVault работает со стандартным XMPP-сервером без каких-либо модификаций и ничего не требует от его администратора. Записи хранятся через PEP, который поддерживают многие популярные серверы, в том числе Prosody, ejabberd и Openfire.</p>
+        <p>PEP (XEP-0163, Personal Eventing Protocol) - это персональный PubSub: сервисом публикации становится сама учетная запись пользователя, ее JID, например user@example.com. Узлы создаются автоматически в рамках учетной записи для трансляции личной информации: настроения, геолокации, текущей музыки. InkVault добавляет в учетную запись свои узлы: учетная запись хранилища - это JID, своего серверного кода нет. Сервер не видит открытые данные.</p>
+        <p>На чужом сервере его владелец видит только шифротекст и метаданные: число записей, их размер и время изменений. Узлы хранилища закрыты для других пользователей сервера. Стандартного лимита узла в 256 записей хватает для личного хранилища, больший лимит задает администратор сервера. Каждое устройство хранит зашифрованный кэш, а зашифрованный экспорт можно держать отдельно: если сервер потеряет данные, устройство опубликует хранилище заново.</p>
       </section>
 
       <section class="section" id="architecture">
@@ -105,14 +108,14 @@
         <h2>Архитектура</h2>
         <p>Криптография, модель данных, разрешение конфликтов и движок синхронизации собраны в одной библиотеке на Rust. Ядро не работает с сетью: клиент передает ему полученные от сервера данные и получает команды для отправки, поэтому XMPP-стек у каждой платформы свой.</p>
         <figure class="diagram">
-          <div class="diagram__canvas"><svg viewBox="0 0 720 400" width="720" height="400" role="img" aria-labelledby="dg1-title"><title id="dg1-title">Как клиенты обращаются к данным</title><defs><marker id="dg1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="32" y="42">Web</text><text class="dg-mono" x="32" y="62">TypeScript, WASM</text><rect class="dg-box--core" x="28" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="40" y="101">ядро: шифр и слияние</text><line class="dg-line" x1="124" y1="132" x2="124" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="132" y="166">WebSocket, wss://</text><rect class="dg-box" x="252" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="268" y="42">Android</text><text class="dg-mono" x="268" y="62">Kotlin, UniFFI</text><rect class="dg-box--core" x="264" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="276" y="101">ядро: шифр и слияние</text><line class="dg-line" x1="360" y1="132" x2="360" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="368" y="166">XMPP, TLS</text><rect class="dg-box" x="488" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="504" y="42">Терминал</text><text class="dg-mono" x="504" y="62">Rust, агент</text><rect class="dg-box--core" x="500" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="512" y="101">ядро: шифр и слияние</text><line class="dg-line" x1="596" y1="132" x2="596" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="604" y="166">XMPP, STARTTLS</text><rect class="dg-box--server" x="16" y="196" width="688" height="188" rx="8"/><text class="dg-title" x="32" y="222">XMPP-сервер (Prosody 13)</text><text class="dg-mono" x="32" y="242">pep · websocket · smacks · SASL2/FAST</text><text class="dg-mono" x="688" y="222" text-anchor="end">access_model = whitelist</text><text class="dg-note" x="32" y="270">PEP учетной записи alice@example.org</text><rect class="dg-box" x="32" y="282" width="320" height="86" rx="6"/><text class="dg-mono" x="44" y="304">urn:inkvault:account:0</text><text class="dg-text" x="44" y="328">параметры KDF, соль</text><text class="dg-text" x="44" y="350">обернутые user key и vault keys</text><rect class="dg-box" x="368" y="282" width="320" height="86" rx="6"/><text class="dg-mono" x="380" y="304">urn:inkvault:vault:0</text><text class="dg-text" x="380" y="328">записи, только шифротекст</text><text class="dg-text" x="380" y="350">id элемента = UUIDv7, до 10 000</text></svg></div>
+          <div class="diagram__canvas"><svg viewBox="0 0 720 400" width="720" height="400" role="img" aria-labelledby="dg1-title"><title id="dg1-title">Как клиенты обращаются к данным</title><defs><marker id="dg1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="32" y="42">Web</text><text class="dg-mono" x="32" y="62">TypeScript, WASM</text><rect class="dg-box--core" x="28" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="40" y="101">ядро: шифр и слияние</text><line class="dg-line" x1="124" y1="132" x2="124" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="132" y="166">WebSocket, wss://</text><rect class="dg-box" x="252" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="268" y="42">Android</text><text class="dg-mono" x="268" y="62">Kotlin, UniFFI</text><rect class="dg-box--core" x="264" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="276" y="101">ядро: шифр и слияние</text><line class="dg-line" x1="360" y1="132" x2="360" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="368" y="166">XMPP, TLS</text><rect class="dg-box" x="488" y="16" width="216" height="112" rx="6"/><text class="dg-title" x="504" y="42">Терминал</text><text class="dg-mono" x="504" y="62">Rust, агент</text><rect class="dg-box--core" x="500" y="78" width="192" height="36" rx="4"/><text class="dg-text" x="512" y="101">ядро: шифр и слияние</text><line class="dg-line" x1="596" y1="132" x2="596" y2="192" marker-start="url(#dg1-arrow)" marker-end="url(#dg1-arrow)"/><text class="dg-mono" x="604" y="166">XMPP, STARTTLS</text><rect class="dg-box--server" x="16" y="196" width="688" height="188" rx="8"/><text class="dg-title" x="32" y="222">Любой XMPP-сервер с PEP</text><text class="dg-mono" x="32" y="242">PEP (XEP-0163), проверено на Prosody 13</text><text class="dg-mono" x="688" y="222" text-anchor="end">access_model = whitelist</text><text class="dg-note" x="32" y="270">PEP учетной записи alice@example.org</text><rect class="dg-box" x="32" y="282" width="320" height="86" rx="6"/><text class="dg-mono" x="44" y="304">urn:inkvault:account:0</text><text class="dg-text" x="44" y="328">параметры KDF, соль</text><text class="dg-text" x="44" y="350">обернутые user key и vault keys</text><rect class="dg-box" x="368" y="282" width="320" height="86" rx="6"/><text class="dg-mono" x="380" y="304">urn:inkvault:vault:0</text><text class="dg-text" x="380" y="328">записи, только шифротекст</text><text class="dg-text" x="380" y="350">лимит: pep_max_items, по умолчанию 256</text></svg></div>
           <figcaption>Каждый клиент подключается к XMPP-серверу своим транспортом. Шифрование и слияние выполняет ядро на устройстве, на сервере два узла PEP с шифротекстом.</figcaption>
         </figure>
         <ul>
           <li>Web: TypeScript без фреймворка, ядро в WebAssembly, xmpp.js по WebSocket (wss://), после первого входа вход по токену FAST</li>
           <li>Android: Kotlin и Jetpack Compose, ядро через биндинги UniFFI, Smack по TLS, разблокировка отпечатком через Android Keystore</li>
           <li>Терминал: Rust, ядро подключено крейтом, tokio-xmpp по STARTTLS. Агент по схеме ssh-agent держит хранилище разблокированным за unix-сокетом</li>
-          <li>Сервер: Prosody 13 с модулями pep, websocket, smacks и SASL2/FAST. Узлы создаются с access_model = whitelist, поэтому контакты с подпиской на присутствие их не читают</li>
+          <li>Сервер: любой XMPP-сервер с PEP, свой или чужой, проверено на Prosody 13. Узлы создаются с access_model = whitelist, поэтому контакты с подпиской на присутствие их не читают</li>
         </ul>
       </section>
 
@@ -137,7 +140,7 @@
         <h2>Синхронизация</h2>
         <p>У каждого поля, тега и признака удаления есть метка гибридных логических часов (HLC). Запись шифруется и публикуется целиком, сервер хранит последнюю публикацию и рассылает ее остальным устройствам учетной записи.</p>
         <figure class="diagram">
-          <div class="diagram__canvas"><svg viewBox="0 0 720 452" width="720" height="452" role="img" aria-labelledby="dg3-title"><title id="dg3-title">Синхронизация двух устройств</title><defs><marker id="dg3-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="106" y="41" text-anchor="middle">Телефон (Android)</text><line class="dg-life" x1="106" y1="56" x2="106" y2="440"/><rect class="dg-box" x="270" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="360" y="41" text-anchor="middle">XMPP-сервер (PEP)</text><line class="dg-life" x1="360" y1="56" x2="360" y2="440"/><rect class="dg-box" x="524" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="614" y="41" text-anchor="middle">Ноутбук (web)</text><line class="dg-life" x1="614" y1="56" x2="614" y2="440"/><rect class="dg-box--core" x="26" y="76" width="160" height="48" rx="4"/><text class="dg-text" x="38" y="96">правка поля</text><text class="dg-mono" x="38" y="114">метка HLC, шифрование</text><line class="dg-line" x1="106" y1="156" x2="356" y2="156" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="233" y="148" text-anchor="middle">публикация, id = запись</text><rect class="dg-box--server" x="270" y="172" width="180" height="48" rx="4"/><text class="dg-text" x="282" y="192">хранит, заменяет по id</text><text class="dg-mono" x="282" y="210">видит только шифротекст</text><line class="dg-line" x1="360" y1="252" x2="610" y2="252" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="244" text-anchor="middle">уведомление +notify</text><rect class="dg-box--core" x="524" y="268" width="184" height="66" rx="4"/><text class="dg-text" x="536" y="288">расшифровка, слияние</text><text class="dg-mono" x="536" y="306">зашифрованный кэш</text><text class="dg-mono" x="536" y="324">интерфейс через 1-2 с</text><text class="dg-note" x="487" y="360" text-anchor="middle">после работы без сети</text><line class="dg-line dg-line--dashed" x1="614" y1="388" x2="364" y2="388" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="380" text-anchor="middle">новая сессия: загрузить все</text><line class="dg-line dg-line--dashed" x1="360" y1="420" x2="610" y2="420" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="412" text-anchor="middle">записи → слияние → публикация</text></svg></div>
+          <div class="diagram__canvas"><svg viewBox="0 0 720 452" width="720" height="452" role="img" aria-labelledby="dg3-title"><title id="dg3-title">Синхронизация двух устройств</title><defs><marker id="dg3-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="106" y="41" text-anchor="middle">Телефон (Android)</text><line class="dg-life" x1="106" y1="56" x2="106" y2="440"/><rect class="dg-box" x="270" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="360" y="41" text-anchor="middle">XMPP-сервер (PEP)</text><line class="dg-life" x1="360" y1="56" x2="360" y2="440"/><rect class="dg-box" x="524" y="16" width="180" height="40" rx="6"/><text class="dg-title" x="614" y="41" text-anchor="middle">Ноутбук (web)</text><line class="dg-life" x1="614" y1="56" x2="614" y2="440"/><rect class="dg-box--core" x="26" y="76" width="160" height="48" rx="4"/><text class="dg-text" x="38" y="96">правка поля</text><text class="dg-mono" x="38" y="114">метка HLC, шифрование</text><line class="dg-line" x1="106" y1="156" x2="356" y2="156" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="233" y="148" text-anchor="middle">публикация, id = запись</text><rect class="dg-box--server" x="270" y="172" width="180" height="48" rx="4"/><text class="dg-text" x="282" y="192">хранит, заменяет по id</text><text class="dg-mono" x="282" y="210">видит только шифротекст</text><line class="dg-line" x1="360" y1="252" x2="610" y2="252" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="244" text-anchor="middle">уведомление +notify</text><rect class="dg-box--core" x="524" y="268" width="184" height="66" rx="4"/><text class="dg-text" x="536" y="288">расшифровка, слияние</text><text class="dg-mono" x="536" y="306">зашифрованный кэш</text><text class="dg-mono" x="536" y="324">обновить список</text><text class="dg-note" x="487" y="360" text-anchor="middle">после работы без сети</text><line class="dg-line dg-line--dashed" x1="614" y1="388" x2="364" y2="388" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="380" text-anchor="middle">новая сессия: загрузить все</text><line class="dg-line dg-line--dashed" x1="360" y1="420" x2="610" y2="420" marker-end="url(#dg3-arrow)"/><text class="dg-mono" x="487" y="412" text-anchor="middle">записи → слияние → публикация</text></svg></div>
           <figcaption>Синхронизация двух устройств одной учетной записи. Устройство, которое было без сети, при подключении загружает весь узел, сливает его со своими данными и публикует то, чего нет на сервере.</figcaption>
         </figure>
         <ul>
@@ -298,13 +301,12 @@
       <section class="section" id="result">
         <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">result</span></p>
         <h2>Результат</h2>
-        <p>Опубликована версия 0.2 ядра, Android и терминального клиентов: APK, подписанные автором, статические бинарники для Linux на x86_64 и aarch64, крейт на crates.io.</p>
+        <p>Опубликована версия 0.2 ядра, Android и терминального клиентов: APK, подписанные автором, статические бинарники для Linux на x86_64 и aarch64, пакет в Fedora COPR и крейт на crates.io.</p>
         <ul>
           <li>Property-based тест слияния: три устройства с расхождением часов до 4 секунд, 20 000 случайных сценариев правок, удалений, восстановлений и синхронизаций</li>
           <li>Симуляция синхронизации: сервер PEP в памяти и три устройства с офлайн-правками, обрывами сессий и задержанными уведомлениями, 5000 сценариев</li>
-          <li>Сквозные тесты на тестовом Prosody: web-клиент проходит 58 из 58 проверок в Firefox, терминальный клиент - 80 из 80, Android-клиент - 25 из 25 на Samsung Galaxy S23+</li>
-          <li>Поиск тестовых паролей и названий записей по базе Prosody ничего не находит: сервер хранит только шифротекст</li>
-          <li>Тестовые векторы дают одинаковые байты в Rust, WebAssembly и Kotlin</li>
+          <li>Проверка на открытые данные: после сквозного теста в базе Prosody (prosody.sqlite) ищутся тестовые пароли и названия записей. Совпадений нет: на сервер попадает только шифротекст</li>
+          <li>Общий набор тестовых векторов проверяет, что шифрование и слияние дают побайтно одинаковый результат во всех трех сборках ядра: нативной на Rust, WebAssembly в браузере и Kotlin-биндингах на Android. Запись, сохраненная одним клиентом, читается остальными без расхождений</li>
         </ul>
         <p>Дальше: автозаполнение на Android, OMEMO 2 для подтверждения нового устройства с уже подключенного и компонент хранилища для совместного доступа к хранилищам, в том числе для пользователей других доменов через федерацию.</p>
       </section>
@@ -337,7 +339,18 @@
             <li><code class="log__msg">cargo install --locked inkvault-cli</code></li>
           </ol>
         </div>
-        <p>Серверу нужен Prosody 13 с pep_max_items = 10000, для web-клиента - WebSocket через TLS.</p>
+        <p>Сервер учетной записи: Prosody 13 или другой XMPP-сервер с PEP (XEP-0163) и publish-options, Android-клиент также использует Stream Management (XEP-0198). Web-клиенту нужен WebSocket через TLS; с модулями SASL2 и FAST из prosody-modules он входит по токену и не спрашивает пароль XMPP при каждом входе.</p>
+        <p>Все клиенты работают со стандартным лимитом узла 256 записей, записи в корзине входят в него. Для больших хранилищ администратор сервера поднимает pep_max_items, например до 10 000, затем лимит узла хранилища один раз поднимается в Android-клиенте или командой inkvault max-items.</p>
+      </section>
+
+      <section class="section" id="links">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">links</span></p>
+        <h2>Ссылки</h2>
+        <ul>
+          <li><a href="https://prosody.im/">Prosody</a>: XMPP-сервер, на котором проверены клиенты</li>
+          <li><a href="https://prosody.im/doc/modules/mod_pep">mod_pep</a>: PEP в Prosody, его настройки и pep_max_items</li>
+          <li><a href="https://xmpp.org/extensions/attic/xep-0163-1.0.html" lang="en">XEP-0163: Personal Eventing Protocol</a>, версия 1.0</li>
+        </ul>
       </section>
       <span class="spine__end" aria-hidden="true"></span>
     </div>
