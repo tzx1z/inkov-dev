@@ -103,7 +103,7 @@
         <p>На проверке сервер не допустил ни одной ошибки и не потерял ни одного уведомления, в том числе при нагрузке, в 10 раз превышающей его возможности. Вывод верен при условиях:</p>
         <ul>
           <li>Prosody хранит данные в SQLite (storage = "sql"), как на стенде проверки</li>
-          <li>Лимит записей хранилища 256 (значение по умолчанию) или увеличен умеренно, до 1000</li>
+          <li>В хранилище до 256 записей, это лимит по умолчанию</li>
           <li>Диск VPS на SSD</li>
         </ul>
         <ul class="stats" role="list">
@@ -316,10 +316,10 @@ sql = { driver = "SQLite3", database = "prosody.sqlite" }</code></pre>
         </div>
         <p>Нужен пакет LuaDBI для SQLite, в Debian и Ubuntu это lua-dbi-sqlite3. Существующие данные переносятся утилитой prosody-migrator.</p>
         <h3>Лимит записей хранилища</h3>
-        <p>Лимит задает pep_max_items. Значение по умолчанию 256 совпадает с лимитом хранилища InkVault по умолчанию. Если записей нужно больше, увеличьте лимит. На VPS с одним ядром не стоит ставить больше 1000:</p>
+        <p>Лимит задает pep_max_items. Значение по умолчанию 256 совпадает с лимитом хранилища InkVault по умолчанию. Если записей нужно больше, увеличьте лимит:</p>
         <div class="log-panel">
           <p class="log-panel__head" lang="en" aria-hidden="true">prosody.cfg.lua</p>
-          <pre class="term" lang="en"><code>pep_max_items = 1000</code></pre>
+          <pre class="term" lang="en"><code>pep_max_items = 10000</code></pre>
         </div>
         <h3>Модуль PEP</h3>
         <p>Модуль pep входит в стандартную конфигурацию Prosody и обычно уже включен в modules_enabled. Проверка проводилась на Prosody 13.0.7.</p>

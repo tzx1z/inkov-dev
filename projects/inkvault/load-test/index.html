@@ -103,7 +103,7 @@
         <p>During testing the server made no errors and lost no notifications, even under a load 10 times higher than it could process. This conclusion holds under these conditions:</p>
         <ul>
           <li>Prosody stores data in SQLite (storage = "sql"), as on the test bench</li>
-          <li>The vault record limit is 256 (the default) or moderately higher, up to 1,000</li>
+          <li>Vaults hold up to 256 records, the default limit</li>
           <li>The VPS disk is an SSD</li>
         </ul>
         <ul class="stats" role="list">
@@ -316,10 +316,10 @@ sql = { driver = "SQLite3", database = "prosody.sqlite" }</code></pre>
         </div>
         <p>This requires the LuaDBI package for SQLite: lua-dbi-sqlite3 on Debian and Ubuntu. Existing data can be moved with prosody-migrator.</p>
         <h3>Vault record limit</h3>
-        <p>The limit is set by pep_max_items. The default of 256 matches InkVault's default vault limit. If you need more records, raise the limit. On a single-core VPS, keep it at 1,000 or below:</p>
+        <p>The limit is set by pep_max_items. The default of 256 matches InkVault's default vault limit. If you need more records, raise the limit:</p>
         <div class="log-panel">
           <p class="log-panel__head" aria-hidden="true">prosody.cfg.lua</p>
-          <pre class="term"><code>pep_max_items = 1000</code></pre>
+          <pre class="term"><code>pep_max_items = 10000</code></pre>
         </div>
         <h3>PEP module</h3>
         <p>The pep module is part of the standard Prosody configuration and is usually already enabled in modules_enabled. Testing was done on Prosody 13.0.7.</p>
