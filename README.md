@@ -12,6 +12,7 @@ index.html, ru/index.html            главная EN и RU
 projects/, ru/projects/              список проектов
 projects/<slug>/, ru/projects/<slug>/   страницы проектов
 404.html                             одна страница на оба языка
+.well-known/host-meta                XEP-0156: WebSocket-адрес XMPP-сервера для веб-клиентов
 assets/css/style.css                 единственная таблица стилей, токены на :root
 assets/js/main.js                    тема, язык с якорем, копирование email, путь на 404
 assets/fonts/                        JetBrains Mono 400 и 700 (woff2, OFL.txt)
