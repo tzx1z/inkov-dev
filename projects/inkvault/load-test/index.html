@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-e2lQhFMMb6KoBMfkNDH6kVgeuY4+M384y1SCuROV8ko='; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InkVault load test - Projects - Evgeny Inkov</title>
+  <script>try{const t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}</script>
+  <link rel="preload" href="/assets/fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script type="module" src="/assets/js/main.js"></script>
+  <meta name="description" content="InkVault load test on Prosody 13 with SQLite: response time and server limit, VPS resources for 100 users, behavior under overload and the server settings to check.">
+  <link rel="canonical" href="https://inkov.dev/projects/inkvault/load-test/">
+  <link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/inkvault/load-test/">
+  <link rel="alternate" hreflang="en" href="https://inkov.dev/projects/inkvault/load-test/">
+  <link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/inkvault/load-test/">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f6f8">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e1116">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="inkov.dev">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:url" content="https://inkov.dev/projects/inkvault/load-test/">
+  <meta property="og:title" content="InkVault load test - Projects - Evgeny Inkov">
+  <meta property="og:description" content="InkVault load test on Prosody 13 with SQLite: response time and server limit, VPS resources for 100 users, behavior under overload and the server settings to check.">
+  <meta property="og:image" content="https://inkov.dev/assets/img/og/og-inkvault-en.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="InkVault, a password manager for any XMPP account">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "InkVault load test",
+    "description": "InkVault load test on Prosody 13 with SQLite: response time and server limit, VPS resources for 100 users, behavior under overload and the server settings to check.",
+    "url": "https://inkov.dev/projects/inkvault/load-test/",
+    "inLanguage": "en",
+    "datePublished": "2026-10-20",
+    "dateModified": "2026-10-20",
+    "author": {"@id": "https://inkov.dev/#person"},
+    "about": {"@type": "SoftwareApplication", "name": "InkVault", "url": "https://inkov.dev/projects/inkvault/"}
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" id="top">
+    <div class="container site-header__inner">
+      <a class="logo" href="/" aria-label="inkov.dev, home"><span class="logo__ring" aria-hidden="true"></span>inkov.dev</a>
+      <div class="site-header__controls">
+        <nav class="lang" aria-label="Language">
+          <a href="/projects/inkvault/load-test/" hreflang="en" lang="en" aria-label="EN, English" aria-current="page">EN</a>
+          <a href="/ru/projects/inkvault/load-test/" hreflang="ru" lang="ru" aria-label="RU, русский">RU</a>
+        </nav>
+        <button type="button" class="theme-toggle" id="theme-toggle" hidden data-label-auto="theme: auto" data-label-light="theme: light" data-label-dark="theme: dark">
+          <svg class="theme-toggle__icon" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 1.75a7.25 7.25 0 0 1 0 14.5Z" fill="currentColor"/></svg>
+          <span class="theme-toggle__text">theme: auto</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol role="list">
+        <li><a href="/">inkov_dev</a></li>
+        <li><a href="/projects/">projects</a></li>
+        <li><a href="/projects/inkvault/">inkvault</a></li>
+        <li aria-current="page">load-test</li>
+      </ol>
+    </nav>
+
+    <div class="page-node" data-state="success">
+      <span class="page-node__id" aria-hidden="true">inkvault_load_test</span>
+      <h1><img class="project-logo" src="/assets/img/projects/inkvault/inkvault-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt="">InkVault load test</h1>
+      <p class="page-node__summary">A report for people who run an XMPP server on a VPS: will the server work correctly with InkVault, how many users can it handle, and what to check in the configuration.</p>
+    </div>
+
+    <div class="attrs">
+      <p class="attrs__head">attributes</p>
+      <dl>
+        <div><dt>project</dt><dd><a href="/projects/inkvault/">InkVault</a></dd></div>
+        <div><dt>server</dt><dd>Prosody 13.0.7, Lua 5.4</dd></div>
+        <div><dt>storage</dt><dd>SQLite, delete journal, synchronous FULL</dd></div>
+        <div><dt>dataset</dt><dd>100 users with 200 records each, 900-byte record ciphertext</dd></div>
+        <div><dt>rate_limit</dt><dd>10 KB/s per connection</dd></div>
+        <div><dt>date</dt><dd>2026-10-20</dd></div>
+      </dl>
+    </div>
+
+    <div class="spine">
+      <section class="section" id="verdict">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>verdict</p>
+        <h2>Verdict</h2>
+        <p>A VPS with 1 CPU core, 1 GiB of RAM and a 200 Mbit/s link handles InkVault. For a personal server, a family or a small group of up to about 100 users, the resources are more than enough.</p>
+        <p>During testing the server made no errors and lost no notifications, even under a load 10 times higher than it could process. This conclusion holds under these conditions:</p>
+        <ul>
+          <li>Prosody stores data in SQLite (storage = "sql"), as on the test bench</li>
+          <li>The vault record limit is 256 (the default) or moderately higher, up to 1,000</li>
+          <li>The VPS disk is an SSD</li>
+        </ul>
+        <ul class="stats" role="list">
+          <li class="stat" data-state="success"><span class="stat__value">0</span><span class="stat__label">errors in 307,977 operations</span></li>
+          <li class="stat" data-state="success"><span class="stat__value">0</span><span class="stat__label">lost notifications about new records</span></li>
+          <li class="stat"><span class="stat__value">37 ms</span><span class="stat__label">99% of requests were faster at 100 operations per second</span></li>
+          <li class="stat"><span class="stat__value">30 MiB</span><span class="stat__label">of memory used by Prosody with 50 connected clients</span></li>
+        </ul>
+      </section>
+
+      <section class="section" id="how">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>how</p>
+        <h2>How InkVault uses the server</h2>
+        <p>InkVault stores records on your XMPP server using PEP (XEP-0163), the standard mechanism for personal account data. Records are encrypted on the device; the server stores only the ciphertext and service fields: the record ID and the key version. InkVault needs no separate server or database.</p>
+        <figure class="diagram">
+          <div class="diagram__canvas"><svg viewBox="0 0 720 400" width="720" height="400" role="img" aria-labelledby="lt1-title"><title id="lt1-title">Devices connect to Prosody, the server keeps records in a PEP node and an SQLite database, sends all records on connect, accepts one record on save and notifies the owner's other devices</title><defs><marker id="lt1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="32" width="176" height="64" rx="6"/><text class="dg-title" x="32" y="58">Android</text><text class="dg-note" x="32" y="80">encrypts records</text><rect class="dg-box" x="16" y="168" width="176" height="64" rx="6"/><text class="dg-title" x="32" y="194">Web client</text><text class="dg-note" x="32" y="216">encrypts records</text><rect class="dg-box" x="16" y="304" width="176" height="64" rx="6"/><text class="dg-title" x="32" y="330">Terminal</text><text class="dg-note" x="32" y="352">encrypts records</text><rect class="dg-box--server" x="392" y="16" width="312" height="368" rx="8"/><text class="dg-title" x="408" y="42">Prosody XMPP server</text><text class="dg-note" x="408" y="62">on your VPS</text><rect class="dg-box--core" x="408" y="80" width="280" height="116" rx="6"/><text class="dg-text" x="424" y="106">PEP: InkVault vault</text><text class="dg-mono" x="424" y="128">urn:inkvault:vault:0</text><text class="dg-note" x="424" y="154">up to 256 records by default</text><text class="dg-note" x="424" y="176">access: owner only</text><line class="dg-line" x1="520" y1="198" x2="520" y2="266" marker-end="url(#lt1-arrow)"/><text class="dg-note" x="512" y="236" text-anchor="end">write + fsync</text><line class="dg-line" x1="576" y1="268" x2="576" y2="200" marker-end="url(#lt1-arrow)"/><text class="dg-note" x="584" y="236">read</text><path class="dg-box" d="M468 282v68a80 12 0 0 0 160 0v-68"/><ellipse class="dg-box" cx="548" cy="282" rx="80" ry="12"/><text class="dg-title" x="548" y="322" text-anchor="middle">SQLite</text><text class="dg-mono" x="548" y="342" text-anchor="middle">prosody.sqlite</text><line class="dg-line" x1="196" y1="64" x2="388" y2="64" marker-end="url(#lt1-arrow)"/><circle class="dg-badge" cx="212" cy="44" r="9"/><text class="dg-badge-text" x="212" y="48" text-anchor="middle">2</text><text class="dg-text" x="228" y="48">Save a record</text><text class="dg-note" x="204" y="84">one record, about 1.8 KB</text><line class="dg-line" x1="196" y1="190" x2="388" y2="190" marker-end="url(#lt1-arrow)"/><line class="dg-line" x1="388" y1="214" x2="196" y2="214" marker-end="url(#lt1-arrow)"/><circle class="dg-badge" cx="212" cy="170" r="9"/><text class="dg-badge-text" x="212" y="174" text-anchor="middle">1</text><text class="dg-text" x="228" y="174">Connect</text><text class="dg-note" x="204" y="236">all records, about 270 KB</text><line class="dg-line" x1="388" y1="336" x2="196" y2="336" marker-end="url(#lt1-arrow)"/><circle class="dg-badge" cx="212" cy="316" r="9"/><text class="dg-badge-text" x="212" y="320" text-anchor="middle">3</text><text class="dg-text" x="228" y="320">Notification</text><text class="dg-note" x="204" y="356">a record from another device</text></svg></div>
+          <figcaption>1: on every connection the device downloads all vault records. 2: when something changes, the device sends one record to the server. 3: the server forwards it to the owner's other connected devices. Other users of the server and contacts do not receive the records.</figcaption>
+        </figure>
+        <p>What this means for the server: connecting a device is the most expensive operation, because the server sends all records at once. Saving is one small record and one database transaction with a disk write. Between connections the device sends no requests; changes arrive as notifications.</p>
+      </section>
+
+      <section class="section" id="method">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>method</p>
+        <h2>How it was tested</h2>
+        <p>The load generator behaved like InkVault clients: it connected to Prosody over XMPP with TLS, downloaded vaults, and saved and read records. Record size and format match InkVault.</p>
+        <figure class="diagram">
+          <div class="diagram__canvas"><svg viewBox="0 0 720 160" width="720" height="160" role="img" aria-labelledby="lt2-title"><title id="lt2-title">Test bench: a load generator with 50-500 connections, Prosody 13.0.7, an SQLite database with 100 users of 200 records each</title><defs><marker id="lt2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="24" width="200" height="112" rx="6"/><text class="dg-title" x="32" y="52">Load generator</text><text class="dg-note" x="32" y="78">50-500 connections</text><text class="dg-note" x="32" y="100">like InkVault clients</text><line class="dg-line" x1="220" y1="80" x2="292" y2="80" marker-end="url(#lt2-arrow)"/><text class="dg-note" x="256" y="70" text-anchor="middle">XMPP + TLS</text><rect class="dg-box--core" x="296" y="24" width="196" height="112" rx="6"/><text class="dg-title" x="312" y="52">Prosody 13.0.7</text><text class="dg-note" x="312" y="78">one process, one thread</text><text class="dg-note" x="312" y="100">rate limit 10 KB/s</text><line class="dg-line" x1="496" y1="80" x2="548" y2="80" marker-end="url(#lt2-arrow)"/><text class="dg-note" x="522" y="70" text-anchor="middle">SQL</text><path class="dg-box" d="M552 36v100a76 10 0 0 0 152 0v-100"/><ellipse class="dg-box" cx="628" cy="36" rx="76" ry="10"/><text class="dg-title" x="628" y="70" text-anchor="middle">SQLite</text><text class="dg-note" x="628" y="92" text-anchor="middle">100 users</text><text class="dg-note" x="628" y="110" text-anchor="middle">200 records each</text><text class="dg-note" x="628" y="128" text-anchor="middle">20,000 records, 55 MB</text></svg></div>
+          <figcaption>Test bench. The generator and the server ran on the same machine, so network latency to clients is not included in the results.</figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Test</th><th>Load</th><th>Duration</th><th>Result</th></tr></thead>
+            <tbody>
+              <tr><td>Normal load, 2 runs</td><td>50 clients, 100 operations per second</td><td>5 min each</td><td>100 op/s sustained, 0 errors</td></tr>
+              <tr><td>Stress</td><td>500 clients, ramping up to 3,000 operations per second</td><td>15 min</td><td>server limit 260-280 op/s, 0 errors</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>An operation is one client request: downloading the whole vault (8% of requests), saving a record (20%) or reading one record (72%).</p>
+      </section>
+
+      <section class="section" id="latency">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>latency</p>
+        <h2>Response time under load</h2>
+        <p>Up to 180 operations per second the response time barely changes. Beyond that, requests start waiting for each other, and at 260-280 operations per second the server reaches its limit: it cannot process more, and only the response time grows.</p>
+        <figure class="diagram">
+          <ul class="diagram__legend" role="list">
+            <li><span class="key key--line key--1"></span>Median: half of requests are faster</li>
+            <li><span class="key key--line key--2"></span>1 in 100: the slowest requests</li>
+          </ul>
+          <div class="diagram__canvas"><svg viewBox="0 0 720 360" width="720" height="360" role="img" aria-labelledby="ch1-title"><title id="ch1-title">Response time barely changes up to 180 operations per second, then grows; at 340 operations per second the median is 863 ms and the slowest requests take 1,168 ms. A personal server's load is under 1 operation per second.</title><rect class="ch-zone--ok" x="64" y="44" width="288" height="270"/><text class="ch-zone-label" x="208" y="34" text-anchor="middle">Requests don't wait</text><rect class="ch-zone--warn" x="352" y="44" width="128" height="270"/><text class="ch-zone-label" x="416" y="34" text-anchor="middle">Queue builds up</text><rect class="ch-zone--bad" x="480" y="44" width="160" height="270"/><text class="ch-zone-label" x="560" y="34" text-anchor="middle">Overload</text><line class="ch-grid" x1="64" y1="246.5" x2="640" y2="246.5"/><line class="ch-grid" x1="64" y1="179" x2="640" y2="179"/><line class="ch-grid" x1="64" y1="111.5" x2="640" y2="111.5"/><line class="ch-grid" x1="64" y1="44" x2="640" y2="44"/><line class="ch-axis" x1="64" y1="314" x2="640" y2="314"/><text class="ch-tick" x="56" y="318" text-anchor="end">0</text><text class="ch-tick" x="56" y="250.5" text-anchor="end">300</text><text class="ch-tick" x="56" y="183" text-anchor="end">600</text><text class="ch-tick" x="56" y="115.5" text-anchor="end">900</text><text class="ch-tick" x="56" y="48" text-anchor="end">1,200</text><text class="ch-tick" x="64" y="332" text-anchor="middle">0</text><text class="ch-tick" x="144" y="332" text-anchor="middle">50</text><text class="ch-tick" x="224" y="332" text-anchor="middle">100</text><text class="ch-tick" x="304" y="332" text-anchor="middle">150</text><text class="ch-tick" x="384" y="332" text-anchor="middle">200</text><text class="ch-tick" x="464" y="332" text-anchor="middle">250</text><text class="ch-tick" x="544" y="332" text-anchor="middle">300</text><text class="ch-tick" x="624" y="332" text-anchor="middle">350</text><text class="ch-title" x="16" y="14">Response time, ms</text><text class="ch-title" x="352" y="354" text-anchor="middle">Load, operations per second</text><line class="ch-annot" x1="67" y1="314" x2="67" y2="143"/><circle class="ch-annot-dot" cx="67" cy="314" r="4"/><text class="ch-annot-text" x="76" y="147">Personal server with 100 users: under 1 op/s</text><path class="ch-line ch-line--2" d="M96 304.1 L160 305.4 L224 296.4 L288 296.2 L352 284.5 L416 264.7 L480 249.9 L544 225.1 L608 51.2"/><path class="ch-line ch-line--1" d="M96 313.2 L160 312.8 L224 312.4 L288 312.3 L352 309.8 L416 294.4 L480 296.2 L544 254.8 L608 119.8"/><circle class="ch-dot ch-fill--2" cx="96" cy="304.1" r="4"/><circle class="ch-dot ch-fill--1" cx="96" cy="313.2" r="4"/><circle class="ch-dot ch-fill--2" cx="160" cy="305.4" r="4"/><circle class="ch-dot ch-fill--1" cx="160" cy="312.8" r="4"/><circle class="ch-dot ch-fill--2" cx="224" cy="296.4" r="4"/><circle class="ch-dot ch-fill--1" cx="224" cy="312.4" r="4"/><circle class="ch-dot ch-fill--2" cx="288" cy="296.2" r="4"/><circle class="ch-dot ch-fill--1" cx="288" cy="312.3" r="4"/><circle class="ch-dot ch-fill--2" cx="352" cy="284.5" r="4"/><circle class="ch-dot ch-fill--1" cx="352" cy="309.8" r="4"/><circle class="ch-dot ch-fill--2" cx="416" cy="264.7" r="4"/><circle class="ch-dot ch-fill--1" cx="416" cy="294.4" r="4"/><circle class="ch-dot ch-fill--2" cx="480" cy="249.9" r="4"/><circle class="ch-dot ch-fill--1" cx="480" cy="296.2" r="4"/><circle class="ch-dot ch-fill--2" cx="544" cy="225.1" r="4"/><circle class="ch-dot ch-fill--1" cx="544" cy="254.8" r="4"/><circle class="ch-dot ch-fill--2" cx="608" cy="51.2" r="4"/><circle class="ch-dot ch-fill--1" cx="608" cy="119.8" r="4"/><text class="ch-value" x="618" y="55.2">1,168 ms</text><text class="ch-value" x="618" y="123.8">863 ms</text><rect class="ch-hit" x="64" y="44" width="64" height="270"><title>Load 20 op/s: median 3.7 ms, 1 in 100: 44 ms</title></rect><rect class="ch-hit" x="128" y="44" width="64" height="270"><title>Load 60 op/s, processed 59 op/s: median 5.2 ms, 1 in 100: 38 ms</title></rect><rect class="ch-hit" x="192" y="44" width="64" height="270"><title>Load 100 op/s: median 7.1 ms, 1 in 100: 78 ms</title></rect><rect class="ch-hit" x="256" y="44" width="64" height="270"><title>Load 140 op/s, processed 138 op/s: median 7.5 ms, 1 in 100: 79 ms</title></rect><rect class="ch-hit" x="320" y="44" width="64" height="270"><title>Load 180 op/s: median 18.7 ms, 1 in 100: 131 ms</title></rect><rect class="ch-hit" x="384" y="44" width="64" height="270"><title>Load 220 op/s: median 87 ms, 1 in 100: 219 ms</title></rect><rect class="ch-hit" x="448" y="44" width="64" height="270"><title>Load 260 op/s, processed 253 op/s: median 79 ms, 1 in 100: 285 ms</title></rect><rect class="ch-hit" x="512" y="44" width="64" height="270"><title>Load 300 op/s, processed 263 op/s: median 263 ms, 1 in 100: 395 ms</title></rect><rect class="ch-hit" x="576" y="44" width="64" height="270"><title>Load 340 op/s, processed 274 op/s: median 863 ms, 1 in 100: 1,168 ms</title></rect></svg></div>
+          <details class="diagram__data">
+            <summary>Chart data</summary>
+            <div class="table-wrap">
+              <table class="data">
+                <thead><tr><th class="num">Load, op/s</th><th class="num">Processed, op/s</th><th class="num">Median, ms</th><th class="num">1 in 100, ms</th></tr></thead>
+                <tbody>
+                  <tr><td class="num">20</td><td class="num">20</td><td class="num">3.7</td><td class="num">44</td></tr>
+                  <tr><td class="num">60</td><td class="num">59</td><td class="num">5.2</td><td class="num">38</td></tr>
+                  <tr><td class="num">100</td><td class="num">100</td><td class="num">7.1</td><td class="num">78</td></tr>
+                  <tr><td class="num">140</td><td class="num">138</td><td class="num">7.5</td><td class="num">79</td></tr>
+                  <tr><td class="num">180</td><td class="num">180</td><td class="num">18.7</td><td class="num">131</td></tr>
+                  <tr><td class="num">220</td><td class="num">220</td><td class="num">87</td><td class="num">219</td></tr>
+                  <tr><td class="num">260</td><td class="num">253</td><td class="num">79</td><td class="num">285</td></tr>
+                  <tr><td class="num">300</td><td class="num">263</td><td class="num">263</td><td class="num">395</td></tr>
+                  <tr><td class="num">340</td><td class="num">274</td><td class="num">863</td><td class="num">1,168</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+          <figcaption>Response time on the test bench as load increases, stress test with 500 clients. On a slow VPS CPU the curve shifts left, and the limit starts at about 110 operations per second. The load of a personal server stays at the far left of the chart.</figcaption>
+        </figure>
+        <ul class="stats" role="list">
+          <li class="stat" data-state="success"><span class="stat__value">0.9 ms</span><span class="stat__label">median at 100 operations per second</span></li>
+          <li class="stat" data-state="success"><span class="stat__value">37 ms</span><span class="stat__label">99% of requests were faster</span></li>
+          <li class="stat"><span class="stat__value">117 ms</span><span class="stat__label">slowest request in 5 minutes</span></li>
+          <li class="stat"><span class="stat__value">stable</span><span class="stat__label">response time over 5 minutes</span></li>
+        </ul>
+      </section>
+
+      <section class="section" id="load">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>load</p>
+        <h2>What loads the server</h2>
+        <p>Prosody handles requests from all users one at a time, in a single thread. While a long operation runs, the other requests wait.</p>
+        <figure class="diagram">
+          <div class="diagram__canvas"><svg viewBox="0 0 720 172" width="720" height="172" role="img" aria-labelledby="lt3-title"><title id="lt3-title">Requests wait in a single queue and Prosody runs them one at a time; while a vault download runs, the other requests wait</title><defs><marker id="lt3-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><text class="dg-note" x="16" y="30">Requests from all users wait their turn</text><rect class="dg-zone" x="16" y="44" width="360" height="64" rx="6"/><rect class="dg-box" x="28" y="56" width="56" height="40" rx="4"/><text class="dg-text" x="56" y="81" text-anchor="middle">login</text><rect class="dg-box" x="92" y="56" width="72" height="40" rx="4"/><text class="dg-text" x="128" y="81" text-anchor="middle">read</text><rect class="dg-box" x="172" y="56" width="96" height="40" rx="4"/><text class="dg-text" x="220" y="81" text-anchor="middle">save</text><rect class="dg-box" x="276" y="56" width="88" height="40" rx="4"/><text class="dg-text" x="320" y="81" text-anchor="middle">message</text><line class="dg-line" x1="380" y1="76" x2="412" y2="76" marker-end="url(#lt3-arrow)"/><rect class="dg-box--server" x="416" y="16" width="200" height="140" rx="6"/><text class="dg-title" x="432" y="42">Prosody</text><text class="dg-note" x="432" y="64">now running:</text><rect class="dg-run" x="432" y="76" width="168" height="32" rx="4"/><text class="dg-run-text" x="516" y="97" text-anchor="middle">vault download</text><text class="dg-note" x="432" y="136">30-100 ms per 256 records</text><line class="dg-line" x1="620" y1="92" x2="648" y2="92" marker-end="url(#lt3-arrow)"/><text class="dg-note" x="634" y="82" text-anchor="middle">SQL</text><path class="dg-box" d="M652 66v52a30 8 0 0 0 60 0v-52"/><ellipse class="dg-box" cx="682" cy="66" rx="30" ry="8"/><text class="dg-text" x="682" y="102" text-anchor="middle">SQLite</text></svg></div>
+          <figcaption>All server requests go through one queue, including regular messages and presence. That is why response time depends on how busy the server is, and not only on how fast a single operation is.</figcaption>
+        </figure>
+        <p>The longest operation is downloading the whole vault when a device connects. In the test it was 8% of requests, yet half of the server's working time.</p>
+        <figure class="diagram">
+          <ul class="diagram__legend" role="list">
+            <li><span class="key key--1"></span>Vault download</li>
+            <li><span class="key key--2"></span>Saving a record</li>
+            <li><span class="key key--3"></span>Reading one record</li>
+          </ul>
+          <div class="diagram__canvas"><svg viewBox="0 0 720 100" width="720" height="100" role="img" aria-labelledby="ch2-title"><title id="ch2-title">Vault download: 8% of requests and 50% of server time; saving: 20% of requests and 35% of time; reading one record: 72% of requests and 15% of time</title><text class="ch-label" x="16" y="29">Share of requests</text><rect class="ch-fill--1" x="200" y="8" width="38.3" height="32" rx="4"><title>Share of requests: vault download 8%</title></rect><text class="ch-seg" x="219.2" y="28" text-anchor="middle">8%</text><rect class="ch-fill--2" x="240.3" y="8" width="98.8" height="32" rx="4"><title>Share of requests: saving a record 20%</title></rect><text class="ch-seg" x="289.7" y="28" text-anchor="middle">20%</text><rect class="ch-fill--3" x="341.1" y="8" width="362.9" height="32" rx="4"><title>Share of requests: reading one record 72%</title></rect><text class="ch-seg" x="522.6" y="28" text-anchor="middle">72%</text><text class="ch-label" x="16" y="81">Share of server time</text><rect class="ch-fill--1" x="200" y="60" width="250" height="32" rx="4"><title>Share of server time: vault download 50%</title></rect><text class="ch-seg" x="325" y="80" text-anchor="middle">50%</text><rect class="ch-fill--2" x="452" y="60" width="174.4" height="32" rx="4"><title>Share of server time: saving a record 35%</title></rect><text class="ch-seg" x="539.2" y="80" text-anchor="middle">35%</text><rect class="ch-fill--3" x="628.4" y="60" width="75.6" height="32" rx="4"><title>Share of server time: reading one record 15%</title></rect><text class="ch-seg" x="666.2" y="80" text-anchor="middle">15%</text></svg></div>
+          <details class="diagram__data">
+            <summary>Chart data</summary>
+            <div class="table-wrap">
+              <table class="data">
+                <thead><tr><th>Operation</th><th class="num">Share of requests</th><th class="num">Share of server time</th></tr></thead>
+                <tbody>
+                  <tr><td>Vault download</td><td class="num">8%</td><td class="num">50%</td></tr>
+                  <tr><td>Saving a record</td><td class="num">20%</td><td class="num">35%</td></tr>
+                  <tr><td>Reading one record</td><td class="num">72%</td><td class="num">15%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+          <figcaption>Share of requests and share of server time by operation type at 100 operations per second. Server time is estimated from the execution time of each operation.</figcaption>
+        </figure>
+        <p>Download time grows with the number of records. If the limit is raised to several thousand records, every connection of such a user will hold up the whole server for seconds.</p>
+        <figure class="diagram">
+          <div class="diagram__canvas"><svg viewBox="0 0 720 176" width="720" height="176" role="img" aria-labelledby="ch3-title"><title id="ch3-title">Vault download time: 256 records take 28-95 ms, 1,000 records 0.11-0.37 s, 10,000 records 1.1-3.7 s</title><line class="ch-grid" x1="166" y1="8" x2="166" y2="140"/><text class="ch-tick" x="166" y="158" text-anchor="middle">10 ms</text><line class="ch-grid" x1="324" y1="8" x2="324" y2="140"/><text class="ch-tick" x="324" y="158" text-anchor="middle">100 ms</text><line class="ch-grid" x1="482" y1="8" x2="482" y2="140"/><text class="ch-tick" x="482" y="158" text-anchor="middle">1 s</text><line class="ch-grid" x1="640" y1="8" x2="640" y2="140"/><text class="ch-tick" x="640" y="158" text-anchor="middle">10 s</text><text class="ch-label" x="16" y="31">256 records</text><text class="ch-sub" x="16" y="47">default</text><rect class="ch-fill--1" x="236.7" y="16" width="83.8" height="22" rx="4"><title>256 records: 28 ms on a fast CPU, 95 ms on a slow CPU</title></rect><text class="ch-value" x="328.5" y="31">28-95 ms</text><text class="ch-label" x="16" y="75">1,000 records</text><rect class="ch-fill--1" x="330.5" y="60" width="83.2" height="22" rx="4"><title>1,000 records: 110 ms on a fast CPU, 370 ms on a slow CPU</title></rect><text class="ch-value" x="421.8" y="75">0.11-0.37 s</text><text class="ch-label" x="16" y="119">10,000 records</text><rect class="ch-fill--1" x="488.5" y="104" width="83.2" height="22" rx="4"><title>10,000 records: 1,100 ms on a fast CPU, 3,700 ms on a slow CPU</title></rect><text class="ch-value" x="579.8" y="119">1.1-3.7 s</text></svg></div>
+          <details class="diagram__data">
+            <summary>Chart data</summary>
+            <div class="table-wrap">
+              <table class="data">
+                <thead><tr><th class="num">Records</th><th class="num">Fast CPU</th><th class="num">Slow CPU</th></tr></thead>
+                <tbody>
+                  <tr><td class="num">256</td><td class="num">28 ms</td><td class="num">95 ms</td></tr>
+                  <tr><td class="num">1,000</td><td class="num">110 ms</td><td class="num">370 ms</td></tr>
+                  <tr><td class="num">10,000</td><td class="num">1,100 ms</td><td class="num">3,700 ms</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+          <figcaption>Server time for one vault download, by number of records. The lower bound was measured on the test bench CPU; the upper bound corresponds to a slow VPS CPU. The scale is logarithmic: each division is 10 times the previous one.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section" id="vps">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>vps</p>
+        <h2>Are the VPS resources enough</h2>
+        <p>Estimate for a VPS with 1 core, 1 GiB of RAM and a 200 Mbit/s link. 100 InkVault users, each with 2-3 devices, 10-30 connections and about 5 saves per day, up to 256 records.</p>
+        <ul class="tasks" role="list">
+          <li class="task" data-state="success">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span>cpu</p>
+            <h3 class="task__title">CPU: up to 4 min per day</h3>
+            <p class="task__text">The server spends 30 seconds to 4 minutes a day on InkVault requests, less than 0.3% of the time. A second core is not needed: Prosody runs in a single thread.</p>
+          </li>
+          <li class="task" data-state="success">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span>memory</p>
+            <h3 class="task__title">Memory: 250-400 MB of 1 GiB</h3>
+            <p class="task__text">System 150-250 MB, Prosody 30-60 MB, database cache about 70 MB. More than half of the memory stays free.</p>
+          </li>
+          <li class="task" data-state="success">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span>disk</p>
+            <h3 class="task__title">Disk: about 70 MB database</h3>
+            <p class="task__text">2.8 KB per record including indexes. One save writes up to 400 KB to disk: database pages and the transaction journal. For an SSD in personal use this volume is negligible.</p>
+          </li>
+          <li class="task" data-state="success">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span>network</p>
+            <h3 class="task__title">Network: about 4 s after a restart</h3>
+            <p class="task__text">In normal operation InkVault uses a fraction of a percent of the link. After a server restart, 300 devices download about 105 MB, which takes about 4 seconds on a 200 Mbit/s link.</p>
+          </li>
+          <li class="task" data-state="success">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span>restart</p>
+            <h3 class="task__title">After a restart: 7-22 s</h3>
+            <p class="task__text">This is how long it takes for all 300 devices to download their vaults again. The server processes the downloads one by one, so during these seconds it responds more slowly than usual. For 500 users it takes from 35 seconds to 2 minutes.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section" id="capacity">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>capacity</p>
+        <h2>How many users such a VPS can handle</h2>
+        <ul class="tasks" role="list">
+          <li class="task" data-state="success">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span>users_1_100</p>
+            <h3 class="task__title">1-100 users</h3>
+            <p class="task__text">Suitable, with a large margin.</p>
+          </li>
+          <li class="task" data-state="upstream_failed">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span>users_100_500</p>
+            <h3 class="task__title">100-500 users</h3>
+            <p class="task__text">Probably suitable. Test on your VPS: a lot depends on its CPU speed.</p>
+          </li>
+          <li class="task" data-state="queued">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span>users_500_plus</p>
+            <h3 class="task__title">More than 500 users</h3>
+            <p class="task__text">Not tested. A separate test on the target server is needed.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section" id="overload">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>overload</p>
+        <h2>What happens under overload</h2>
+        <p>In the stress test the server received 10 times more requests than it could process.</p>
+        <ul class="stats" role="list">
+          <li class="stat"><span class="stat__value">3,000</span><span class="stat__label">operations per second requested</span></li>
+          <li class="stat"><span class="stat__value">264</span><span class="stat__label">operations per second processed</span></li>
+          <li class="stat" data-state="success"><span class="stat__value">0</span><span class="stat__label">errors and lost notifications</span></li>
+          <li class="stat"><span class="stat__value">about 2 s</span><span class="stat__label">response time instead of milliseconds</span></li>
+        </ul>
+        <p>The server did not fail and lost no data: all requests completed, all notifications were delivered, and responses slowed down. After the load dropped, the accumulated queue was processed. A personal server's load is hundreds of times lower than this level.</p>
+      </section>
+
+      <section class="section" id="setup">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>setup</p>
+        <h2>What to check on your server</h2>
+        <p>Settings are in prosody.cfg.lua. Restart Prosody after changing them.</p>
+        <h3>SQLite storage</h3>
+        <p>The conclusions of this report apply to SQLite storage. By default Prosody stores data in files (internal); that option was not tested. To switch to SQLite:</p>
+        <div class="log-panel">
+          <p class="log-panel__head" aria-hidden="true">prosody.cfg.lua</p>
+          <pre class="term"><code>storage = "sql"
+sql = { driver = "SQLite3", database = "prosody.sqlite" }</code></pre>
+        </div>
+        <p>This requires the LuaDBI package for SQLite: lua-dbi-sqlite3 on Debian and Ubuntu. Existing data can be moved with prosody-migrator.</p>
+        <h3>Vault record limit</h3>
+        <p>The limit is set by pep_max_items. The default of 256 matches InkVault's default vault limit. If you need more records, raise the limit. On a single-core VPS, keep it at 1,000 or below:</p>
+        <div class="log-panel">
+          <p class="log-panel__head" aria-hidden="true">prosody.cfg.lua</p>
+          <pre class="term"><code>pep_max_items = 1000</code></pre>
+        </div>
+        <h3>PEP module</h3>
+        <p>The pep module is part of the standard Prosody configuration and is usually already enabled in modules_enabled. Testing was done on Prosody 13.0.7.</p>
+        <h3>Disk speed</h3>
+        <p>Save speed depends on how fast the disk confirms a write. A check for experienced users; the file is created next to the Prosody database and removed after the test:</p>
+        <div class="log-panel">
+          <p class="log-panel__head" aria-hidden="true">shell · fio</p>
+          <ol class="log log--cmd" role="list">
+            <li><code class="log__msg">fio --name=fsync --filename=/var/lib/prosody/fio-test --rw=write --bs=4k --size=16m --fsync=1 --ioengine=sync</code></li>
+            <li><code class="log__msg">rm /var/lib/prosody/fio-test</code></li>
+          </ol>
+        </div>
+        <p>If 99.00th in the sync percentiles block is 3000 usec or less, the disk is fine.</p>
+        <h3>Rate limit</h3>
+        <p>If the server limits connection speed (the limits module, for example 10 KB/s), the first import of 256 records takes about 50 seconds. This is the limit at work, not an error.</p>
+        <h3>Backup</h3>
+        <p>The InkVault vault lives in the Prosody database. You can back it up without stopping the server:</p>
+        <div class="log-panel">
+          <p class="log-panel__head" aria-hidden="true">shell · sqlite3</p>
+          <ol class="log log--cmd" role="list">
+            <li><code class="log__msg">sqlite3 /var/lib/prosody/prosody.sqlite ".backup '/var/backups/prosody.sqlite'"</code></li>
+          </ol>
+        </div>
+        <p>The database path depends on your installation.</p>
+      </section>
+
+      <section class="section" id="database">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>database</p>
+        <h2>SQLite and PostgreSQL</h2>
+        <p>All conclusions in this report come from a test bench with SQLite and 100 users. SQLite is enough for a small server.</p>
+        <p>PostgreSQL is worth choosing for a server with hundreds of users or more. In a reference measurement on the same bench, the server wrote 4-5 times less to disk per save with PostgreSQL. Response time and CPU load were close to SQLite: Prosody runs queries to any database one at a time in its own thread, so the choice of database has little effect on the number of requests per second.</p>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Reference measurement, 100 op/s</th><th class="num">SQLite</th><th class="num">PostgreSQL</th></tr></thead>
+            <tbody>
+              <tr><td>Disk writes per save</td><td class="num">394 KB</td><td class="num">85 KB</td></tr>
+              <tr><td>Prosody CPU</td><td class="num">43%</td><td class="num">43%</td></tr>
+              <tr><td>Response time: median / 1 in 100</td><td class="num">6.3 / 77 ms</td><td class="num">7.3 / 159 ms</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <span class="spine__end" aria-hidden="true"></span>
+    </div>
+
+    <p class="page__back"><a href="/projects/inkvault/">InkVault project</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>dag_id=inkov_dev<span class="sep" aria-hidden="true">·</span><a href="https://github.com/tzx1z/inkov-dev">Site source code</a></p>
+      <p><span>© 2026 Evgeny Inkov</span><span class="sep" aria-hidden="true">·</span><a href="#top">Back to top</a></p>
+    </div>
+  </footer>
+</body>
+</html>

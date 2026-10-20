@@ -41,7 +41,7 @@
     "description": "InkVault: менеджер паролей, которому нужны только клиент и учетная запись XMPP на любом сервере с PEP. Сквозное шифрование, ядро на Rust, web, Android и терминальный клиенты. Роль: автор.",
     "url": "https://inkov.dev/ru/projects/inkvault/",
     "inLanguage": "ru",
-    "dateModified": "2026-10-18",
+    "dateModified": "2026-10-20",
     "author": {"@id": "https://inkov.dev/#person"}
   }
   </script>
@@ -89,6 +89,7 @@
         <div><dt lang="en">cli</dt><dd><a href="https://github.com/tzx1z/inkvault-cli">https://github.com/tzx1z/inkvault-cli</a></dd></div>
         <div><dt lang="en">web</dt><dd>закрытый репозиторий</dd></div>
         <div><dt lang="en">license</dt><dd lang="en">AGPL-3.0</dd></div>
+        <div><dt lang="en">load_test</dt><dd><a href="/ru/projects/inkvault/load-test/">отчет о нагрузочной проверке</a></dd></div>
       </dl>
     </div>
 
@@ -309,6 +310,19 @@
           <li>Общий набор тестовых векторов проверяет, что шифрование и слияние дают побайтно одинаковый результат во всех трех сборках ядра: нативной на Rust, WebAssembly в браузере и Kotlin-биндингах на Android. Запись, сохраненная одним клиентом, читается остальными без расхождений</li>
         </ul>
         <p>Дальше: автозаполнение на Android, OMEMO 2 для подтверждения нового устройства с уже подключенного и компонент хранилища для совместного доступа к хранилищам, в том числе для пользователей других доменов через федерацию.</p>
+      </section>
+
+      <section class="section" id="load-test">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">load_test</span></p>
+        <h2>Нагрузочная проверка</h2>
+        <p>Как XMPP-сервер справляется с клиентами InkVault: Prosody 13 с SQLite, 100 пользователей по 200 записей, до 3000 операций в секунду. Отчет для владельцев своего сервера: сколько пользователей выдержит VPS, что нагружает сервер и что проверить в настройках.</p>
+        <ul class="stats" role="list">
+          <li class="stat" data-state="success"><span class="stat__value">0</span><span class="stat__label">ошибок на 307&#160;977 операций</span></li>
+          <li class="stat" data-state="success"><span class="stat__value">100</span><span class="stat__label">пользователей на VPS с 1&#160;ядром и 1&#160;ГиБ, с большим запасом</span></li>
+          <li class="stat"><span class="stat__value">260-280</span><span class="stat__label">операций в секунду, предел одного процесса Prosody</span></li>
+          <li class="stat"><span class="stat__value">30 МиБ</span><span class="stat__label">памяти занимает Prosody с 50 клиентами</span></li>
+        </ul>
+        <p><a class="btn btn--primary" href="/ru/projects/inkvault/load-test/">Открыть отчет о проверке</a></p>
       </section>
 
       <section class="section" id="install">

@@ -11,6 +11,7 @@
 index.html, ru/index.html            главная EN и RU
 projects/, ru/projects/              список проектов
 projects/<slug>/, ru/projects/<slug>/   страницы проектов
+projects/<slug>/<page>/                подстраницы проекта (отчет inkvault/load-test/)
 404.html                             одна страница на оба языка
 .well-known/host-meta                XEP-0156: WebSocket-адрес XMPP-сервера для веб-клиентов
 assets/css/style.css                 единственная таблица стилей, токены на :root
@@ -95,6 +96,10 @@ python3 -m http.server 8000 --bind 127.0.0.1
    обеих темах; подписи в SVG переводятся, разметка пары совпадает. Скриншоты телефона -
    `<div class="shots shots--phone">`, ширины 320 и 640. Сессия терминала -
    `<pre class="term">` внутри `.log-panel`, команды в `.term__cmd`, вывод в `.term__out`.
+   График - тот же `<figure class="diagram">` с классами `ch-*`, цвета серий - токены
+   `--chart-1..3`, легенда - `.diagram__legend`, точные значения - таблица `.data` в
+   `<details class="diagram__data">` (пример - `projects/inkvault/load-test/`). SVG графиков
+   статичные, подсказку при наведении дает `<title>` внутри прозрачного `.ch-hit`.
 5. Статус блока проектов на главной (`data-state` у `<section id="projects">`) и ноды
    `projects` на `/projects/` - `running`, пока хотя бы один проект в работе, иначе `success`.
    Бейдж выводится только для `running`: в шапке блока, на карточке и в заголовке страницы

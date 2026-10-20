@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-e2lQhFMMb6KoBMfkNDH6kVgeuY4+M384y1SCuROV8ko='; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Нагрузочная проверка InkVault - Проекты - Евгений Иньков</title>
+  <script>try{const t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}</script>
+  <link rel="preload" href="/assets/fonts/jetbrains-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script type="module" src="/assets/js/main.js"></script>
+  <meta name="description" content="Нагрузочная проверка InkVault на Prosody 13 с SQLite: время ответа и предел сервера, ресурсы VPS на 100 пользователей, поведение при перегрузке и настройки сервера.">
+  <link rel="canonical" href="https://inkov.dev/ru/projects/inkvault/load-test/">
+  <link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/inkvault/load-test/">
+  <link rel="alternate" hreflang="en" href="https://inkov.dev/projects/inkvault/load-test/">
+  <link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/inkvault/load-test/">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f6f8">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e1116">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="inkov.dev">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:url" content="https://inkov.dev/ru/projects/inkvault/load-test/">
+  <meta property="og:title" content="Нагрузочная проверка InkVault - Проекты - Евгений Иньков">
+  <meta property="og:description" content="Нагрузочная проверка InkVault на Prosody 13 с SQLite: время ответа и предел сервера, ресурсы VPS на 100 пользователей, поведение при перегрузке и настройки сервера.">
+  <meta property="og:image" content="https://inkov.dev/assets/img/og/og-inkvault-ru.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="InkVault, менеджер паролей для любой учетной записи XMPP">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Нагрузочная проверка InkVault",
+    "description": "Нагрузочная проверка InkVault на Prosody 13 с SQLite: время ответа и предел сервера, ресурсы VPS на 100 пользователей, поведение при перегрузке и настройки сервера.",
+    "url": "https://inkov.dev/ru/projects/inkvault/load-test/",
+    "inLanguage": "ru",
+    "datePublished": "2026-10-20",
+    "dateModified": "2026-10-20",
+    "author": {"@id": "https://inkov.dev/#person"},
+    "about": {"@type": "SoftwareApplication", "name": "InkVault", "url": "https://inkov.dev/ru/projects/inkvault/"}
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к основному содержанию</a>
+
+  <header class="site-header" id="top">
+    <div class="container site-header__inner">
+      <a class="logo" href="/ru/" aria-label="inkov.dev, на главную"><span class="logo__ring" aria-hidden="true"></span>inkov.dev</a>
+      <div class="site-header__controls">
+        <nav class="lang" aria-label="Выбор языка">
+          <a href="/projects/inkvault/load-test/" hreflang="en" lang="en" aria-label="EN, English">EN</a>
+          <a href="/ru/projects/inkvault/load-test/" hreflang="ru" lang="ru" aria-label="RU, русский" aria-current="page">RU</a>
+        </nav>
+        <button type="button" class="theme-toggle" id="theme-toggle" hidden data-label-auto="тема: авто" data-label-light="тема: светлая" data-label-dark="тема: темная">
+          <svg class="theme-toggle__icon" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 1.75a7.25 7.25 0 0 1 0 14.5Z" fill="currentColor"/></svg>
+          <span class="theme-toggle__text">тема: авто</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container page">
+    <nav class="crumbs" aria-label="Путь по сайту">
+      <ol role="list" lang="en">
+        <li><a href="/ru/">inkov_dev</a></li>
+        <li><a href="/ru/projects/">projects</a></li>
+        <li><a href="/ru/projects/inkvault/">inkvault</a></li>
+        <li aria-current="page">load-test</li>
+      </ol>
+    </nav>
+
+    <div class="page-node" data-state="success">
+      <span class="page-node__id" lang="en" aria-hidden="true">inkvault_load_test</span>
+      <h1><img class="project-logo" src="/assets/img/projects/inkvault/inkvault-logo.svg" width="40" height="40" loading="lazy" decoding="async" alt="">Нагрузочная проверка InkVault</h1>
+      <p class="page-node__summary">Отчет для владельцев XMPP-сервера на VPS: будет ли сервер корректно работать с InkVault, сколько пользователей он выдержит и что проверить в настройках.</p>
+    </div>
+
+    <div class="attrs">
+      <p class="attrs__head" lang="en">attributes</p>
+      <dl>
+        <div><dt lang="en">project</dt><dd><a href="/ru/projects/inkvault/">InkVault</a></dd></div>
+        <div><dt lang="en">server</dt><dd>Prosody 13.0.7, Lua 5.4</dd></div>
+        <div><dt lang="en">storage</dt><dd>SQLite, журнал delete, synchronous FULL</dd></div>
+        <div><dt lang="en">dataset</dt><dd>100 пользователей по 200 записей, шифротекст записи 900 байт</dd></div>
+        <div><dt lang="en">rate_limit</dt><dd>10 КБ/с на подключение</dd></div>
+        <div><dt lang="en">date</dt><dd>2026-10-20</dd></div>
+      </dl>
+    </div>
+
+    <div class="spine">
+      <section class="section" id="verdict">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">verdict</span></p>
+        <h2>Вывод</h2>
+        <p>VPS с 1 ядром, 1 ГиБ памяти и каналом 200 Мбит/с справляется с InkVault. Для личного сервера, семьи и небольшой группы, примерно до 100 пользователей, ресурсов хватает с большим запасом.</p>
+        <p>На проверке сервер не допустил ни одной ошибки и не потерял ни одного уведомления, в том числе при нагрузке, в 10 раз превышающей его возможности. Вывод верен при условиях:</p>
+        <ul>
+          <li>Prosody хранит данные в SQLite (storage = "sql"), как на стенде проверки</li>
+          <li>Лимит записей хранилища 256 (значение по умолчанию) или увеличен умеренно, до 1000</li>
+          <li>Диск VPS на SSD</li>
+        </ul>
+        <ul class="stats" role="list">
+          <li class="stat" data-state="success"><span class="stat__value">0</span><span class="stat__label">ошибок на 307&#160;977 операций</span></li>
+          <li class="stat" data-state="success"><span class="stat__value">0</span><span class="stat__label">потерянных уведомлений о новых записях</span></li>
+          <li class="stat"><span class="stat__value">37 мс</span><span class="stat__label">99% запросов быстрее при 100 операциях в секунду</span></li>
+          <li class="stat"><span class="stat__value">30 МиБ</span><span class="stat__label">памяти занимает Prosody с 50 подключенными клиентами</span></li>
+        </ul>
+      </section>
+
+      <section class="section" id="how">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">how</span></p>
+        <h2>Как InkVault работает с сервером</h2>
+        <p>InkVault хранит записи на вашем XMPP-сервере через PEP (XEP-0163), стандартный механизм личных данных учетной записи. Записи шифруются на устройстве, сервер хранит только шифротекст и служебные поля: идентификатор записи и версию ключа. Отдельный сервер или база для InkVault не нужны.</p>
+        <figure class="diagram">
+          <div class="diagram__canvas"><svg viewBox="0 0 720 400" width="720" height="400" role="img" aria-labelledby="lt1-title"><title id="lt1-title">Устройства подключаются к Prosody, сервер хранит записи в узле PEP и в базе SQLite, при подключении отдает все записи, при сохранении принимает одну запись и рассылает уведомление другим устройствам владельца</title><defs><marker id="lt1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="32" width="176" height="64" rx="6"/><text class="dg-title" x="32" y="58">Android</text><text class="dg-note" x="32" y="80">шифрует записи</text><rect class="dg-box" x="16" y="168" width="176" height="64" rx="6"/><text class="dg-title" x="32" y="194">Веб-клиент</text><text class="dg-note" x="32" y="216">шифрует записи</text><rect class="dg-box" x="16" y="304" width="176" height="64" rx="6"/><text class="dg-title" x="32" y="330">Терминал</text><text class="dg-note" x="32" y="352">шифрует записи</text><rect class="dg-box--server" x="392" y="16" width="312" height="368" rx="8"/><text class="dg-title" x="408" y="42">XMPP-сервер Prosody</text><text class="dg-note" x="408" y="62">на вашем VPS</text><rect class="dg-box--core" x="408" y="80" width="280" height="116" rx="6"/><text class="dg-text" x="424" y="106">PEP: хранилище InkVault</text><text class="dg-mono" x="424" y="128">urn:inkvault:vault:0</text><text class="dg-note" x="424" y="154">до 256 записей по умолчанию</text><text class="dg-note" x="424" y="176">доступ только у владельца</text><line class="dg-line" x1="520" y1="198" x2="520" y2="266" marker-end="url(#lt1-arrow)"/><text class="dg-note" x="512" y="236" text-anchor="end">запись + fsync</text><line class="dg-line" x1="576" y1="268" x2="576" y2="200" marker-end="url(#lt1-arrow)"/><text class="dg-note" x="584" y="236">чтение</text><path class="dg-box" d="M468 282v68a80 12 0 0 0 160 0v-68"/><ellipse class="dg-box" cx="548" cy="282" rx="80" ry="12"/><text class="dg-title" x="548" y="322" text-anchor="middle">SQLite</text><text class="dg-mono" x="548" y="342" text-anchor="middle">prosody.sqlite</text><line class="dg-line" x1="196" y1="64" x2="388" y2="64" marker-end="url(#lt1-arrow)"/><circle class="dg-badge" cx="212" cy="44" r="9"/><text class="dg-badge-text" x="212" y="48" text-anchor="middle">2</text><text class="dg-text" x="228" y="48">Сохранение записи</text><text class="dg-note" x="204" y="84">одна запись, около 1.8 КБ</text><line class="dg-line" x1="196" y1="190" x2="388" y2="190" marker-end="url(#lt1-arrow)"/><line class="dg-line" x1="388" y1="214" x2="196" y2="214" marker-end="url(#lt1-arrow)"/><circle class="dg-badge" cx="212" cy="170" r="9"/><text class="dg-badge-text" x="212" y="174" text-anchor="middle">1</text><text class="dg-text" x="228" y="174">Подключение</text><text class="dg-note" x="204" y="236">все записи, около 270 КБ</text><line class="dg-line" x1="388" y1="336" x2="196" y2="336" marker-end="url(#lt1-arrow)"/><circle class="dg-badge" cx="212" cy="316" r="9"/><text class="dg-badge-text" x="212" y="320" text-anchor="middle">3</text><text class="dg-text" x="228" y="320">Уведомление</text><text class="dg-note" x="204" y="356">запись с другого устройства</text></svg></div>
+          <figcaption>1: при каждом подключении устройство загружает все записи хранилища. 2: при изменении устройство отправляет на сервер одну запись. 3: сервер пересылает ее другим подключенным устройствам владельца. Другие пользователи сервера и контакты записи не получают.</figcaption>
+        </figure>
+        <p>Для сервера это значит следующее. Подключение устройства - самая затратная операция: сервер отдает все записи сразу. Сохранение - одна небольшая запись и одна транзакция в базе с записью на диск. Между подключениями устройство ничего не запрашивает, изменения приходят уведомлениями.</p>
+      </section>
+
+      <section class="section" id="method">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">method</span></p>
+        <h2>Как проверяли</h2>
+        <p>Генератор нагрузки вел себя как клиенты InkVault: подключался к Prosody по XMPP с TLS, загружал хранилища, сохранял и читал записи. Размер и формат записей такие же, как у InkVault.</p>
+        <figure class="diagram">
+          <div class="diagram__canvas"><svg viewBox="0 0 720 160" width="720" height="160" role="img" aria-labelledby="lt2-title"><title id="lt2-title">Стенд проверки: генератор нагрузки с 50-500 подключениями, Prosody 13.0.7, база SQLite со 100 пользователями по 200 записей</title><defs><marker id="lt2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><rect class="dg-box" x="16" y="24" width="200" height="112" rx="6"/><text class="dg-title" x="32" y="52">Генератор нагрузки</text><text class="dg-note" x="32" y="78">50-500 подключений</text><text class="dg-note" x="32" y="100">как клиенты InkVault</text><line class="dg-line" x1="220" y1="80" x2="292" y2="80" marker-end="url(#lt2-arrow)"/><text class="dg-note" x="256" y="70" text-anchor="middle">XMPP + TLS</text><rect class="dg-box--core" x="296" y="24" width="196" height="112" rx="6"/><text class="dg-title" x="312" y="52">Prosody 13.0.7</text><text class="dg-note" x="312" y="78">один процесс, один поток</text><text class="dg-note" x="312" y="100">лимит скорости 10 КБ/с</text><line class="dg-line" x1="496" y1="80" x2="548" y2="80" marker-end="url(#lt2-arrow)"/><text class="dg-note" x="522" y="70" text-anchor="middle">SQL</text><path class="dg-box" d="M552 36v100a76 10 0 0 0 152 0v-100"/><ellipse class="dg-box" cx="628" cy="36" rx="76" ry="10"/><text class="dg-title" x="628" y="70" text-anchor="middle">SQLite</text><text class="dg-note" x="628" y="92" text-anchor="middle">100 пользователей</text><text class="dg-note" x="628" y="110" text-anchor="middle">по 200 записей</text><text class="dg-note" x="628" y="128" text-anchor="middle">20&#160;000 записей, 55 МБ</text></svg></div>
+          <figcaption>Стенд проверки. Генератор и сервер работали на одной машине, поэтому сетевая задержка до клиентов в результатах не учитывается.</figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Проверка</th><th>Нагрузка</th><th>Длительность</th><th>Результат</th></tr></thead>
+            <tbody>
+              <tr><td>Обычная нагрузка, 2 прогона</td><td>50 клиентов, 100 операций в секунду</td><td>по 5 мин</td><td>100 оп/с выдержаны, ошибок 0</td></tr>
+              <tr><td>Стресс</td><td>500 клиентов, рост до 3000 операций в секунду</td><td>15 мин</td><td>предел сервера 260-280 оп/с, ошибок 0</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Операция - один запрос клиента: загрузка всего хранилища (8% запросов), сохранение записи (20%) или чтение одной записи (72%).</p>
+      </section>
+
+      <section class="section" id="latency">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">latency</span></p>
+        <h2>Время ответа и нагрузка</h2>
+        <p>До 180 операций в секунду время ответа почти не меняется. Дальше запросы начинают ждать друг друга, а при 260-280 операциях в секунду сервер выходит на предел: обрабатывать больше он не успевает, и растет только время ответа.</p>
+        <figure class="diagram">
+          <ul class="diagram__legend" role="list">
+            <li><span class="key key--line key--1"></span>Медиана: половина запросов быстрее</li>
+            <li><span class="key key--line key--2"></span>1 из 100: самые медленные запросы</li>
+          </ul>
+          <div class="diagram__canvas"><svg viewBox="0 0 720 360" width="720" height="360" role="img" aria-labelledby="ch1-title"><title id="ch1-title">Время ответа почти не меняется до 180 операций в секунду, затем растет; при 340 операциях в секунду медиана 863 мс, самые медленные запросы 1168 мс. Нагрузка личного сервера меньше 1 операции в секунду.</title><rect class="ch-zone--ok" x="64" y="44" width="288" height="270"/><text class="ch-zone-label" x="208" y="34" text-anchor="middle">Запросы не ждут</text><rect class="ch-zone--warn" x="352" y="44" width="128" height="270"/><text class="ch-zone-label" x="416" y="34" text-anchor="middle">Очередь растет</text><rect class="ch-zone--bad" x="480" y="44" width="160" height="270"/><text class="ch-zone-label" x="560" y="34" text-anchor="middle">Перегрузка</text><line class="ch-grid" x1="64" y1="246.5" x2="640" y2="246.5"/><line class="ch-grid" x1="64" y1="179" x2="640" y2="179"/><line class="ch-grid" x1="64" y1="111.5" x2="640" y2="111.5"/><line class="ch-grid" x1="64" y1="44" x2="640" y2="44"/><line class="ch-axis" x1="64" y1="314" x2="640" y2="314"/><text class="ch-tick" x="56" y="318" text-anchor="end">0</text><text class="ch-tick" x="56" y="250.5" text-anchor="end">300</text><text class="ch-tick" x="56" y="183" text-anchor="end">600</text><text class="ch-tick" x="56" y="115.5" text-anchor="end">900</text><text class="ch-tick" x="56" y="48" text-anchor="end">1200</text><text class="ch-tick" x="64" y="332" text-anchor="middle">0</text><text class="ch-tick" x="144" y="332" text-anchor="middle">50</text><text class="ch-tick" x="224" y="332" text-anchor="middle">100</text><text class="ch-tick" x="304" y="332" text-anchor="middle">150</text><text class="ch-tick" x="384" y="332" text-anchor="middle">200</text><text class="ch-tick" x="464" y="332" text-anchor="middle">250</text><text class="ch-tick" x="544" y="332" text-anchor="middle">300</text><text class="ch-tick" x="624" y="332" text-anchor="middle">350</text><text class="ch-title" x="16" y="14">Время ответа, мс</text><text class="ch-title" x="352" y="354" text-anchor="middle">Нагрузка, операций в секунду</text><line class="ch-annot" x1="67" y1="314" x2="67" y2="143"/><circle class="ch-annot-dot" cx="67" cy="314" r="4"/><text class="ch-annot-text" x="76" y="147">Личный сервер на 100 пользователей: меньше 1 оп/с</text><path class="ch-line ch-line--2" d="M96 304.1 L160 305.4 L224 296.4 L288 296.2 L352 284.5 L416 264.7 L480 249.9 L544 225.1 L608 51.2"/><path class="ch-line ch-line--1" d="M96 313.2 L160 312.8 L224 312.4 L288 312.3 L352 309.8 L416 294.4 L480 296.2 L544 254.8 L608 119.8"/><circle class="ch-dot ch-fill--2" cx="96" cy="304.1" r="4"/><circle class="ch-dot ch-fill--1" cx="96" cy="313.2" r="4"/><circle class="ch-dot ch-fill--2" cx="160" cy="305.4" r="4"/><circle class="ch-dot ch-fill--1" cx="160" cy="312.8" r="4"/><circle class="ch-dot ch-fill--2" cx="224" cy="296.4" r="4"/><circle class="ch-dot ch-fill--1" cx="224" cy="312.4" r="4"/><circle class="ch-dot ch-fill--2" cx="288" cy="296.2" r="4"/><circle class="ch-dot ch-fill--1" cx="288" cy="312.3" r="4"/><circle class="ch-dot ch-fill--2" cx="352" cy="284.5" r="4"/><circle class="ch-dot ch-fill--1" cx="352" cy="309.8" r="4"/><circle class="ch-dot ch-fill--2" cx="416" cy="264.7" r="4"/><circle class="ch-dot ch-fill--1" cx="416" cy="294.4" r="4"/><circle class="ch-dot ch-fill--2" cx="480" cy="249.9" r="4"/><circle class="ch-dot ch-fill--1" cx="480" cy="296.2" r="4"/><circle class="ch-dot ch-fill--2" cx="544" cy="225.1" r="4"/><circle class="ch-dot ch-fill--1" cx="544" cy="254.8" r="4"/><circle class="ch-dot ch-fill--2" cx="608" cy="51.2" r="4"/><circle class="ch-dot ch-fill--1" cx="608" cy="119.8" r="4"/><text class="ch-value" x="618" y="55.2">1168 мс</text><text class="ch-value" x="618" y="123.8">863 мс</text><rect class="ch-hit" x="64" y="44" width="64" height="270"><title>Нагрузка 20 оп/с: медиана 3.7 мс, 1 из 100: 44 мс</title></rect><rect class="ch-hit" x="128" y="44" width="64" height="270"><title>Нагрузка 60 оп/с, обработано 59 оп/с: медиана 5.2 мс, 1 из 100: 38 мс</title></rect><rect class="ch-hit" x="192" y="44" width="64" height="270"><title>Нагрузка 100 оп/с: медиана 7.1 мс, 1 из 100: 78 мс</title></rect><rect class="ch-hit" x="256" y="44" width="64" height="270"><title>Нагрузка 140 оп/с, обработано 138 оп/с: медиана 7.5 мс, 1 из 100: 79 мс</title></rect><rect class="ch-hit" x="320" y="44" width="64" height="270"><title>Нагрузка 180 оп/с: медиана 18.7 мс, 1 из 100: 131 мс</title></rect><rect class="ch-hit" x="384" y="44" width="64" height="270"><title>Нагрузка 220 оп/с: медиана 87 мс, 1 из 100: 219 мс</title></rect><rect class="ch-hit" x="448" y="44" width="64" height="270"><title>Нагрузка 260 оп/с, обработано 253 оп/с: медиана 79 мс, 1 из 100: 285 мс</title></rect><rect class="ch-hit" x="512" y="44" width="64" height="270"><title>Нагрузка 300 оп/с, обработано 263 оп/с: медиана 263 мс, 1 из 100: 395 мс</title></rect><rect class="ch-hit" x="576" y="44" width="64" height="270"><title>Нагрузка 340 оп/с, обработано 274 оп/с: медиана 863 мс, 1 из 100: 1168 мс</title></rect></svg></div>
+          <details class="diagram__data">
+            <summary>Данные графика</summary>
+            <div class="table-wrap">
+              <table class="data">
+                <thead><tr><th class="num">Нагрузка, оп/с</th><th class="num">Обработано, оп/с</th><th class="num">Медиана, мс</th><th class="num">1 из 100, мс</th></tr></thead>
+                <tbody>
+                  <tr><td class="num">20</td><td class="num">20</td><td class="num">3.7</td><td class="num">44</td></tr>
+                  <tr><td class="num">60</td><td class="num">59</td><td class="num">5.2</td><td class="num">38</td></tr>
+                  <tr><td class="num">100</td><td class="num">100</td><td class="num">7.1</td><td class="num">78</td></tr>
+                  <tr><td class="num">140</td><td class="num">138</td><td class="num">7.5</td><td class="num">79</td></tr>
+                  <tr><td class="num">180</td><td class="num">180</td><td class="num">18.7</td><td class="num">131</td></tr>
+                  <tr><td class="num">220</td><td class="num">220</td><td class="num">87</td><td class="num">219</td></tr>
+                  <tr><td class="num">260</td><td class="num">253</td><td class="num">79</td><td class="num">285</td></tr>
+                  <tr><td class="num">300</td><td class="num">263</td><td class="num">263</td><td class="num">395</td></tr>
+                  <tr><td class="num">340</td><td class="num">274</td><td class="num">863</td><td class="num">1168</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+          <figcaption>Время ответа на стенде при росте нагрузки, стресс-проверка с 500 клиентами. На медленном процессоре VPS кривая сдвигается влево, и предел наступает примерно со 110 операций в секунду. Нагрузка личного сервера остается у левого края графика.</figcaption>
+        </figure>
+        <ul class="stats" role="list">
+          <li class="stat" data-state="success"><span class="stat__value">0.9 мс</span><span class="stat__label">медиана при 100 операциях в секунду</span></li>
+          <li class="stat" data-state="success"><span class="stat__value">37 мс</span><span class="stat__label">99% запросов быстрее</span></li>
+          <li class="stat"><span class="stat__value">117 мс</span><span class="stat__label">самый долгий запрос за 5 минут</span></li>
+          <li class="stat"><span class="stat__value">не растет</span><span class="stat__label">время ответа за 5 минут работы</span></li>
+        </ul>
+      </section>
+
+      <section class="section" id="load">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">load</span></p>
+        <h2>Что нагружает сервер</h2>
+        <p>Prosody обрабатывает запросы всех пользователей по одному, в одном потоке. Пока выполняется долгая операция, остальные запросы ждут.</p>
+        <figure class="diagram">
+          <div class="diagram__canvas"><svg viewBox="0 0 720 172" width="720" height="172" role="img" aria-labelledby="lt3-title"><title id="lt3-title">Запросы стоят в одной очереди, Prosody выполняет их по одному; пока идет загрузка хранилища, остальные запросы ждут</title><defs><marker id="lt3-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-head" d="M0 0 10 5 0 10Z"/></marker></defs><text class="dg-note" x="16" y="30">Запросы всех пользователей ждут своей очереди</text><rect class="dg-zone" x="16" y="44" width="360" height="64" rx="6"/><rect class="dg-box" x="28" y="56" width="56" height="40" rx="4"/><text class="dg-text" x="56" y="81" text-anchor="middle">вход</text><rect class="dg-box" x="92" y="56" width="72" height="40" rx="4"/><text class="dg-text" x="128" y="81" text-anchor="middle">чтение</text><rect class="dg-box" x="172" y="56" width="96" height="40" rx="4"/><text class="dg-text" x="220" y="81" text-anchor="middle">сохранение</text><rect class="dg-box" x="276" y="56" width="88" height="40" rx="4"/><text class="dg-text" x="320" y="81" text-anchor="middle">сообщение</text><line class="dg-line" x1="380" y1="76" x2="412" y2="76" marker-end="url(#lt3-arrow)"/><rect class="dg-box--server" x="416" y="16" width="200" height="140" rx="6"/><text class="dg-title" x="432" y="42">Prosody</text><text class="dg-note" x="432" y="64">сейчас выполняет:</text><rect class="dg-run" x="432" y="76" width="168" height="32" rx="4"/><text class="dg-run-text" x="516" y="97" text-anchor="middle">загрузка хранилища</text><text class="dg-note" x="432" y="136">30-100 мс на 256 записей</text><line class="dg-line" x1="620" y1="92" x2="648" y2="92" marker-end="url(#lt3-arrow)"/><text class="dg-note" x="634" y="82" text-anchor="middle">SQL</text><path class="dg-box" d="M652 66v52a30 8 0 0 0 60 0v-52"/><ellipse class="dg-box" cx="682" cy="66" rx="30" ry="8"/><text class="dg-text" x="682" y="102" text-anchor="middle">SQLite</text></svg></div>
+          <figcaption>Все запросы сервера проходят через одну очередь, включая обычные сообщения и статусы. Поэтому время ответа зависит от того, насколько занят сервер, а не только от скорости одной операции.</figcaption>
+        </figure>
+        <p>Самая долгая операция - загрузка всего хранилища при подключении устройства. В тесте это 8% запросов, но половина времени работы сервера.</p>
+        <figure class="diagram">
+          <ul class="diagram__legend" role="list">
+            <li><span class="key key--1"></span>Загрузка хранилища</li>
+            <li><span class="key key--2"></span>Сохранение записи</li>
+            <li><span class="key key--3"></span>Чтение одной записи</li>
+          </ul>
+          <div class="diagram__canvas"><svg viewBox="0 0 720 100" width="720" height="100" role="img" aria-labelledby="ch2-title"><title id="ch2-title">Загрузка хранилища: 8% запросов и 50% времени сервера; сохранение: 20% запросов и 35% времени; чтение одной записи: 72% запросов и 15% времени</title><text class="ch-label" x="16" y="29">Доля запросов</text><rect class="ch-fill--1" x="200" y="8" width="38.3" height="32" rx="4"><title>Доля запросов: загрузка хранилища 8%</title></rect><text class="ch-seg" x="219.2" y="28" text-anchor="middle">8%</text><rect class="ch-fill--2" x="240.3" y="8" width="98.8" height="32" rx="4"><title>Доля запросов: сохранение записи 20%</title></rect><text class="ch-seg" x="289.7" y="28" text-anchor="middle">20%</text><rect class="ch-fill--3" x="341.1" y="8" width="362.9" height="32" rx="4"><title>Доля запросов: чтение одной записи 72%</title></rect><text class="ch-seg" x="522.6" y="28" text-anchor="middle">72%</text><text class="ch-label" x="16" y="81">Доля времени сервера</text><rect class="ch-fill--1" x="200" y="60" width="250" height="32" rx="4"><title>Доля времени сервера: загрузка хранилища 50%</title></rect><text class="ch-seg" x="325" y="80" text-anchor="middle">50%</text><rect class="ch-fill--2" x="452" y="60" width="174.4" height="32" rx="4"><title>Доля времени сервера: сохранение записи 35%</title></rect><text class="ch-seg" x="539.2" y="80" text-anchor="middle">35%</text><rect class="ch-fill--3" x="628.4" y="60" width="75.6" height="32" rx="4"><title>Доля времени сервера: чтение одной записи 15%</title></rect><text class="ch-seg" x="666.2" y="80" text-anchor="middle">15%</text></svg></div>
+          <details class="diagram__data">
+            <summary>Данные графика</summary>
+            <div class="table-wrap">
+              <table class="data">
+                <thead><tr><th>Операция</th><th class="num">Доля запросов</th><th class="num">Доля времени сервера</th></tr></thead>
+                <tbody>
+                  <tr><td>Загрузка хранилища</td><td class="num">8%</td><td class="num">50%</td></tr>
+                  <tr><td>Сохранение записи</td><td class="num">20%</td><td class="num">35%</td></tr>
+                  <tr><td>Чтение одной записи</td><td class="num">72%</td><td class="num">15%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+          <figcaption>Доля запросов и доля времени работы сервера по типам операций при нагрузке 100 операций в секунду. Время сервера оценено по времени выполнения каждой операции.</figcaption>
+        </figure>
+        <p>Время загрузки растет вместе с числом записей. Если поднять лимит до нескольких тысяч записей, каждое подключение такого пользователя будет задерживать весь сервер на секунды.</p>
+        <figure class="diagram">
+          <div class="diagram__canvas"><svg viewBox="0 0 720 176" width="720" height="176" role="img" aria-labelledby="ch3-title"><title id="ch3-title">Время загрузки хранилища: 256 записей - 28-95 мс, 1000 записей - 0.11-0.37 с, 10 000 записей - 1.1-3.7 с</title><line class="ch-grid" x1="166" y1="8" x2="166" y2="140"/><text class="ch-tick" x="166" y="158" text-anchor="middle">10 мс</text><line class="ch-grid" x1="324" y1="8" x2="324" y2="140"/><text class="ch-tick" x="324" y="158" text-anchor="middle">100 мс</text><line class="ch-grid" x1="482" y1="8" x2="482" y2="140"/><text class="ch-tick" x="482" y="158" text-anchor="middle">1 с</text><line class="ch-grid" x1="640" y1="8" x2="640" y2="140"/><text class="ch-tick" x="640" y="158" text-anchor="middle">10 с</text><text class="ch-label" x="16" y="31">256 записей</text><text class="ch-sub" x="16" y="47">по умолчанию</text><rect class="ch-fill--1" x="236.7" y="16" width="83.8" height="22" rx="4"><title>256 записей: 28 мс на быстром процессоре, 95 мс на медленном</title></rect><text class="ch-value" x="328.5" y="31">28-95 мс</text><text class="ch-label" x="16" y="75">1000 записей</text><rect class="ch-fill--1" x="330.5" y="60" width="83.2" height="22" rx="4"><title>1000 записей: 110 мс на быстром процессоре, 370 мс на медленном</title></rect><text class="ch-value" x="421.8" y="75">0.11-0.37 с</text><text class="ch-label" x="16" y="119">10&#160;000 записей</text><rect class="ch-fill--1" x="488.5" y="104" width="83.2" height="22" rx="4"><title>10&#160;000 записей: 1100 мс на быстром процессоре, 3700 мс на медленном</title></rect><text class="ch-value" x="579.8" y="119">1.1-3.7 с</text></svg></div>
+          <details class="diagram__data">
+            <summary>Данные графика</summary>
+            <div class="table-wrap">
+              <table class="data">
+                <thead><tr><th class="num">Записей</th><th class="num">Быстрый процессор</th><th class="num">Медленный процессор</th></tr></thead>
+                <tbody>
+                  <tr><td class="num">256</td><td class="num">28 мс</td><td class="num">95 мс</td></tr>
+                  <tr><td class="num">1000</td><td class="num">110 мс</td><td class="num">370 мс</td></tr>
+                  <tr><td class="num">10&#160;000</td><td class="num">1100 мс</td><td class="num">3700 мс</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+          <figcaption>Время работы сервера на одну загрузку хранилища в зависимости от числа записей. Нижняя граница получена на процессоре стенда, верхняя соответствует медленному процессору VPS. Шкала логарифмическая: каждое деление в 10 раз больше предыдущего.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section" id="vps">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">vps</span></p>
+        <h2>Хватит ли ресурсов VPS</h2>
+        <p>Расчет для VPS с 1 ядром, 1 ГиБ памяти и каналом 200 Мбит/с. 100 пользователей InkVault, у каждого 2-3 устройства, 10-30 подключений и около 5 сохранений в сутки, до 256 записей.</p>
+        <ul class="tasks" role="list">
+          <li class="task" data-state="success">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span><span lang="en">cpu</span></p>
+            <h3 class="task__title">Процессор: до 4 мин в сутки</h3>
+            <p class="task__text">Сервер занят запросами InkVault от 30 секунд до 4 минут в сутки, меньше 0.3% времени. Второе ядро не нужно: Prosody работает в одном потоке.</p>
+          </li>
+          <li class="task" data-state="success">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span><span lang="en">memory</span></p>
+            <h3 class="task__title">Память: 250-400 МБ из 1 ГиБ</h3>
+            <p class="task__text">Система 150-250 МБ, Prosody 30-60 МБ, кеш базы около 70 МБ. Свободно больше половины памяти.</p>
+          </li>
+          <li class="task" data-state="success">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span><span lang="en">disk</span></p>
+            <h3 class="task__title">Диск: база около 70 МБ</h3>
+            <p class="task__text">2.8 КБ на запись вместе с индексами. Одно сохранение записывает на диск до 400 КБ: страницы базы и журнал транзакции. Для SSD при личном использовании это незначительный объем.</p>
+          </li>
+          <li class="task" data-state="success">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span><span lang="en">network</span></p>
+            <h3 class="task__title">Сеть: около 4 с после перезапуска</h3>
+            <p class="task__text">В обычной работе InkVault использует доли процента канала. После перезапуска сервера 300 устройств загружают около 105 МБ, это около 4 секунд работы канала 200 Мбит/с.</p>
+          </li>
+          <li class="task" data-state="success">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span><span lang="en">restart</span></p>
+            <h3 class="task__title">После перезапуска: 7-22 с</h3>
+            <p class="task__text">За это время все 300 устройств снова загружают хранилища. Сервер выполняет загрузки по очереди, поэтому в эти секунды он отвечает медленнее обычного. Для 500 пользователей это уже от 35 секунд до 2 минут.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section" id="capacity">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">capacity</span></p>
+        <h2>Сколько пользователей выдержит такой VPS</h2>
+        <ul class="tasks" role="list">
+          <li class="task" data-state="success">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span><span lang="en">users_1_100</span></p>
+            <h3 class="task__title">1-100 пользователей</h3>
+            <p class="task__text">Подходит с большим запасом.</p>
+          </li>
+          <li class="task" data-state="upstream_failed">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span><span lang="en">users_100_500</span></p>
+            <h3 class="task__title">100-500 пользователей</h3>
+            <p class="task__text">Вероятно, подходит. Проверьте на своем VPS: многое зависит от скорости его процессора.</p>
+          </li>
+          <li class="task" data-state="queued">
+            <p class="task__id" aria-hidden="true"><span class="marker"></span><span lang="en">users_500_plus</span></p>
+            <h3 class="task__title">Больше 500 пользователей</h3>
+            <p class="task__text">Не проверялось. Нужна отдельная проверка на целевом сервере.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section" id="overload">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">overload</span></p>
+        <h2>Что будет при перегрузке</h2>
+        <p>В стресс-проверке сервер получал запросов в 10 раз больше, чем мог обработать.</p>
+        <ul class="stats" role="list">
+          <li class="stat"><span class="stat__value">3000</span><span class="stat__label">операций в секунду запрошено</span></li>
+          <li class="stat"><span class="stat__value">264</span><span class="stat__label">операции в секунду обработано</span></li>
+          <li class="stat" data-state="success"><span class="stat__value">0</span><span class="stat__label">ошибок и потерянных уведомлений</span></li>
+          <li class="stat"><span class="stat__value">около 2 с</span><span class="stat__label">время ответа вместо миллисекунд</span></li>
+        </ul>
+        <p>Сервер не завершился с ошибкой и не потерял данные: все запросы выполнены, все уведомления доставлены, ответы замедлились. После снижения нагрузки накопленная очередь обработана. Нагрузка личного сервера в сотни раз ниже этого уровня.</p>
+      </section>
+
+      <section class="section" id="setup">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">setup</span></p>
+        <h2>Что проверить на сервере</h2>
+        <p>Настройки в файле prosody.cfg.lua. После изменения перезапустите Prosody.</p>
+        <h3>Хранилище SQLite</h3>
+        <p>Выводы отчета относятся к хранилищу SQLite. По умолчанию Prosody хранит данные в файлах (internal), этот вариант не проверялся. Переключение на SQLite:</p>
+        <div class="log-panel">
+          <p class="log-panel__head" lang="en" aria-hidden="true">prosody.cfg.lua</p>
+          <pre class="term" lang="en"><code>storage = "sql"
+sql = { driver = "SQLite3", database = "prosody.sqlite" }</code></pre>
+        </div>
+        <p>Нужен пакет LuaDBI для SQLite, в Debian и Ubuntu это lua-dbi-sqlite3. Существующие данные переносятся утилитой prosody-migrator.</p>
+        <h3>Лимит записей хранилища</h3>
+        <p>Лимит задает pep_max_items. Значение по умолчанию 256 совпадает с лимитом хранилища InkVault по умолчанию. Если записей нужно больше, увеличьте лимит. На VPS с одним ядром не стоит ставить больше 1000:</p>
+        <div class="log-panel">
+          <p class="log-panel__head" lang="en" aria-hidden="true">prosody.cfg.lua</p>
+          <pre class="term" lang="en"><code>pep_max_items = 1000</code></pre>
+        </div>
+        <h3>Модуль PEP</h3>
+        <p>Модуль pep входит в стандартную конфигурацию Prosody и обычно уже включен в modules_enabled. Проверка проводилась на Prosody 13.0.7.</p>
+        <h3>Скорость диска</h3>
+        <p>Скорость сохранения зависит от того, как быстро диск подтверждает запись. Проверка для опытных пользователей, файл создается рядом с базой Prosody и удаляется после теста:</p>
+        <div class="log-panel">
+          <p class="log-panel__head" lang="en" aria-hidden="true">shell · fio</p>
+          <ol class="log log--cmd" role="list" lang="en">
+            <li><code class="log__msg">fio --name=fsync --filename=/var/lib/prosody/fio-test --rw=write --bs=4k --size=16m --fsync=1 --ioengine=sync</code></li>
+            <li><code class="log__msg">rm /var/lib/prosody/fio-test</code></li>
+          </ol>
+        </div>
+        <p>Если в блоке sync percentiles значение 99.00th не больше 3000 usec, диск подходит.</p>
+        <h3>Ограничение скорости</h3>
+        <p>Если на сервере включено ограничение скорости подключений (модуль limits, например 10 КБ/с), первый импорт 256 записей займет около 50 секунд. Это работа ограничения, а не ошибка.</p>
+        <h3>Резервная копия</h3>
+        <p>Хранилище InkVault находится в базе Prosody. Копию можно сделать без остановки сервера:</p>
+        <div class="log-panel">
+          <p class="log-panel__head" lang="en" aria-hidden="true">shell · sqlite3</p>
+          <ol class="log log--cmd" role="list" lang="en">
+            <li><code class="log__msg">sqlite3 /var/lib/prosody/prosody.sqlite ".backup '/var/backups/prosody.sqlite'"</code></li>
+          </ol>
+        </div>
+        <p>Путь к базе зависит от установки.</p>
+      </section>
+
+      <section class="section" id="database">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span><span lang="en">database</span></p>
+        <h2>SQLite и PostgreSQL</h2>
+        <p>Все выводы отчета получены на стенде с SQLite и 100 пользователями. Для небольшого сервера SQLite достаточно.</p>
+        <p>PostgreSQL стоит выбрать для сервера на сотни пользователей и больше. В контрольном замере на этом же стенде с PostgreSQL сервер записывал на диск в 4-5 раз меньше на одно сохранение. Время ответа и нагрузка на процессор были близки к SQLite: Prosody выполняет запросы к любой базе по одному в своем потоке, поэтому на число запросов в секунду выбор базы влияет мало.</p>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Контрольный замер, 100 оп/с</th><th class="num">SQLite</th><th class="num">PostgreSQL</th></tr></thead>
+            <tbody>
+              <tr><td>Запись на диск на одно сохранение</td><td class="num">394 КБ</td><td class="num">85 КБ</td></tr>
+              <tr><td>Процессор Prosody</td><td class="num">43%</td><td class="num">43%</td></tr>
+              <tr><td>Время ответа: медиана / 1 из 100</td><td class="num">6.3 / 77 мс</td><td class="num">7.3 / 159 мс</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <span class="spine__end" aria-hidden="true"></span>
+    </div>
+
+    <p class="page__back"><a href="/ru/projects/inkvault/">Проект InkVault</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p><span lang="en">dag_id=inkov_dev</span><span class="sep" aria-hidden="true">·</span><a href="https://github.com/tzx1z/inkov-dev">Исходный код сайта</a></p>
+      <p><span>© 2026 Евгений Иньков</span><span class="sep" aria-hidden="true">·</span><a href="#top">Наверх</a></p>
+    </div>
+  </footer>
+</body>
+</html>

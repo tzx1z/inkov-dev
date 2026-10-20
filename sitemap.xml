@@ -128,16 +128,30 @@
   </url>
   <url>
     <loc>https://inkov.dev/projects/inkvault/</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/inkvault/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/inkvault/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/inkvault/"/>
   </url>
   <url>
     <loc>https://inkov.dev/ru/projects/inkvault/</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/inkvault/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/inkvault/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/inkvault/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/projects/inkvault/load-test/</loc>
+    <lastmod>2026-10-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/inkvault/load-test/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/inkvault/load-test/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/inkvault/load-test/"/>
+  </url>
+  <url>
+    <loc>https://inkov.dev/ru/projects/inkvault/load-test/</loc>
+    <lastmod>2026-10-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://inkov.dev/ru/projects/inkvault/load-test/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://inkov.dev/projects/inkvault/load-test/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://inkov.dev/projects/inkvault/load-test/"/>
   </url>
 </urlset>

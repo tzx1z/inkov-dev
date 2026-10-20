@@ -54,6 +54,10 @@
     --failed-bg: light-dark(#fbeaea, #2d1718);
     --upstream-failed: light-dark(#a04e00, #e39443);
     --upstream-failed-bg: light-dark(#fbefe3, #2b1e10);
+    /* серии графиков: проверены на различимость при нарушениях цветового зрения */
+    --chart-1: light-dark(#1f5bd6, #3987e5);
+    --chart-2: light-dark(#a04e00, #d95926);
+    --chart-3: light-dark(#00806a, #199e70);
 
     /* шрифты и шкала размеров */
     --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial, sans-serif;
@@ -243,7 +247,8 @@
   .page-node + .attrs { margin-block-start: var(--s-5); }
   .section > :is(p, ul) { max-inline-size: 62ch; }
   .section > .tasks { max-inline-size: none; }
-  .section > :is(p, ul, .attrs, .log-panel, .diagram, .shots) + :is(p, ul, .attrs, .log-panel, .diagram, .shots) { margin-block-start: var(--s-4); }
+  .section > .stats { max-inline-size: 46rem; }
+  .section > :is(p, ul, .attrs, .log-panel, .diagram, .shots, .table-wrap) + :is(p, ul, .attrs, .log-panel, .diagram, .shots, .table-wrap) { margin-block-start: var(--s-4); }
   .section > h3 { margin-block-start: var(--s-6); font-size: var(--fs-lg); }
   .section > h3 + * { margin-block-start: var(--s-3); }
   .error-page { display: grid; justify-items: center; gap: var(--s-5); padding-block-start: var(--section-pad); text-align: center; }
@@ -719,6 +724,57 @@
   .dg-line { fill: none; stroke: var(--muted); stroke-width: 1.5; }
   .dg-line--dashed { stroke-dasharray: 5 4; }
   .dg-head { fill: var(--muted); }
+  .dg-badge, .dg-run { fill: var(--accent); }
+  .dg-badge-text { fill: var(--on-accent); font: 700 11px var(--font-sans); }
+  .dg-run-text { fill: var(--on-accent); font: 600 12px var(--font-sans); }
+
+  /* график: та же рамка, что у схемы; точные значения в таблице под спойлером */
+  .diagram__legend { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4); padding: 12px 16px 0; font-size: var(--fs-sm); color: var(--muted); }
+  .diagram__legend li { display: inline-flex; align-items: center; gap: var(--s-2); }
+  .key { flex: none; inline-size: 12px; block-size: 12px; border-radius: 3px; background: var(--key); forced-color-adjust: none; }
+  .key--line { inline-size: 18px; block-size: 3px; border-radius: 2px; }
+  .key--1 { --key: var(--chart-1); }
+  .key--2 { --key: var(--chart-2); }
+  .key--3 { --key: var(--chart-3); }
+  .diagram__data { border-block-start: 1px solid var(--border); }
+  .diagram__data summary { padding: 10px 16px; font-size: var(--fs-sm); color: var(--muted); cursor: pointer; }
+  .diagram__data summary:hover { color: var(--text); }
+  .diagram__data .data { border-block-start: 1px solid var(--border); }
+  .ch-grid { stroke: var(--border); }
+  .ch-axis { stroke: var(--border-strong); }
+  .ch-tick, .ch-title, .ch-sub { fill: var(--muted); font: 12px var(--font-sans); font-variant-numeric: tabular-nums; }
+  .ch-label { fill: var(--text); font: 13px var(--font-sans); }
+  .ch-value, .ch-zone-label, .ch-annot-text { fill: var(--text); font: 600 12px var(--font-sans); font-variant-numeric: tabular-nums; }
+  .ch-seg { fill: var(--on-accent); font: 700 12px var(--font-sans); }
+  .ch-zone--ok { fill: var(--success-bg); }
+  .ch-zone--warn { fill: var(--upstream-failed-bg); }
+  .ch-zone--bad { fill: var(--failed-bg); }
+  .ch-line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+  .ch-line--1 { stroke: var(--chart-1); }
+  .ch-line--2 { stroke: var(--chart-2); }
+  .ch-fill--1 { fill: var(--chart-1); }
+  .ch-fill--2 { fill: var(--chart-2); }
+  .ch-fill--3 { fill: var(--chart-3); }
+  .ch-dot { stroke: var(--surface); stroke-width: 2; }
+  .ch-annot { stroke: var(--muted); }
+  .ch-annot-dot { fill: var(--muted); }
+  /* прозрачная полоса над точкой графика: по ней браузер показывает подсказку из <title> */
+  .ch-hit { fill: transparent; }
+
+  /* таблица данных */
+  .table-wrap { overflow-x: auto; }
+  .section > .table-wrap { max-inline-size: 46rem; border: 1px solid var(--border-strong); border-radius: var(--r-node); background: var(--surface); }
+  .data { inline-size: 100%; border-collapse: collapse; font-size: var(--fs-sm); line-height: 1.45; }
+  .data :is(th, td) { padding: 8px 12px; text-align: start; vertical-align: top; }
+  .data tbody tr { border-block-start: 1px solid var(--border); }
+  .data th { background: var(--surface-2); font-weight: 600; color: var(--muted); }
+  .data .num { text-align: end; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* ключевые показатели: число и подпись, рамка слева по статусу */
+  .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); gap: var(--s-4); }
+  .stat { display: grid; align-content: start; gap: 2px; padding-inline-start: 12px; border-inline-start: 3px solid var(--state, var(--border-strong)); }
+  .stat__value { font-size: var(--fs-h3); font-weight: 600; line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .stat__label { font-size: var(--fs-sm); line-height: 1.45; color: var(--muted); }
 
   /* сессия терминала: команда и вывод как есть, длинные строки прокручиваются */
   .term { overflow-x: auto; padding: var(--s-4) 16px; font: var(--fs-sm) / 1.6 var(--font-mono); white-space: pre; }

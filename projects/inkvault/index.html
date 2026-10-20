@@ -41,7 +41,7 @@
     "description": "InkVault: a password manager that needs only a client and an XMPP account on any server with PEP. End-to-end encryption, a Rust core, web, Android and terminal clients. Role: author.",
     "url": "https://inkov.dev/projects/inkvault/",
     "inLanguage": "en",
-    "dateModified": "2026-10-18",
+    "dateModified": "2026-10-20",
     "author": {"@id": "https://inkov.dev/#person"}
   }
   </script>
@@ -89,6 +89,7 @@
         <div><dt>cli</dt><dd><a href="https://github.com/tzx1z/inkvault-cli">https://github.com/tzx1z/inkvault-cli</a></dd></div>
         <div><dt>web</dt><dd>private repository</dd></div>
         <div><dt>license</dt><dd>AGPL-3.0</dd></div>
+        <div><dt>load_test</dt><dd><a href="/projects/inkvault/load-test/">load test report</a></dd></div>
       </dl>
     </div>
 
@@ -309,6 +310,19 @@
           <li>One set of test vectors checks that encryption and merge give byte-identical results in all three builds of the core: native Rust, WebAssembly in the browser and the Kotlin bindings on Android. A record saved by one client is read by the others without differences</li>
         </ul>
         <p>Next: autofill on Android, OMEMO 2 to approve a new device from an existing one, and a storage component for sharing vaults between users, including users on other federated domains.</p>
+      </section>
+
+      <section class="section" id="load-test">
+        <p class="eyebrow" aria-hidden="true"><span class="port"></span>load_test</p>
+        <h2>Load test</h2>
+        <p>How an XMPP server handles InkVault clients: Prosody 13 with SQLite, 100 users with 200 records each, up to 3,000 operations per second. The report is for people who run their own server: how many users a VPS can serve, what loads the server and which settings to check.</p>
+        <ul class="stats" role="list">
+          <li class="stat" data-state="success"><span class="stat__value">0</span><span class="stat__label">errors in 307,977 operations</span></li>
+          <li class="stat" data-state="success"><span class="stat__value">100</span><span class="stat__label">users on a VPS with 1&#160;core and 1&#160;GiB, with a large margin</span></li>
+          <li class="stat"><span class="stat__value">260-280</span><span class="stat__label">operations per second, the limit of one Prosody process</span></li>
+          <li class="stat"><span class="stat__value">30 MiB</span><span class="stat__label">of memory used by Prosody with 50 clients</span></li>
+        </ul>
+        <p><a class="btn btn--primary" href="/projects/inkvault/load-test/">Read the load test report</a></p>
       </section>
 
       <section class="section" id="install">
